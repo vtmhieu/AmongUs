@@ -52,10 +52,16 @@ class LLMAgent(Agent):
             model = random.choice(agent_config["IMPOSTOR_LLM_CHOICES"])
 
         self.system_prompt = system_prompt
-        self.model = model
         self.temperature = 0.7
-        self.api_key = os.getenv("OPENROUTER_API_KEY")
-        self.api_url = "https://openrouter.ai/api/v1/chat/completions"
+
+        if model.startswith("ollama/"):
+            self.model = model[len("ollama/"):]
+            self.api_key = "ollama"
+            self.api_url = "http://localhost:11434/v1/chat/completions"
+        else:
+            self.model = model
+            self.api_key = os.getenv("OPENROUTER_API_KEY")
+            self.api_url = "https://openrouter.ai/api/v1/chat/completions"
         self.summarization = "No thought process has been made."
         self.processed_memory = "No memory has been processed."
         self.chat_history = []

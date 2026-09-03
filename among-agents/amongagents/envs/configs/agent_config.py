@@ -1,17 +1,22 @@
-IMPOSTOR_LLM = {"Impostor": "LLM", "Crewmate": "Random"}
+OLLAMA_MODEL = "ollama/llama3.2:latest"
 
-CREWMATE_LLM = {"Impostor": "Random", "Crewmate": "LLM"}
+IMPOSTOR_LLM = {
+    "Impostor": "LLM",
+    "Crewmate": "Random",
+    "IMPOSTOR_LLM_CHOICES": [OLLAMA_MODEL],
+}
+
+CREWMATE_LLM = {
+    "Impostor": "Random",
+    "Crewmate": "LLM",
+    "CREWMATE_LLM_CHOICES": [OLLAMA_MODEL],
+}
 
 ALL_RANDOM = {"Impostor": "Random", "Crewmate": "Random"}
 
 ALL_LLM = {
-    "Impostor": "LLM", 
+    "Impostor": "LLM",
     "Crewmate": "LLM",
-    
-    # "IMPOSTOR_LLM_CHOICES": ["meta-llama/llama-3.3-70b-instruct"],
-    "CREWMATE_LLM_CHOICES": ["microsoft/phi-4"],
-    
-    # "CREWMATE_LLM_CHOICES": ["meta-llama/llama-3.3-70b-instruct"],
-    "IMPOSTOR_LLM_CHOICES": ["microsoft/phi-4"],
-    
+    "CREWMATE_LLM_CHOICES": [OLLAMA_MODEL],
+    "IMPOSTOR_LLM_CHOICES": [OLLAMA_MODEL],
     }

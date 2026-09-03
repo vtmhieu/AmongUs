@@ -32,21 +32,11 @@ load_dotenv()
 experiment_name = CONFIG["experiment_name"]
 
 BIG_LIST_OF_MODELS = [
-    "microsoft/phi-4",
-    "anthropic/claude-3.5-sonnet",
-    "anthropic/claude-3.7-sonnet:thinking",
-    "openai/o3-mini-high",
-    "openai/gpt-4o-mini",
-    "deepseek/deepseek-r1-distill-llama-70b",
-    "qwen/qwen-2.5-7b-instruct",
-    "mistralai/mistral-7b-instruct",
-    "deepseek/deepseek-r1",
-    "meta-llama/llama-3.3-70b-instruct",
-    "google/gemini-2.0-flash-001",
+    "ollama/llama3.2:latest",
 ]
 
 TESTING_MODELS = [
-    "meta-llama/llama-3.3-70b-instruct",
+    "ollama/llama3.2:latest",
 ]
 
 GAME_ARGS = {
