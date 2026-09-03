@@ -35,11 +35,49 @@ The aim is to simulate the popular multiplayer game "Among Us" using AI agents a
 To run the sandbox and log games of various LLMs playing against each other, run:
 
 ```
-main.py
+python main.py
 ```
-You will need to add a `.env` file with an [OpenRouter](https://openrouter.ai/) API key.
+
+By default, agents run against local models via [Ollama](https://ollama.com/) (see below). To use cloud models instead, add a `.env` file with an [OpenRouter](https://openrouter.ai/) API key, and set model names without the `ollama/` prefix (e.g. `meta-llama/llama-3.3-70b-instruct`) in `agent_config.py` or via the `--crewmate_llm`/`--impostor_llm` flags.
 
 Alternatively, you can download 400 full-game logs (for `Phi-4-15b` and `Llama-3.3-70b-instruct`) and 810 game summaries from the [HuggingFace](https://huggingface.co/datasets/7vik/AmongUs) dataset to reproduce the results in the paper (and evaluate your own techniques!).
+
+### Running with Ollama (local models)
+
+You can run every agent in the game against a model served locally by [Ollama](https://ollama.com/), with no API key and no cost.
+
+1. **Install Ollama** — download it from [ollama.com/download](https://ollama.com/download), or on macOS with Homebrew:
+   ```bash
+   brew install ollama
+   ```
+
+2. **Start the Ollama server** (skip this if you installed the desktop app, which runs it for you):
+   ```bash
+   ollama serve
+   ```
+
+3. **Pull a model** — any model in the [Ollama library](https://ollama.com/library) works. For example:
+   ```bash
+   ollama pull llama3.2
+   ```
+
+4. **Point the agents at your model.** Model choices live in [`among-agents/amongagents/envs/configs/agent_config.py`](among-agents/amongagents/envs/configs/agent_config.py); any model name prefixed with `ollama/` is routed to your local Ollama server instead of OpenRouter:
+   ```python
+   OLLAMA_MODEL = "ollama/llama3.2:latest"
+   ```
+   Change `OLLAMA_MODEL` to any model you've pulled (e.g. `"ollama/gemma3:12b-it-qat"`) to switch every agent at once.
+
+   You can also override the model per-run without editing the file:
+   ```bash
+   python main.py --crewmate_llm ollama/llama3.2:latest --impostor_llm ollama/llama3.2:latest
+   ```
+
+5. **Run the game** as usual:
+   ```bash
+   python main.py --num_games 1
+   ```
+
+No `.env`/API key is required for Ollama models — the `ollama/` prefix is stripped and the request goes to `http://localhost:11434/v1/chat/completions`, Ollama's OpenAI-compatible endpoint.
 
 ## Deception ELO
 
