@@ -14,7 +14,7 @@ The aim is to simulate the popular multiplayer game "Among Us" using AI agents a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/7vik/AmongUs.git
+   git clone https://github.com/vtmhieu/AmongUs.git
    cd AmongUs
    ```
 
@@ -148,25 +148,30 @@ You will need to add a `.env` file with a Goodfire API key.
 ```plaintext
 .
 ├── CONTRIBUTING.md         # Contribution guidelines
-├── Dockerfile               # Docker setup for project environment
-├── LICENSE                  # License information
-├── README.md                # Project documentation (this file)
-├── among-agents             # Main code for the Among Us agents
-│   ├── README.md            # Documentation for agent implementation
-│   ├── amongagents          # Core agent and environment modules
-│   ├── envs                 # Game environment and configurations
-│   ├── evaluation           # Evaluation scripts for agent performance
-│   ├── notebooks            # Jupyter notebooks for running experiments
-│   ├── requirements.txt     # Python dependencies for agents
-│   └── setup.py             # Setup script for agent package
-├── expt-logs                # Experiment logs
-├── k8s                      # Kubernetes configurations for deployment
-├── main.py                  # Main entry point for running the game
-├── notebooks                # Additional notebooks (not part of the main project)
-├── reports                  # Experiment reports
-├── requirements.txt         # Python dependencies for main project
-├── tests                    # Unit tests for project functionality
-└── utils.py                 # Utility functions
+├── Dockerfile              # Docker setup for project environment
+├── LICENSE                 # License information
+├── README.md               # Project documentation (this file)
+├── among-agents            # Main code for the Among Us agents
+│   ├── README.md           # Documentation for agent implementation
+│   ├── amongagents         # Core agent and environment package
+│   │   ├── agent        # LLM/Human/Random agent implementations (agent.py, prompts)
+│   │   ├── envs         # Game environment, map, players, and configs (agent_config.py, game_config.py)
+│   │   ├── evaluation   # Evaluation scripts for agent performance
+│   │   ├── UI           # Map/visualization UI
+│   │   └── assets       # Game assets (images, map coordinates)
+│   ├── notebooks           # Jupyter notebooks for running experiments
+│   ├── requirements.txt    # Python dependencies for agents
+│   └── setup.py            # Setup script for agent package
+├── evaluations             # LLM-based evaluation scripts (lying, awareness, deception, planning)
+├── expt-logs               # Experiment logs (created when running main.py)
+├── human_trials            # Flask web app for human-vs-agent games
+├── linear-probes           # Caching activations, training/evaluating linear probes
+├── main.py                 # Main entry point for running the game
+├── notebooks               # Additional notebooks (not part of the main project)
+├── reports                 # Jupyter notebooks reproducing paper results/plots
+├── requirements.txt        # Python dependencies for main project
+├── tests                   # Unit tests for project functionality
+└── utils.py                # Utility functions
 ```
 
 ## Contributing
