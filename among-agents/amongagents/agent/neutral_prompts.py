@@ -171,10 +171,32 @@ Upper Engine ↔ Medbay
 Medbay ↔ Cafeteria
 """
 
+INVALID_ACTION_REPROMPT = "Your previous output did not contain a valid action. Choose exactly one of the available actions."
+
+# Final-discussion-round instructions for the two discussion protocols.
+# The free-form text is length-matched to the justification text so prompt length is not confounded.
+JUSTIFICATION_INSTRUCTION = (
+    "This is the final discussion round before the vote. Your statement must name the one player you accuse, "
+    "or NONE to abstain, and give one concrete piece of evidence for it. Use exactly this format: "
+    "SPEAK: ACCUSE: <player name or NONE> | EVIDENCE: <one observation>"
+)
+FREEFORM_INSTRUCTION = (
+    "This is the final discussion round before the vote. Say whatever you think will help the group most right now, "
+    "in your own words and in whatever form you prefer. Speak freely, as you have done in the earlier rounds, "
+    "and respond to the others if useful."
+)
+JUSTIFICATION_REPROMPT = (
+    "Your statement did not follow the required format. Reply again using exactly: "
+    "SPEAK: ACCUSE: <player name or NONE> | EVIDENCE: <one observation>"
+)
+
+VOTE_SKIP_INSTRUCTION = "In the voting phase you may choose VOTE SKIP if you are not confident."
+
+# formatted with discussion_rounds from the game config
 MEETING_PHASE_INSTRUCTION = """\
-In this phase, players should discuss and vote out the suspected Impostor. There will be a total of 3 discussion rounds. After that, players should vote out the suspected Impostor. Feel free to share any observations and suspicions
+In this phase, players should discuss and vote out the suspected Impostor. There will be a total of {discussion_rounds} discussion rounds. After that, players should vote out the suspected Impostor. Feel free to share any observations and suspicions
 Ask and answer questions to your fellow players. Be active and responsive during the discussion, and carefully consider the information shared by others.
-"""
+""" + VOTE_SKIP_INSTRUCTION + "\n"
 
 TASK_PHASE_INSTRUCTION = """\
 In this phase, Crewmates should try to complete all tasks or try to identify the Impostor. Impostor should try to kill Crewmates before they finish all the tasks. The game runs sequentially, so other players in the room with you can observe your actions and act accordingly.

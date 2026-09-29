@@ -8,6 +8,9 @@ import os
 
 from amongagents.agent.agent import HumanAgent, LLMAgent, LLMHumanAgent, RandomAgent
 from amongagents.agent.neutral_prompts import (
+    FREEFORM_INSTRUCTION,
+    JUSTIFICATION_INSTRUCTION,
+    JUSTIFICATION_REPROMPT,
     MEETING_PHASE_INSTRUCTION,
     TASK_PHASE_INSTRUCTION,
     CrewmatePersonalities,
@@ -20,10 +23,12 @@ from amongagents.envs.configs.agent_config import (
     IMPOSTOR_LLM,
 )
 from amongagents.envs.configs.game_config import FIVE_MEMBER_GAME, SEVEN_MEMBER_GAME
+from amongagents.envs.discussion import FREEFORM, JUSTIFICATION, PROTOCOLS, parse_justification
 from amongagents.envs.map import Map, Spaceship
 from amongagents.envs.player import PLAYER_COLORS, Crewmate, Impostor
 from amongagents.envs.task import TaskAssignment
 from amongagents.envs.tools import GetBestPath
+from amongagents.envs.voting import PLURALITY, SKIP, THRESHOLDS, other_threshold, tally
 
 # Set Flask environment variable to True by default
 if "FLASK" not in os.environ:
@@ -40,6 +45,8 @@ class AmongUs:
         interviewer=None,
         UI=None,
         game_index=0,
+        seed=None,
+        game_config_name=None,
     ):
         """
         include_human: bool
@@ -54,6 +61,10 @@ class AmongUs:
             UI object to be used for the game to display the map.
         game_index: int
             Index of the game for logging purposes.
+        seed: int
+            Seed for roles, colours, tasks and model choice.
+        game_config_name: str
+            Name of the game config preset, recorded in the summary.
         """
         self.game_config = game_config
         self.include_human = include_human
@@ -66,6 +77,19 @@ class AmongUs:
         self.interviewer = interviewer
         self.UI = UI
         self.game_index = game_index
+        self.seed = seed
+        self.game_config_name = game_config_name
+        # governance factors; defaults reproduce the original sandbox behaviour
+        self.vote_threshold = game_config.get("vote_threshold", PLURALITY)
+        self.discussion_protocol = game_config.get("discussion_protocol", FREEFORM)
+        if self.vote_threshold not in THRESHOLDS:
+            raise ValueError(f"vote_threshold must be one of {THRESHOLDS}")
+        if self.discussion_protocol not in PROTOCOLS:
+            raise ValueError(f"discussion_protocol must be one of {PROTOCOLS}")
+        self.condition = f"{self.vote_threshold}/{self.discussion_protocol}"
+        self.meeting_index = 0
+        self.start_time = time.time()
+        self.events_path = os.path.join(os.environ["EXPERIMENT_PATH"], "events.jsonl")
         self.map = Map()
         self.players = []
         self.agents = {}
@@ -87,11 +111,17 @@ class AmongUs:
         self.list_of_impostors = []
 
     def initialize_game(self):
+        # seed here: this method never awaits, so concurrent games cannot interleave with it
+        if self.seed is not None:
+            random.seed(self.seed)
+            np.random.seed(self.seed)
         # reset game state
         if self.UI:
             self.UI.reset()
         self.players = []
         self.timestep = 0
+        self.meeting_index = 0
+        self.start_time = time.time()
         self.activity_log = []
         self.important_activity_log = []
         self.camera_record = {}
@@ -210,13 +240,57 @@ class AmongUs:
         # add to summary json
         self.summary_json[f"Game {self.game_index}"]["winner"] = winner
         self.summary_json[f"Game {self.game_index}"]["winner_reason"] = winner_reason_map[winner]
-        # finally, append the summary json to the experiment path as a single line json
+        self.log_event(
+            "game_end",
+            winner=winner,
+            reason=winner_reason_map[winner],
+            n_meetings=self.meeting_index,
+            duration_s=round(time.time() - self.start_time, 2),
+        )
+        self.write_summary(valid=True)
+
+        return winner
+
+    def write_summary(self, valid=True, error=None):
+        """Append this game's summary to summary.json as a single line."""
+        summary = self.summary_json[f"Game {self.game_index}"]
+        agents = self.agents if isinstance(self.agents, list) else []
+        summary.update({
+            "condition": self.condition,
+            "vote_threshold": self.vote_threshold,
+            "discussion_protocol": self.discussion_protocol,
+            "seed": self.seed,
+            "game_config_name": self.game_config_name,
+            "timesteps": self.timestep,
+            "n_meetings": self.meeting_index,
+            "duration_s": round(time.time() - self.start_time, 2),
+            "prompt_tokens": sum(getattr(a, "usage", {}).get("prompt_tokens", 0) for a in agents),
+            "completion_tokens": sum(getattr(a, "usage", {}).get("completion_tokens", 0) for a in agents),
+            "cost": sum(getattr(a, "usage", {}).get("cost", 0) for a in agents),
+            "api_failures": sum(getattr(a, "api_failures", 0) for a in agents),
+            "parse_failures": sum(getattr(a, "parse_failures", 0) for a in agents),
+            "valid": valid,
+            "error": error,
+        })
         summary_path = os.path.join(os.environ["EXPERIMENT_PATH"], "summary.json")
         with open(summary_path, "a") as f:
             json.dump(self.summary_json, f, separators=(",", ": "))
             f.write("\n")
 
-        return winner
+    def log_event(self, event_type, **fields):
+        """Append one structured event as a JSON line to events.jsonl."""
+        event = {
+            "game_index": self.game_index,
+            "condition": self.condition,
+            "seed": self.seed,
+            "timestep": self.timestep,
+            "meeting_index": self.meeting_index,
+            "phase": self.current_phase,
+            "type": event_type,
+            **fields,
+        }
+        with open(self.events_path, "a") as f:
+            f.write(json.dumps(event) + "\n")
 
     def check_game_over(self):
         num_impostors = sum(
@@ -277,6 +351,14 @@ class AmongUs:
 
         # choose action
         action = await agent.choose_action(self.timestep)
+        if (
+            self.requires_justification()
+            and action.name == "SPEAK"
+            and isinstance(agent, LLMAgent)
+            and parse_justification(action.message) is None
+        ):
+            # format check: re-prompt once; a second miss is kept and logged as justification_ok=False
+            action = await agent.choose_action(self.timestep, note=JUSTIFICATION_REPROMPT)
         observation_location = ""
         if action.name == "ViewMonitor":
             observation_location = agent.choose_observation_location(
@@ -351,20 +433,42 @@ class AmongUs:
         self.voteout()
         self.update_map()
 
+    def is_final_discussion_round(self):
+        return self.current_phase == "meeting" and self.discussion_rounds_left == 1
+
+    def requires_justification(self):
+        return self.discussion_protocol == JUSTIFICATION and self.is_final_discussion_round()
+
     def voteout(self):
         round = self.game_config["discussion_rounds"] - self.discussion_rounds_left
-        max_votes = max(self.votes.values())
         print(self.vote_info_one_round)
-        players_with_max_votes = [
-            player for player, votes in self.votes.items() if votes == max_votes
-        ]
         vote_info = []
         print(self.votes)
         for voter, vote_target in self.vote_info_one_round.items():
             print(voter)
             vote_info.append(f"{str(voter)} voted for {str(vote_target)}")
-        if len(players_with_max_votes) == 1:
-            player = players_with_max_votes[0]
+        n_living_voters = sum(1 for p in self.players if p.is_alive)
+        ejected = tally(self.votes, n_living_voters, self.vote_threshold)
+        # manipulation check: what the other threshold would have decided on the same ballots
+        counterfactual_rule = other_threshold(self.vote_threshold)
+        counterfactual = tally(self.votes, n_living_voters, counterfactual_rule)
+        self.log_event(
+            "tally",
+            rule=self.vote_threshold,
+            counts={
+                (option if option == SKIP else option.name): votes
+                for option, votes in self.votes.items()
+            },
+            ballots=dict(self.vote_info_one_round),
+            n_living_voters=n_living_voters,
+            ejected=ejected.name if ejected else None,
+            ejected_identity=ejected.identity if ejected else None,
+            counterfactual_rule=counterfactual_rule,
+            counterfactual_ejected=counterfactual.name if counterfactual else None,
+            decisions_differ=ejected is not counterfactual,
+        )
+        if ejected is not None:
+            player = ejected
             player.is_alive = False
             import_event = {
                 "timestep": self.timestep,
@@ -471,7 +575,12 @@ class MessageSystem:
             max_rounds = env.game_config["discussion_rounds"]
             round = max_rounds - env.discussion_rounds_left
             phase_info = f"Meeting phase - Discussion round ({round}/{max_rounds})"
-            instruction = MEETING_PHASE_INSTRUCTION
+            instruction = MEETING_PHASE_INSTRUCTION.format(discussion_rounds=max_rounds)
+            if env.is_final_discussion_round():
+                if env.discussion_protocol == JUSTIFICATION:
+                    instruction += JUSTIFICATION_INSTRUCTION + "\n"
+                else:
+                    instruction += FREEFORM_INSTRUCTION + "\n"
         message = f"Game Time: {env.timestep}/{env.game_config['max_timesteps']}\n"
         message += f"Current phase: {phase_info}\n"
         message += f"{instruction}\n"

@@ -1,5 +1,7 @@
 import re
 
+from amongagents.envs.discussion import parse_justification
+
 
 class Action:
     def __init__(self, name, current_location=None):
@@ -72,9 +74,21 @@ class CallMeeting(Action):
         super().execute(env, player)
         env.current_phase = "meeting"
         env.button_num += 1
+        env.meeting_index += 1
+        caller = player
+        bodies = []
         for player in env.players:
             if not player.is_alive and not player.reported_death:
                 player.reported_death = True
+                bodies.append(player.name)
+        env.log_event(
+            "meeting_start",
+            caller=caller.name,
+            caller_identity=caller.identity,
+            kind="button" if self.current_location == "Cafeteria" else "report",
+            location=self.current_location,
+            bodies_reported=bodies,
+        )
 
     @staticmethod
     def can_execute_actions(env, player):
@@ -99,24 +113,44 @@ class CallMeeting(Action):
 
 
 class Vote(Action):
+    """Vote for a player, or abstain with other_player=None (VOTE SKIP)."""
+
     def __init__(self, current_location, other_player):
         super().__init__("VOTE", current_location=current_location)
         self.other_player = other_player
+        self.fallback = False  # set by the agent when the vote was not parsed from the model
+
+    @property
+    def is_skip(self):
+        return self.other_player is None
 
     def __repr__(self):
+        if self.is_skip:
+            return f"{self.name} SKIP"
         return f"{self.name} {self.other_player.name}"
 
     def execute(self, env, player):
         super().execute(env, player)
-        env.vote_info_one_round[player.name] = self.other_player.name
-        env.votes[self.other_player] = env.votes.get(self.other_player, 0) + 1
+        target = "SKIP" if self.is_skip else self.other_player
+        target_name = "SKIP" if self.is_skip else self.other_player.name
+        env.vote_info_one_round[player.name] = target_name
+        env.votes[target] = env.votes.get(target, 0) + 1
+        env.log_event(
+            "vote",
+            voter=player.name,
+            voter_identity=player.identity,
+            target=target_name,
+            target_identity=None if self.is_skip else self.other_player.identity,
+            fallback=self.fallback,
+        )
 
     def can_execute_actions(env, player):
         if env.current_phase == "meeting" and env.discussion_rounds_left == 0:
             alive_players_excluding_self = [
                 p for p in env.players if p.is_alive and p != player
             ]
-            return [
+            # SKIP goes first so the agent's last-action fallback never lands on it by accident
+            return [Vote(player.location, None)] + [
                 Vote(player.location, other_player)
                 for other_player in alive_players_excluding_self
             ]
@@ -137,7 +171,24 @@ class Speak(Action):
 
     def execute(self, env, player):
         super().execute(env, player)
-        # TODO: Implement this
+        if env.current_phase == "meeting":
+            fields = {}
+            if env.requires_justification():
+                parsed = parse_justification(self.message)
+                fields = {
+                    "justification_ok": parsed is not None,
+                    "accused": parsed[0] if parsed else None,
+                    "evidence": parsed[1] if parsed else None,
+                }
+            env.log_event(
+                "speech",
+                speaker=player.name,
+                speaker_identity=player.identity,
+                round=env.game_config["discussion_rounds"] - env.discussion_rounds_left,
+                final_round=env.is_final_discussion_round(),
+                message=self.message,
+                **fields,
+            )
 
     def can_execute_actions(env, player):
         if env.current_phase == "meeting" and env.discussion_rounds_left == 0:
@@ -252,8 +303,20 @@ class Kill(Action):
 
     def execute(self, env, player):
         super().execute(env, player)
+        witnesses = [
+            p.name
+            for p in env.map.get_players_in_room(self.current_location)
+            if p.is_alive and p not in (player, self.other_player)
+        ]
         self.other_player.is_alive = False
         player.kill_cooldown = env.game_config["kill_cooldown"]
+        env.log_event(
+            "kill",
+            killer=player.name,
+            victim=self.other_player.name,
+            room=self.current_location,
+            witnesses=witnesses,
+        )
 
     @staticmethod
     def can_execute_actions(env, player):

@@ -70,6 +70,11 @@ class LLMAgent(Agent):
         self.log_path = os.getenv("EXPERIMENT_PATH") + "/agent-logs.json"
         self.compact_log_path = os.getenv("EXPERIMENT_PATH") + "/agent-logs-compact.json"
         self.game_index = game_index
+        # per-game accounting, summed into summary.json by the game
+        self.usage = {"prompt_tokens": 0, "completion_tokens": 0, "cost": 0}
+        self.last_usage = None
+        self.api_failures = 0
+        self.parse_failures = 0
 
     def log_interaction(self, sysprompt, prompt, original_response, step):
         """
@@ -151,6 +156,7 @@ class LLMAgent(Agent):
             "timestamp": str(datetime.now()),
             "player": {"name": self.player.name, "identity": self.player.identity, "personality": self.player.personality, "model": self.model, "location": self.player.location},
             "interaction": {"system_prompt": sysprompt, "prompt": prompt, "response": new_response, "full_response": original_response},
+            "usage": self.last_usage,
         }
 
         # Write to file with minimal whitespace but still readable
@@ -179,25 +185,36 @@ class LLMAgent(Agent):
             "top_k": 0,
         }
         
+        self.last_usage = None
         async with aiohttp.ClientSession() as session:
             for attempt in range(10):
+                if attempt > 0:
+                    await asyncio.sleep(min(2 ** attempt, 30))
                 try:
                     async with session.post(self.api_url, headers=headers, data=json.dumps(payload)) as response:
                         if response is None:
                             print(f"API request failed: response is None for {self.model}.")
                             continue
-                        if response.status == 200:
-                            data = await response.json()
-                            if "choices" not in data:
-                                print(f"API request failed: 'choices' key not in response for {self.model}.")
-                                continue
-                            if not data["choices"]:
-                                print(f"API request failed: 'choices' key is empty in response for {self.model}.")
-                                continue
-                            return data["choices"][0]["message"]["content"]
+                        if response.status != 200:
+                            body = await response.text()
+                            print(f"API request failed: HTTP {response.status} for {self.model}: {body[:200]}")
+                            continue
+                        data = await response.json()
+                        if "choices" not in data:
+                            print(f"API request failed: 'choices' key not in response for {self.model}.")
+                            continue
+                        if not data["choices"]:
+                            print(f"API request failed: 'choices' key is empty in response for {self.model}.")
+                            continue
+                        usage = data.get("usage") or {}
+                        self.last_usage = usage
+                        for key in self.usage:
+                            self.usage[key] += usage.get(key) or 0
+                        return data["choices"][0]["message"]["content"]
                 except Exception as e:
-                    print(f"API request failed. Retrying... ({attempt + 1}/10) for {self.model}.")
+                    print(f"API request failed ({e!r}). Retrying... ({attempt + 1}/10) for {self.model}.")
                     continue
+            self.api_failures += 1
             return 'SPEAK: ...'
 
     def respond(self, message):
@@ -209,7 +226,8 @@ class LLMAgent(Agent):
         ]
         return self.send_request(messages)
 
-    async def choose_action(self, timestep):
+    async def choose_action(self, timestep, note=None):
+        """Ask the model for an action; note, if given, is appended to the prompt (used for re-prompts)."""
         available_actions = self.player.get_available_actions()
         all_info = self.player.all_info_prompt()
         # phase = "Meeting phase" if len(available_actions) == 1 else "Task phase"
@@ -231,22 +249,46 @@ class LLMAgent(Agent):
             "Memory": self.processed_memory,
             "Phase": phase,
         }
+        if note:
+            messages[1]["content"] += f"\n\n{note}"
+            full_prompt["Note"] = note
         
         response = await self.send_request(messages)
-
         self.log_interaction(sysprompt=self.system_prompt, prompt=full_prompt, original_response=response, step=timestep)
+        action = self._match_action(self._parse_response(response), available_actions)
 
+        if action is None and self.last_usage is not None:
+            # the model answered but named no valid action: re-prompt once before falling back
+            messages[1]["content"] += f"\n\n{INVALID_ACTION_REPROMPT}"
+            full_prompt["Reprompt"] = INVALID_ACTION_REPROMPT
+            response = await self.send_request(messages)
+            self.log_interaction(sysprompt=self.system_prompt, prompt=full_prompt, original_response=response, step=timestep)
+            action = self._match_action(self._parse_response(response), available_actions)
+
+        if action is None:
+            self.parse_failures += 1
+            skip_votes = [a for a in available_actions if a.name == "VOTE" and a.other_player is None]
+            if skip_votes and all(a.name == "VOTE" for a in available_actions):
+                # an unparseable ballot is an abstention, never a vote for an arbitrary player
+                action = skip_votes[0]
+            else:
+                action = available_actions[-1]
+            action.fallback = True
+        return action
+
+    def _parse_response(self, response):
+        """Return the [Action] part of a response, updating memory and summarization when present."""
         pattern = r"^\[Condensed Memory\]((.|\n)*)\[Thinking Process\]((.|\n)*)\[Action\]((.|\n)*)$"
         match = re.search(pattern, response)
         if match:
-            memory = match.group(1).strip()
-            summarization = match.group(3).strip()
-            output_action = match.group(5).strip()
-            self.summarization = summarization
-            self.processed_memory = memory
-        else:
-            output_action = response.strip()
+            self.processed_memory = match.group(1).strip()
+            self.summarization = match.group(3).strip()
+            return match.group(5).strip()
+        return response.strip()
 
+    @staticmethod
+    def _match_action(output_action, available_actions):
+        """Return the first available action named in output_action, or None."""
         for action in available_actions:
             if repr(action) in output_action:
                 return action
@@ -256,7 +298,7 @@ class LLMAgent(Agent):
                 return action
             else:
                 action.message = '...'
-        return action
+        return None
 
     def choose_observation_location(self, map):
         if isinstance(map, (list, tuple)):

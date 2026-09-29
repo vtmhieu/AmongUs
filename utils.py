@@ -11,13 +11,14 @@ def setup_experiment(experiment_name, LOGS_PATH, DATE, COMMIT_HASH, DEFAULT_ARGS
     
     os.makedirs(LOGS_PATH, exist_ok=True)
 
-    # Find the next available index for the current date
+    # Find the next available index for the current date (and name, if given)
+    prefix = f"{DATE}_{experiment_name}" if experiment_name else f"{DATE}_exp"
     next_index = 0
-    while os.path.exists(os.path.join(LOGS_PATH, f"{DATE}_exp_{next_index}")):
+    while os.path.exists(os.path.join(LOGS_PATH, f"{prefix}_{next_index}")):
         next_index += 1
     
     # Create the experiment name with the next index
-    experiment_name = f"{DATE}_exp_{next_index}"
+    experiment_name = f"{prefix}_{next_index}"
     
     experiment_path = os.path.join(LOGS_PATH, experiment_name)
     os.makedirs(experiment_path, exist_ok=True)

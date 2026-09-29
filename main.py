@@ -15,8 +15,10 @@ import datetime
 import subprocess
 
 from amongagents.envs.configs.agent_config import ALL_LLM
-from amongagents.envs.configs.game_config import FIVE_MEMBER_GAME, SEVEN_MEMBER_GAME, FIVE_MEMBER_GAME
+from amongagents.envs.configs.game_config import THREE_MEMBER_GAME, FIVE_MEMBER_GAME, SEVEN_MEMBER_GAME
 from amongagents.envs.configs.map_config import map_coords
+from amongagents.envs.discussion import FREEFORM, PROTOCOLS
+from amongagents.envs.voting import PLURALITY, THRESHOLDS
 from amongagents.envs.game import AmongUs
 from amongagents.UI.MapUI import MapUI
 from dotenv import load_dotenv
@@ -39,8 +41,16 @@ BIG_LIST_OF_MODELS: List[str] = [
     "ollama/llama3.2:latest",
 ]
 
+GAME_CONFIGS = {
+    "three": THREE_MEMBER_GAME,
+    "five": FIVE_MEMBER_GAME,
+    "seven": SEVEN_MEMBER_GAME,
+}
+
 ARGS = {
-    "game_config": SEVEN_MEMBER_GAME,
+    "game_config": FIVE_MEMBER_GAME,
+    "game_config_name": "five",
+    "seed": 0,
     "include_human": False,
     "test": False,
     "personality": False,
@@ -79,8 +89,15 @@ async def multiple_games(experiment_name=None, num_games=1, rate_limit=50):
                 agent_config=game_config,
                 UI=ui,
                 game_index=game_index,
+                seed=ARGS["seed"] + game_index,
+                game_config_name=ARGS["game_config_name"],
             )
-            await game.run_game()
+            try:
+                await game.run_game()
+            except Exception as e:
+                # record crashed games so they can be excluded and regenerated
+                print(f"Game {game_index} crashed: {e!r}")
+                game.write_summary(valid=False, error=repr(e))
 
     tasks = [run_limited_game(i) for i in range(1, num_games+1)]
     await asyncio.gather(*tasks)
@@ -89,7 +106,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run an AmongUs experiment.")
     parser.add_argument("--name", type=str, default=None, help="Optional name for the experiment.")
     parser.add_argument("--num_games", type=int, default=2, help="Number of games to run.")
-    parser.add_argument("--display_ui", type=bool, default=False, help="Display UI.")
+    parser.add_argument("--display_ui", action="store_true", help="Display UI.")
+    parser.add_argument("--game_config", type=str, default="five", choices=list(GAME_CONFIGS), help="Game size preset.")
+    parser.add_argument("--seed", type=int, default=0, help="Base seed; game i uses seed + i.")
+    parser.add_argument("--vote_threshold", type=str, default=PLURALITY, choices=THRESHOLDS, help="Ejection rule.")
+    parser.add_argument("--discussion_protocol", type=str, default=FREEFORM, choices=PROTOCOLS, help="Final-round discussion protocol.")
     parser.add_argument("--crewmate_llm", type=str, default=None, help="Crewmate LLM model.")
     parser.add_argument("--impostor_llm", type=str, default=None, help="Impostor LLM model.")
     parser.add_argument("--streamlit", type=bool, default=False, help="Streamlit.")
@@ -102,4 +123,12 @@ if __name__ == "__main__":
     if args.impostor_llm:
         ARGS["agent_config"]["IMPOSTOR_LLM_CHOICES"] = [args.impostor_llm]
     ARGS["tournament_style"] = args.tournament_style
+    ARGS["game_config_name"] = args.game_config
+    # copy the preset so the governance factors never leak into the shared config dict
+    ARGS["game_config"] = {
+        **GAME_CONFIGS[args.game_config],
+        "vote_threshold": args.vote_threshold,
+        "discussion_protocol": args.discussion_protocol,
+    }
+    ARGS["seed"] = args.seed
     asyncio.run(multiple_games(experiment_name=args.name, num_games=args.num_games))
