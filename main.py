@@ -47,6 +47,14 @@ GAME_CONFIGS = {
     "seven": SEVEN_MEMBER_GAME,
 }
 
+REASONING_SETTINGS = {
+    "default": None,
+    "off": {"enabled": False},
+    "low": {"effort": "low"},
+    "medium": {"effort": "medium"},
+    "high": {"effort": "high"},
+}
+
 ARGS = {
     "game_config": FIVE_MEMBER_GAME,
     "game_config_name": "five",
@@ -111,6 +119,9 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=0, help="Base seed; game i uses seed + i.")
     parser.add_argument("--vote_threshold", type=str, default=PLURALITY, choices=THRESHOLDS, help="Ejection rule.")
     parser.add_argument("--discussion_protocol", type=str, default=FREEFORM, choices=PROTOCOLS, help="Final-round discussion protocol.")
+    parser.add_argument("--model", type=str, default=None, help="Model for every player (sets both crewmate and impostor LLM).")
+    parser.add_argument("--reasoning", type=str, default="default", choices=list(REASONING_SETTINGS),
+                        help="OpenRouter reasoning setting sent with every call; 'default' sends none.")
     parser.add_argument("--crewmate_llm", type=str, default=None, help="Crewmate LLM model.")
     parser.add_argument("--impostor_llm", type=str, default=None, help="Impostor LLM model.")
     parser.add_argument("--streamlit", type=bool, default=False, help="Streamlit.")
@@ -118,6 +129,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.num_games > 1 or args.display_ui == False:
         ARGS["UI"] = False
+    if args.model:
+        ARGS["agent_config"]["CREWMATE_LLM_CHOICES"] = [args.model]
+        ARGS["agent_config"]["IMPOSTOR_LLM_CHOICES"] = [args.model]
+    ARGS["agent_config"]["REASONING"] = REASONING_SETTINGS[args.reasoning]
     if args.crewmate_llm:
         ARGS["agent_config"]["CREWMATE_LLM_CHOICES"] = [args.crewmate_llm]
     if args.impostor_llm:

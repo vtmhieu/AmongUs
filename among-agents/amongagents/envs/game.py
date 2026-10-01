@@ -260,6 +260,7 @@ class AmongUs:
             "vote_threshold": self.vote_threshold,
             "discussion_protocol": self.discussion_protocol,
             "seed": self.seed,
+            "reasoning": self.agent_config.get("REASONING"),
             "game_config_name": self.game_config_name,
             "timesteps": self.timestep,
             "n_meetings": self.meeting_index,

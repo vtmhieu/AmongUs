@@ -53,6 +53,8 @@ class LLMAgent(Agent):
 
         self.system_prompt = system_prompt
         self.temperature = 0.7
+        # OpenRouter reasoning setting, e.g. {"effort": "low"}; None leaves the provider default
+        self.reasoning = agent_config.get("REASONING")
 
         if model.startswith("ollama/"):
             self.model = model[len("ollama/"):]
@@ -184,6 +186,8 @@ class LLMAgent(Agent):
             "repetition_penalty": 1,
             "top_k": 0,
         }
+        if self.reasoning is not None:
+            payload["reasoning"] = self.reasoning
         
         self.last_usage = None
         async with aiohttp.ClientSession() as session:
@@ -210,7 +214,12 @@ class LLMAgent(Agent):
                         self.last_usage = usage
                         for key in self.usage:
                             self.usage[key] += usage.get(key) or 0
-                        return data["choices"][0]["message"]["content"]
+                        content = data["choices"][0]["message"].get("content")
+                        if not content:
+                            # e.g. a reasoning model that spent its output on hidden reasoning;
+                            # treated as an unparseable answer (re-prompt, then fallback)
+                            print(f"API request returned empty content for {self.model}.")
+                        return content or ""
                 except Exception as e:
                     print(f"API request failed ({e!r}). Retrying... ({attempt + 1}/10) for {self.model}.")
                     continue
