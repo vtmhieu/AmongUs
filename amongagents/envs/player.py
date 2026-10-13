@@ -22,13 +22,12 @@ PLAYER_COLORS = [
 
 
 class Player:
-    def __init__(self, name, identity, color, personality, location=None):
+    def __init__(self, name, identity, color, location=None):
         # Basic player information
         self.name = f"{name}: {color}"
         self.color = color
-        self.identity = identity  # e.g., "Crewmate" or "Imposter"
-        self.location = location  # Initially, the player might not have a location
-        self.personality = personality
+        self.identity = identity  # "Crewmate" or "Impostor"
+        self.location = location
 
         # Player history
         self.observation_history = []
@@ -70,24 +69,17 @@ class Player:
             return []
 
     def make_action(self, env, action, choose_location="Cafeteria"):
-        if action.name == "ViewMonitor":
+        if action.name == "VIEW MONITOR":
             action.execute(env, self, choose_location)
         else:
             action.execute(env, self)
-        if env.current_phase == "task":
-            record = {
-                "timestep": env.timestep,
-                "phase": env.current_phase,
-                "action": action,
-            }
-        elif env.current_phase == "meeting":
-            round = env.game_config["discussion_rounds"] - env.discussion_rounds_left
-            record = {
-                "timestep": env.timestep,
-                "phase": env.current_phase,
-                "round": round,
-                "action": action,
-            }
+        record = {
+            "timestep": env.timestep,
+            "phase": env.current_phase,
+            "action": action,
+        }
+        if env.current_phase == "meeting":
+            record["round"] = env.discussion_round
         self.action_history.append(record)
 
     def receive(self, message, info_type):
@@ -111,12 +103,12 @@ class Player:
         if len(self.action_history) == 0:
             text += "No actions have been taken yet.\n"
         else:
-            for i, record in enumerate(self.action_history[-recent_num:]):
+            for record in self.action_history[-recent_num:]:
                 timestep = record["timestep"]
                 current_phase = record["phase"]
                 action = record["action"]
                 if current_phase == "task":
-                    if type(action) == CompleteTask:
+                    if type(action) is CompleteTask:
                         action_text = str(action)
                     else:
                         action_text = action.action_text()

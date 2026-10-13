@@ -1,4 +1,5 @@
 import networkx as nx
+
 from amongagents.envs.configs.map_config import connections, room_data, vent_connections
 
 
@@ -11,7 +12,6 @@ class Map:
     ):
         # Defining the graph
         self.ship_map = nx.Graph()
-        self.players = []
 
         # Adding rooms (nodes) to the graph and room details to each node
         for room_name, details in room_data.items():
@@ -20,7 +20,7 @@ class Map:
                 tasks=details["tasks"],
                 vent=details["vent"],
                 special_actions=details["special_actions"],
-                players=details["players"],
+                players=[],  # per-map list: room_data is module-level and shared by concurrent games
             )
 
         # Adding 'vent' edges to the graph
@@ -32,44 +32,20 @@ class Map:
             self.ship_map.add_edge(room1, room2, connection_type="corridor", weight=1)
 
     def get_adjacent_rooms(self, room_name):
-        """
-        Given a room name, returns a list of names of adjacent rooms
-        that are connected via corridors.
-
-        :param room_name: Name of the room.
-        :return: List of names of adjacent rooms.
-        """
-        # Check if the room exists in the graph
-        if room_name not in self.ship_map:
-            return "Room does not exist."
-
-        # Retrieve all adjacent nodes (rooms) that have a 'corridor' connection
-        adjacent_rooms = [
+        """Names of the rooms connected to room_name by a corridor."""
+        return [
             adj_room
             for adj_room, attributes in self.ship_map[room_name].items()
             if attributes["connection_type"] == "corridor"
         ]
-        return adjacent_rooms
 
     def get_adjacent_rooms_vent(self, room_name):
-        """
-        Given a room name, returns a list of names of adjacent rooms
-        that are connected via corridors.
-
-        :param room_name: Name of the room.
-        :return: List of names of adjacent rooms.
-        """
-        # Check if the room exists in the graph
-        if room_name not in self.ship_map:
-            return "Room does not exist."
-
-        # Retrieve all adjacent nodes (rooms) that have a 'corridor' connection
-        adjacent_rooms = [
+        """Names of the rooms connected to room_name by a vent."""
+        return [
             adj_room
             for adj_room, attributes in self.ship_map[room_name].items()
             if attributes["connection_type"] == "vent"
         ]
-        return adjacent_rooms
 
     def get_players_in_room(self, room_name, include_new_deaths=False):
         players = self.ship_map.nodes[room_name]["players"]
@@ -85,27 +61,10 @@ class Map:
             return alive_players
 
     def reset(self):
-        """
-        Resets the map by removing all players from each room.
-        """
+        """Resets the map by removing all players from each room."""
         for room in self.ship_map.nodes:
             self.ship_map.nodes[room]["players"] = []
 
     def add_player(self, player):
-        """
-        Adds a player to the specified room.
-
-        :param player: Player object.
-        """
+        """Adds a player to the room they are currently in."""
         self.ship_map.nodes[player.location]["players"].append(player)
-        self.players.append(player)
-
-
-class Spaceship:
-    def __init__(self, map):
-        self.map = map
-
-    def send_messages(self, player, action, room):
-        messages = "Message: " + player.name + action + room
-        for player in self.map.ship_map.nodes[room]["players"]:
-            player.receive(messages)

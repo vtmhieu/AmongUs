@@ -1,238 +1,196 @@
-import random
+from __future__ import annotations
+
 import asyncio
 import time
 
 import numpy as np
-import json
-import os
 
-from amongagents.agent.agent import HumanAgent, LLMAgent, LLMHumanAgent, RandomAgent
-from amongagents.agent.neutral_prompts import (
+from amongagents.agent.agent import Decision, LLMAgent
+from amongagents.agent.llm import LLM, Usage
+from amongagents.agent.prompts import (
+    BALLOT_TEXT,
+    JUSTIFICATION_REPROMPT,
     MEETING_PHASE_INSTRUCTION,
+    PROTOCOL_TEXT,
     TASK_PHASE_INSTRUCTION,
-    CrewmatePersonalities,
-    ImpostorPersonalities,
+    VOTE_RESULT_EJECTED,
+    VOTE_RESULT_NONE,
+    VOTING_RULE_TEXT,
+    VOTING_RULE_UNDISCLOSED,
 )
-from amongagents.envs.configs.agent_config import (
-    ALL_LLM,
-    ALL_RANDOM,
-    CREWMATE_LLM,
-    IMPOSTOR_LLM,
+from amongagents.envs.action import Kill, Speak
+from amongagents.envs.configs.game_config import STUDY_GAME, validate_game_config
+from amongagents.envs.events import Emit, discard
+from amongagents.envs.governance import (
+    JUSTIFICATION,
+    SECRET,
+    SKIP,
+    Governance,
+    counterfactuals,
+    parse_justification,
+    tally,
 )
-from amongagents.envs.configs.game_config import FIVE_MEMBER_GAME, SEVEN_MEMBER_GAME
-from amongagents.envs.map import Map, Spaceship
+from amongagents.envs.map import Map
 from amongagents.envs.player import PLAYER_COLORS, Crewmate, Impostor
 from amongagents.envs.task import TaskAssignment
-from amongagents.envs.tools import GetBestPath
 
-# Set Flask environment variable to True by default
-if "FLASK" not in os.environ:
-    os.environ["FLASK"] = "True"
+# check_game_over() codes -> (winner, reason)
+OUTCOMES = {
+    1: ("impostor", "outnumbered"),  # Impostors are no longer a minority
+    2: ("crew", "ejected"),  # every Impostor was voted out
+    3: ("crew", "tasks"),  # every living Crewmate finished their tasks
+    4: ("impostor", "timeout"),  # the time limit ran out
+}
+
 
 class AmongUs:
+    """One game.
+
+    Everything random in the setup (roles, colours, tasks) is drawn from a generator
+    seeded per game, so concurrent games do not disturb each other and a seed fixes
+    the starting position. The model's own sampling is not reproducible, which is why
+    the event log, not the seed, is the record of what happened.
+    """
+
     def __init__(
         self,
-        game_config=SEVEN_MEMBER_GAME,
-        include_human=False,
-        test=False,
-        personality=False,
-        agent_config=IMPOSTOR_LLM,
-        interviewer=None,
-        UI=None,
-        game_index=0,
+        llm: LLM,
+        game_config: dict = STUDY_GAME,
+        governance: Governance | None = None,
+        seed: int = 0,
+        game_id: str = "game",
+        emit: Emit = discard,
+        llm_log: Emit = discard,
     ):
-        """
-        include_human: bool
-            Whether to include a human player in the game.
-        test: bool
-            Whether to run the game in test mode. (All controlled by human inputs)
-        agent_config: dict
-            Agent initialization plan.
-        interviewer: Interviewer
-            Interviewer object to be used for the game to ask questions.
-        UI: MapUI
-            UI object to be used for the game to display the map.
-        game_index: int
-            Index of the game for logging purposes.
-        """
-        self.game_config = game_config
-        self.include_human = include_human
-        self.is_human_turn = False
-        self.human_index = None
-        self.test = test
-        self.personality = personality
-        self.identities = None
-        self.agent_config = agent_config
-        self.interviewer = interviewer
-        self.UI = UI
-        self.game_index = game_index
+        self.llm = llm
+        self.game_config = validate_game_config(game_config)
+        self.governance = governance or Governance()
+        self.seed = seed
+        self.game_id = game_id
+        self._emit = emit
+        self.llm_log = llm_log
+        self.rng = np.random.default_rng(seed)
+
         self.map = Map()
         self.players = []
-        self.agents = {}
+        self.agents = []
         self.task_assignment = TaskAssignment(self.map.ship_map, self.game_config)
-        self.current_phase = "TASK"
+        self.message_system = MessageSystem()
+        self.current_phase = "task"
         self.timestep = 0
-        self.activity_log = []
-        self.important_activity_log = []
-        self.camera_record = {}
-        self.votes = {}
-        self.vote_info_one_round = {}
-        self.discussion_rounds_left = 0
-        self.message_system = MessageSystem(game_config)
-        self.game_over = False
-        self.winner = None
-        self.last_update = time.time()
-        self.all_phases = ["meeting", "task"]
-        self.summary_json = {f"Game {game_index}": {"config": game_config}}
-        self.list_of_impostors = []
-
-    def initialize_game(self):
-        # reset game state
-        if self.UI:
-            self.UI.reset()
-        self.players = []
-        self.timestep = 0
-        self.activity_log = []
-        self.important_activity_log = []
         self.camera_record = {}
         self.button_num = 0
-        self.task_assignment = TaskAssignment(self.map.ship_map, self.game_config)
-        # meeting
+        self.meeting_index = 0  # meetings called so far; the current one during a meeting
+        # A meeting called in the step that ends the game is never held, so the number
+        # that reached a vote is counted separately.
+        self.meetings_held = 0
         self.discussion_rounds_left = self.game_config["discussion_rounds"]
-        self.votes = {}
-        self.vote_info_one_round = {}
+        self.ballots = {}  # voter name -> target name or SKIP, for the vote in progress
+        self.kills = 0
+        self.wrongful_ejections = 0
+        self.started = time.time()
+        self._seq = 0
 
-        # game state
-        self.current_phase = "task"
+    # --- logging --------------------------------------------------------------
+
+    def emit(self, event_type: str, **fields) -> None:
+        self._seq += 1
+        self._emit(
+            {
+                "game_id": self.game_id,
+                "seq": self._seq,
+                "type": event_type,
+                "timestep": self.timestep,
+                "phase": self.current_phase,
+                "meeting": self.meeting_index,
+                **fields,
+            }
+        )
+
+    def snapshot(self) -> dict:
+        """Where everyone is and how far the tasks are, for replaying a game."""
+        done, total = self.task_assignment.progress()
+        return {
+            "players": {
+                p.name: {
+                    "location": p.location,
+                    "alive": p.is_alive,
+                    "tasks_done": sum(1 for t in p.tasks if t.check_completion()),
+                }
+                for p in self.players
+            },
+            "tasks": {"done": done, "total": total},
+        }
+
+    # --- setup ----------------------------------------------------------------
+
+    def initialize_game(self):
         self.initialize_players()
         self.initialize_agents()
-        self.agent_log = []
+        self.emit(
+            "game_start",
+            seed=self.seed,
+            governance=self.governance.to_dict(),
+            condition=self.governance.condition,
+            game_config=self.game_config,
+            model=self.llm.config.to_dict(),
+            players=[
+                {
+                    "name": p.name,
+                    "color": p.color,
+                    "identity": p.identity,
+                    "tasks": [{"name": t.name, "location": t.location} for t in p.tasks],
+                }
+                for p in self.players
+            ],
+            state=self.snapshot(),
+        )
 
     def initialize_players(self):
-        self.players = []
         num_players = self.game_config["num_players"]
         num_impostors = self.game_config["num_impostors"]
-        num_crewmates = num_players - num_impostors
-        identities = ["Crewmate"] * num_crewmates + ["Impostor"] * num_impostors
-        colors = np.random.choice(PLAYER_COLORS, num_players, replace=False)
-        np.random.shuffle(identities)
-        self.identities = identities
+        identities = ["Crewmate"] * (num_players - num_impostors) + ["Impostor"] * num_impostors
+        colors = self.rng.choice(PLAYER_COLORS, num_players, replace=False)
+        self.rng.shuffle(identities)
+        self.players = []
         for i in range(num_players):
-            if identities[i] == "Crewmate":
-                if self.personality:
-                    crewmate_personality = random.choice(
-                        list(CrewmatePersonalities.keys())
-                    )
-                else:
-                    crewmate_personality = None
-                # print(
-                #     f"{i} Initializing crewmate with personality {crewmate_personality}"
-                # )
-                player = Crewmate(
-                    name=f"Player {i+1}",
-                    color=colors[i],
-                    location="Cafeteria",
-                    personality=crewmate_personality,
-                )
-            else:
-                if self.personality:
-                    imposter_personality = random.choice(
-                        list(ImpostorPersonalities.keys())
-                    )
-                else:
-                    imposter_personality = None
-                # print(
-                #     f"{i} Initializing impostor with personality {imposter_personality}"
-                # )
-                player = Impostor(
-                    name=f"Player {i+1}",
-                    color=colors[i],
-                    location="Cafeteria",
-                    personality=imposter_personality,
-                )
+            role = Crewmate if identities[i] == "Crewmate" else Impostor
+            player = role(name=f"Player {i+1}", color=str(colors[i]), location="Cafeteria")
             self.players.append(player)
             self.camera_record[player.name] = "stand quietly and do nothing"
-        self.task_assignment.assign_tasks_to_players(self.players)
+        self.task_assignment.assign_tasks_to_players(self.players, self.rng)
         self.update_map()
 
     def initialize_agents(self):
-        random_idx = np.random.choice(len(self.players))
-        if self.test:
-            self.agents = [LLMHumanAgent(player) for player in self.players]
-        else:
-            tools = [GetBestPath(network=self.map.ship_map)]
+        impostor_names = [p.name for p in self.players if p.identity == "Impostor"]
+        self.agents = [
+            LLMAgent(
+                player,
+                llm=self.llm,
+                impostor_names=impostor_names,
+                game_id=self.game_id,
+                seed=int(self.rng.integers(2**31)),
+                llm_log=self.llm_log,
+            )
+            for player in self.players
+        ]
 
-            agent_dict = {
-                "LLM": lambda player: LLMAgent(player, tools, self.game_index, self.agent_config, self.list_of_impostors),
-                "Random": RandomAgent,
-            }
-            self.agents = []
-            for i, player in enumerate(self.players):
-                if self.include_human and i == random_idx:
-                    # Create HumanAgent with game_id set to game_index
-                    human_agent = HumanAgent(player, game_index=self.game_index)
-                    # Set the game_id attribute to match the game_index
-                    human_agent.game_id = self.game_index
-                    self.agents.append(human_agent)
-                    self.human_index = i
-                    print(f"{i} Initializing player {player.name} with identity {player.identity} and LLM choice {self.agents[-1].model}")
-                    # Update max_steps for human agent
-                    if hasattr(self.agents[-1], 'update_max_steps'):
-                        self.agents[-1].update_max_steps(self.game_config.get("max_timesteps", 50))
-                else:
-                    self.agents.append(agent_dict[self.agent_config[player.identity]](player))
-                    print(f"{i} Initializing player {player.name} with identity {player.identity} and LLM choice {self.agents[-1].model}")
-                if player.identity == "Impostor":
-                    self.list_of_impostors.append(player.name)
-                    
-                # add to summary json
-                self.summary_json[f"Game {self.game_index}"]["Player " + str(i+1)] = {
-                    "name": player.name,
-                    "color": player.color,
-                    "identity": player.identity,
-                    "model": self.agents[-1].model,
-                    "personality": player.personality,
-                    "tasks": [task.name for task in player.tasks],
-                }
+    # --- state ----------------------------------------------------------------
 
-    def report_winner(self, winner):
-        winner_reason_map = {
-            1: "Impostors win! (Crewmates being outnumbered or tied to impostors))",
-            2: "Crewmates win! (Impostors eliminated)",
-            3: "Crewmates win! (All task completed)",
-            4: "Impostors win! (Time limit reached)",
-        }
-        text = winner_reason_map[winner]
-        if self.UI:
-            self.UI.report(text)
-            self.UI.quit_UI()
-        print(text)
-        # add to summary json
-        self.summary_json[f"Game {self.game_index}"]["winner"] = winner
-        self.summary_json[f"Game {self.game_index}"]["winner_reason"] = winner_reason_map[winner]
-        # finally, append the summary json to the experiment path as a single line json
-        summary_path = os.path.join(os.environ["EXPERIMENT_PATH"], "summary.json")
-        with open(summary_path, "a") as f:
-            json.dump(self.summary_json, f, separators=(",", ": "))
-            f.write("\n")
+    @property
+    def discussion_round(self) -> int:
+        """Discussion rounds completed in the current meeting (0 in the first round)."""
+        return self.game_config["discussion_rounds"] - self.discussion_rounds_left
 
-        return winner
+    def is_final_discussion_round(self) -> bool:
+        return self.current_phase == "meeting" and self.discussion_rounds_left == 1
 
-    def check_game_over(self):
-        num_impostors = sum(
-            [
-                1
-                for player in self.players
-                if player.identity == "Impostor" and player.is_alive
-            ]
-        )
-        num_crewmates = sum(
-            [
-                1
-                for player in self.players
-                if player.identity == "Crewmate" and player.is_alive
-            ]
-        )
+    def living(self) -> list:
+        return [p for p in self.players if p.is_alive]
+
+    def check_game_over(self) -> int:
+        num_impostors = sum(1 for p in self.living() if p.identity == "Impostor")
+        num_crewmates = sum(1 for p in self.living() if p.identity == "Crewmate")
         if num_impostors >= num_crewmates:
             return 1  # Impostors win
         elif num_impostors == 0:
@@ -245,11 +203,9 @@ class AmongUs:
 
     def check_actions(self):
         for player in self.players:
-            all_actions = player.get_all_actions()
             available_actions = []
-            for action in all_actions:
-                action_executables = action.can_execute_actions(self, player)
-                available_actions.extend(action_executables)
+            for action in player.get_all_actions():
+                available_actions.extend(action.can_execute_actions(self, player))
             player.set_available_actions(available_actions)
 
     def update_map(self):
@@ -257,221 +213,302 @@ class AmongUs:
         for player in self.players:
             self.map.add_player(player)
         self.message_system.route_location_info_message(self)
-        if self.UI:
-            self.UI.draw_map(self)
+
+    # --- turns ----------------------------------------------------------------
 
     async def agent_step(self, agent):
         self.check_actions()
         if not agent.player.is_alive:
             return
-        # kill cooldown
-        if agent.player.identity == "Impostor" and agent.player.kill_cooldown > 0:
-            agent.player.kill_cooldown -= 1
-
-        # Set current player for UI updates
-        self.current_player = agent.player.name
-
-        # interview
-        if self.interviewer is not None:
-            await self.interviewer.auto_question(self, agent)
-
-        # choose action
-        action = await agent.choose_action(self.timestep)
-        observation_location = ""
-        if action.name == "ViewMonitor":
-            observation_location = agent.choose_observation_location(
-                self.map.ship_map.nodes
-            )
-        self.camera_record[agent.player.name] = action
-        if str(action).startswith("KILL"):
-            location = agent.player.location
-            players = self.map.get_players_in_room(location)
-            witness = [player.name for player in players]
-            additional_info = f"Location: {location}, Witness: {witness}"
-            self.record_activity(agent.player, action, additional_info)
-        else:
-            self.record_activity(agent.player, action)
-        agent.player.make_action(self, action, observation_location)
+        decision = await self.decide(agent)
+        self.apply(agent, decision)
         self.update_map()
 
+    async def decide(self, agent) -> Decision:
+        """Get one agent's decision for this turn, enforcing the discussion protocol."""
+        player = agent.player
+        if player.identity == "Impostor" and player.kill_cooldown > 0:
+            player.kill_cooldown -= 1
+        phase = "Meeting phase" if self.current_phase == "meeting" else "Task phase"
+        decision = await agent.choose_action(self.timestep, phase)
+        if (
+            self.governance.protocol == JUSTIFICATION
+            and self.is_final_discussion_round()
+            and isinstance(decision.action, Speak)
+            and not decision.fallback
+            and self.justification_of(decision.action) is None
+        ):
+            # format check: one re-prompt; a second miss is kept and logged as non-compliant
+            retry = await agent.choose_action(self.timestep, phase, note=JUSTIFICATION_REPROMPT)
+            retry.usage.add(decision.usage)
+            retry.latency_s = round(retry.latency_s + decision.latency_s, 3)
+            retry.reprompts += decision.reprompts + 1
+            decision = retry
+        return decision
+
+    def justification_of(self, speak: Speak):
+        return parse_justification(speak.message, [p.name for p in self.living()])
+
+    def apply(self, agent, decision: Decision, broadcast: bool = True):
+        """Carry out a decision and log it.
+
+        broadcast=False keeps the action from being shown to the other players as it
+        happens, which is how a secret ballot is cast.
+        """
+        player, action = agent.player, decision.action
+        observation_location = ""
+        if action.name == "VIEW MONITOR":
+            observation_location = str(self.rng.choice(sorted(self.map.ship_map.nodes)))
+        witnesses = []
+        if isinstance(action, Kill):
+            witnesses = [
+                p.name
+                for p in self.map.get_players_in_room(player.location)
+                if p is not player and p is not action.other_player
+            ]
+        round_index = self.discussion_round if self.current_phase == "meeting" else None
+        phase_before = self.current_phase
+
+        self.camera_record[player.name] = action
+        if broadcast:
+            self.message_system.route_real_time_message(self, player, action)
+        player.make_action(self, action, observation_location)
+
+        turn = {
+            "player": player.name,
+            "identity": player.identity,
+            "action": action.name,
+            # a speech's words are in "message"; don't repeat them here
+            "text": action.name if isinstance(action, Speak) else repr(action),
+            **action.details(),
+            "thought": decision.thought,
+            "fallback": decision.fallback,
+            "reprompts": decision.reprompts,
+            "refused": decision.refused,
+            "usage": decision.usage.to_dict(),
+            "latency_s": decision.latency_s,
+        }
+        if round_index is not None:
+            turn["round"] = round_index
+        if isinstance(action, Speak) and phase_before == "meeting":
+            final_round = self.is_final_discussion_round()
+            turn["final_round"] = final_round
+            if final_round:
+                justification = self.justification_of(action)
+                turn["justification"] = (
+                    {"accused": justification.accused, "evidence": justification.evidence}
+                    if justification
+                    else None
+                )
+        if isinstance(action, Kill):
+            self.kills += 1
+            turn["witnesses"] = witnesses
+        # the phase a turn is logged under is the one it was taken in
+        self._seq += 1
+        self._emit(
+            {
+                "game_id": self.game_id,
+                "seq": self._seq,
+                "type": "turn",
+                "timestep": self.timestep,
+                "phase": phase_before,
+                "meeting": self.meeting_index if phase_before == "meeting" else None,
+                **turn,
+                "state": self.snapshot(),
+            }
+        )
+
     async def game_step(self):
+        self.emit("step", alive=[p.name for p in self.living()])
         if self.current_phase == "task":
             await self.task_phase_step()
         elif self.current_phase == "meeting":
             await self.meeting_phase()
         self.timestep += 1
-        print(f"|", end="", flush=True)
-        # import pdb; pdb.set_trace() # waiting after each timestep
 
     async def task_phase_step(self):
         for agent in self.agents:
-            if 'homosapiens' in agent.model:
-                self.is_human_turn = True
-            else:
-                self.is_human_turn = False
             await self.agent_step(agent)
             if self.current_phase == "meeting":
                 break
+
+    # --- meetings -------------------------------------------------------------
+
+    def start_meeting(self, caller, action):
+        """Called by CallMeeting.execute."""
+        bodies = [p.name for p in self.players if not p.is_alive and not p.reported_death]
+        for player in self.players:
+            if not player.is_alive:
+                player.reported_death = True
+        # only the emergency button is rationed; reporting a body is always allowed
+        if not action.reports_body:
+            self.button_num += 1
+        self.meeting_index += 1
+        self.current_phase = "meeting"
+        self.emit(
+            "meeting_start",
+            caller=caller.name,
+            caller_identity=caller.identity,
+            kind="report" if action.reports_body else "button",
+            location=action.current_location,
+            bodies=bodies,
+            living=[p.name for p in self.living()],
+        )
 
     async def meeting_phase(self):
         # Move all players to the Cafeteria
         for player in self.players:
             player.location = "Cafeteria"
-
         self.update_map()
 
         # Discussion
-        for round in range(self.game_config["discussion_rounds"]):
-            print("Discussion round", round)
+        for _ in range(self.game_config["discussion_rounds"]):
             for agent in self.agents:
-                if 'homosapiens' in agent.model:
-                    self.is_human_turn = True
-                else:
-                    self.is_human_turn = False
                 await self.agent_step(agent)
             self.discussion_rounds_left -= 1
-            # Update game state after each round
             self.check_actions()
             self.update_map()
 
-        # Voting phase
-        print("Voting phase")
-        self.vote_info_one_round = {}
-        for agent in self.agents:
-            if 'homosapiens' in agent.model:
-                self.is_human_turn = True
-            else:
-                self.is_human_turn = False
-            await self.agent_step(agent)
-            # Update game state after each vote
-            self.check_actions()
-            self.update_map()
-
-        # Vote out
+        # Voting
+        self.ballots = {}
+        if self.governance.ballot == SECRET:
+            await self.secret_ballot()
+        else:
+            for agent in self.agents:
+                await self.agent_step(agent)
         self.voteout()
         self.update_map()
 
+    async def secret_ballot(self):
+        """Everyone votes at once, seeing no one else's vote."""
+        self.check_actions()
+        voters = [agent for agent in self.agents if agent.player.is_alive]
+        decisions = await asyncio.gather(*(self.decide(agent) for agent in voters))
+        for agent, decision in zip(voters, decisions):
+            self.apply(agent, decision, broadcast=False)
+
+    def cast_vote(self, voter, target: str):
+        """Called by Vote.execute. target is a player's name or SKIP."""
+        self.ballots[voter.name] = target
+
     def voteout(self):
-        round = self.game_config["discussion_rounds"] - self.discussion_rounds_left
-        max_votes = max(self.votes.values())
-        print(self.vote_info_one_round)
-        players_with_max_votes = [
-            player for player, votes in self.votes.items() if votes == max_votes
-        ]
-        vote_info = []
-        print(self.votes)
-        for voter, vote_target in self.vote_info_one_round.items():
-            print(voter)
-            vote_info.append(f"{str(voter)} voted for {str(vote_target)}")
-        if len(players_with_max_votes) == 1:
-            player = players_with_max_votes[0]
-            player.is_alive = False
-            import_event = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "round": round,
-                "action": f"{player.name} was voted out! Detailed vote info:{vote_info}",
-                "player": "all players",
-            }
-            print(f"== {player.name} was voted out ==")
+        living = self.living()
+        result = tally(self.ballots, len(living), self.governance.threshold)
+        alternatives = counterfactuals(self.ballots, len(living))
+        ejected = next((p for p in living if p.name == result.ejected), None)
+        wrongful = ejected is not None and ejected.identity == "Crewmate"
+        if ejected is not None:
+            ejected.is_alive = False
+            # an ejected player leaves no body to report
+            ejected.reported_death = True
+            self.wrongful_ejections += wrongful
+
+        if self.governance.ballot == SECRET:
+            detail = "Totals: " + ", ".join(f"{option}: {n}" for option, n in result.counts.items())
         else:
-            import_event = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "round": round,
-                "action": f"No one was voted out. Detailed vote info:{vote_info}",
-                "player": "all players",
-            }
-            print("== No one was voted out ==")
-        self.important_activity_log.append(import_event)
+            detail = "Votes: " + "; ".join(f"{voter} -> {target}" for voter, target in self.ballots.items())
+        template = VOTE_RESULT_EJECTED if ejected else VOTE_RESULT_NONE
+        announcement = template.format(player=result.ejected, detail=detail)
+        for player in self.living():
+            player.receive(f"Timestep {self.timestep}: [meeting phase] {announcement}", "action")
+
+        self.emit(
+            "tally",
+            rule=result.rule,
+            ballots=dict(self.ballots),
+            counts=result.counts,
+            n_voters=result.n_voters,
+            required=result.required,
+            ejected=result.ejected,
+            ejected_identity=ejected.identity if ejected else None,
+            wrongful=wrongful,
+            skips=result.counts.get(SKIP, 0),
+            counterfactual=alternatives,
+            rule_changed_outcome=len(set(alternatives.values())) > 1,
+            state=self.snapshot(),
+        )
+        self.meetings_held += 1
         self.current_phase = "task"
         self.discussion_rounds_left = self.game_config["discussion_rounds"]
-        self.votes = {}
+        self.ballots = {}
 
-    def check_monitor(self, room):
-        players = self.map.get_players_in_room(room)
-        return players
+    # --- running --------------------------------------------------------------
 
-    async def run_game(self):
+    async def run_game(self) -> dict:
+        """Play to the end and return the game's summary."""
         self.initialize_game()
-        game_over = self.check_game_over()
-        while not game_over:
+        outcome = self.check_game_over()
+        while not outcome:
             await self.game_step()
-            game_over = self.check_game_over()
+            outcome = self.check_game_over()
+        return self.finish(outcome)
 
-        # interview
-        if self.interviewer is not None:
-            for agent in self.agents:
-                await self.interviewer.auto_question(self, agent)
-        return self.report_winner(game_over)
+    def usage(self) -> Usage:
+        total = Usage()
+        for agent in self.agents:
+            total.add(agent.usage)
+        return total
 
-    def record_activity(self, player, action, additional_info=None):
-        if self.current_phase == "task":
-            record = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "action": action,
-                "player": player,
-            }
-        elif self.current_phase == "meeting":
-            round = self.game_config["discussion_rounds"] - self.discussion_rounds_left
-            record = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "round": round,
-                "action": action,
-                "player": player,
-            }
-        self.activity_log.append(record)
-        # print(record)
-        # print('.', end='', flush=True)
-        self.message_system.route_real_time_message(self, record)
-        if str(record["action"]).startswith("COMPLETE TASK"):
-            imprtant_event = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "action": str(action),
-                "player": player.name,
-            }
-            self.important_activity_log.append(record)
-        if str(record["action"]).startswith("KILL"):
-            imprtant_event = {
-                "timestep": self.timestep,
-                "phase": self.current_phase,
-                "action": str(action) + "|||" + additional_info,
-                "player": player.name,
-            }
-            self.important_activity_log.append(imprtant_event)
+    def summary(self) -> dict:
+        """Counters kept by the engine itself, independent of the event log."""
+        decisions = sum(a.decisions for a in self.agents)
+        fallbacks = sum(a.fallbacks for a in self.agents)
+        return {
+            "game_id": self.game_id,
+            "seed": self.seed,
+            "condition": self.governance.condition,
+            "governance": self.governance.to_dict(),
+            "timesteps": self.timestep,
+            "meetings": self.meetings_held,
+            "kills": self.kills,
+            "wrongful_ejections": self.wrongful_ejections,
+            "decisions": decisions,
+            "fallbacks": fallbacks,
+            "reprompts": sum(a.reprompts for a in self.agents),
+            "refusals": sum(a.refusals for a in self.agents),
+            "usage": self.usage().to_dict(),
+            "duration_s": round(time.time() - self.started, 2),
+        }
+
+    def finish(self, outcome: int) -> dict:
+        winner, reason = OUTCOMES[outcome]
+        summary = {**self.summary(), "winner": winner, "reason": reason}
+        self.emit("game_end", **{k: v for k, v in summary.items() if k != "game_id"}, state=self.snapshot())
+        return summary
 
 
 class MessageSystem:
-    def __init__(self, game_config):
-        self.game_config = game_config
+    """Delivers to each player what they can see and hear."""
 
-    def send_message(self, player, message, info_type):
-        player.receive(message, info_type)
+    def create_action_message(self, env, player, action):
+        if env.current_phase == "task":
+            return f"Timestep {env.timestep}: [task] {player.name} {action.action_text()}"
+        return f"Timestep {env.timestep}: [meeting phase - round {env.discussion_round}] {player.name} {action.action_text()}"
 
-    def create_action_message(self, record):
-        timestep = record["timestep"]
-        current_phase = record["phase"]
-        player = record["player"]
-        action = record["action"]
-        if current_phase == "task":
-            message = f"Timestep {timestep}: [{current_phase}] {player.name} {action.action_text()}"
-        elif current_phase == "meeting":
-            round = record["round"]
-            message = f"Timestep {timestep}: [{current_phase} phase - round {round}] {player.name} {action.action_text()}"
-        return message
+    def meeting_instruction(self, env):
+        governance = env.governance
+        if governance.disclose_rules:
+            voting_rules = f"{VOTING_RULE_TEXT[governance.threshold]} {BALLOT_TEXT[governance.ballot]}"
+        else:
+            voting_rules = VOTING_RULE_UNDISCLOSED
+        instruction = MEETING_PHASE_INSTRUCTION.format(
+            discussion_rounds=env.game_config["discussion_rounds"], voting_rules=voting_rules
+        )
+        if env.is_final_discussion_round():
+            instruction += PROTOCOL_TEXT[governance.protocol]
+        return instruction
 
     def create_location_message(self, record, env):
         if env.current_phase == "task":
             phase_info = "Task phase"
             instruction = TASK_PHASE_INSTRUCTION
-        elif env.current_phase == "meeting":
+        else:
             max_rounds = env.game_config["discussion_rounds"]
-            round = max_rounds - env.discussion_rounds_left
-            phase_info = f"Meeting phase - Discussion round ({round}/{max_rounds})"
-            instruction = MEETING_PHASE_INSTRUCTION
+            if env.discussion_rounds_left > 0:
+                phase_info = f"Meeting phase - Discussion round ({env.discussion_round + 1}/{max_rounds})"
+            else:
+                phase_info = "Meeting phase - Voting"
+            instruction = self.meeting_instruction(env)
         message = f"Game Time: {env.timestep}/{env.game_config['max_timesteps']}\n"
         message += f"Current phase: {phase_info}\n"
         message += f"{instruction}\n"
@@ -489,24 +526,13 @@ class MessageSystem:
             ]
             record = {"location": location, "players": player_names}
             for player in players:
-                self.send_message(
-                    player,
-                    self.create_location_message(record, env),
-                    info_type="location",
-                )
+                player.receive(self.create_location_message(record, env), "location")
 
-    def route_real_time_message(self, env, record):
-        player = record["player"]
-        action = record["action"]
+    def route_real_time_message(self, env, player, action):
+        """Show an action to everyone in the room it happens in (and the room moved to)."""
         location = action.current_location
-        new_location = (
-            action.new_location if hasattr(action, "new_location") else location
-        )  # could be different from action.current_location if player moved or vented
+        new_location = getattr(action, "new_location", location)
+        message = self.create_action_message(env, player, action)
         for other_player in env.players:
-            if other_player != player and (
-                other_player.location == location
-                or other_player.location == new_location
-            ):
-                self.send_message(
-                    other_player, self.create_action_message(record), info_type="action"
-                )
+            if other_player != player and other_player.location in (location, new_location):
+                other_player.receive(message, "action")

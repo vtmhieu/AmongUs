@@ -188,5 +188,7 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
-# Claude.md for agentic coding assistants
-CLAUDE.md
+
+# Experiment output (raw logs are the primary record; archive them deliberately)
+runs/
+.venv/
