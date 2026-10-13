@@ -135,6 +135,12 @@ class LLM(Protocol):
     async def close(self) -> None: ...
 
 
+NO_CREDENTIALS = (
+    "No Claude API credentials found. Put ANTHROPIC_API_KEY=... in a .env file at the "
+    "repository root (see .env.example), or run `ant auth login`."
+)
+
+
 class AnthropicLLM:
     """Claude through the official SDK.
 
@@ -148,7 +154,16 @@ class AnthropicLLM:
 
         self.config = config
         self._anthropic = anthropic
-        self._client = client or anthropic.AsyncAnthropic(max_retries=8, timeout=180.0)
+        if client is None:
+            try:
+                client = anthropic.AsyncAnthropic(max_retries=8, timeout=180.0)
+            except anthropic.AnthropicError as e:
+                raise FatalLLMError(f"{NO_CREDENTIALS} ({e})") from e
+        # Without a key, a token or a login profile the SDK only fails at request
+        # time, and with a bare TypeError. Say so now, in words.
+        if not (client.api_key or client.auth_token or client.credentials):
+            raise FatalLLMError(NO_CREDENTIALS)
+        self._client = client
         self._gate = asyncio.Semaphore(max_concurrency)
 
     def _request(self, system: str, user: str) -> dict:
@@ -207,8 +222,16 @@ class AnthropicLLM:
 
 
 def has_api_credentials() -> bool:
-    """Whether a Claude API credential is configured in the environment."""
-    return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"))
+    """Whether the SDK can find a Claude API credential (key, token or login profile)."""
+    if os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN"):
+        return True
+    import anthropic
+
+    try:
+        client = anthropic.AsyncAnthropic()
+    except anthropic.AnthropicError:
+        return False
+    return bool(client.api_key or client.auth_token or client.credentials)
 
 
 def make_llm(config: LLMConfig, max_concurrency: int = 8) -> LLM:
@@ -221,7 +244,10 @@ def make_llm(config: LLMConfig, max_concurrency: int = 8) -> LLM:
 
 async def check_connection(config: LLMConfig) -> dict:
     """Send one tiny request to confirm the key, the model and the request shape are accepted."""
-    llm = make_llm(config, max_concurrency=1)
+    try:
+        llm = make_llm(config, max_concurrency=1)
+    except LLMError as e:
+        return {"ok": False, "error": str(e)}
     try:
         response = await llm.complete("You are a connectivity check.", "Reply with the single word OK.")
         return {

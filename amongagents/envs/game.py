@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import time
+import zlib
 
 import numpy as np
 
@@ -69,7 +70,11 @@ class AmongUs:
         self.game_id = game_id
         self._emit = emit
         self.llm_log = llm_log
+        # Setup (roles, colours, tasks) depends on the seed alone, so matched seeds give
+        # every condition the same starting position. Anything random during play is
+        # drawn separately per condition, as a model's own sampling would be.
         self.rng = np.random.default_rng(seed)
+        self.play_rng = np.random.default_rng([seed, zlib.crc32(self.governance.condition.encode())])
 
         self.map = Map()
         self.players = []
@@ -169,7 +174,7 @@ class AmongUs:
                 llm=self.llm,
                 impostor_names=impostor_names,
                 game_id=self.game_id,
-                seed=int(self.rng.integers(2**31)),
+                seed=int(self.play_rng.integers(2**31)),
                 llm_log=self.llm_log,
             )
             for player in self.players
@@ -258,7 +263,7 @@ class AmongUs:
         player, action = agent.player, decision.action
         observation_location = ""
         if action.name == "VIEW MONITOR":
-            observation_location = str(self.rng.choice(sorted(self.map.ship_map.nodes)))
+            observation_location = str(self.play_rng.choice(sorted(self.map.ship_map.nodes)))
         witnesses = []
         if isinstance(action, Kill):
             witnesses = [
