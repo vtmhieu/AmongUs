@@ -8,7 +8,9 @@ factor, or a second ballot type, extends it without code changes.
 from __future__ import annotations
 
 import itertools
+import math
 from dataclasses import asdict, dataclass, field
+from statistics import NormalDist
 
 import numpy as np
 
@@ -25,6 +27,16 @@ from amongagents.envs.governance import (
     THRESHOLDS,
     Governance,
 )
+
+LABELS = {
+    "plurality": "Plurality",
+    "majority": "Majority",
+    "supermajority": "Supermajority",
+    "freeform": "Free-form",
+    "justification": "Justification",
+    "public": "Public ballot",
+    "secret": "Secret ballot",
+}
 
 # Pre-specified exclusion criterion: a game is invalid, and is played again, if more
 # than this share of its turns had to be replaced by a neutral action because the
@@ -167,3 +179,21 @@ def estimate(spec: ExperimentSpec, calls_per_game: float = 75, seconds_per_call:
         "minutes": minutes,
         "calls_per_game": calls_per_game,
     }
+
+
+def minimum_detectable_difference(n_per_group: int, baseline: float = 0.5, power: float = 0.8, alpha: float = 0.05) -> float | None:
+    """Smallest difference in proportions a two-group comparison detects at the given power."""
+    if n_per_group < 2:
+        return None
+    z_alpha, z_power = NormalDist().inv_cdf(1 - alpha / 2), NormalDist().inv_cdf(power)
+    for step in range(1, 1000):
+        delta = step / 1000
+        p1 = min(baseline + delta, 0.999)
+        pooled = (baseline + p1) / 2
+        needed = (
+            z_alpha * math.sqrt(2 * pooled * (1 - pooled))
+            + z_power * math.sqrt(baseline * (1 - baseline) + p1 * (1 - p1))
+        ) ** 2 / (p1 - baseline) ** 2
+        if needed <= n_per_group:
+            return delta
+    return None

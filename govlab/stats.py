@@ -38,6 +38,7 @@ from statsmodels.tools.sm_exceptions import (
 )
 
 from amongagents.envs.governance import BALLOTS, PROTOCOLS, THRESHOLDS
+from govlab.design import minimum_detectable_difference  # noqa: F401  (part of this module's interface)
 
 ALPHA = 0.05
 FACTORS = {"threshold": THRESHOLDS, "protocol": PROTOCOLS, "ballot": BALLOTS}
@@ -565,21 +566,3 @@ def hypotheses(result: dict) -> list[dict]:
             }[sign]
             verdicts.append({"id": "H3", "statement": "The factors interact: the benefit of justification is larger under plurality (exploratory).", "verdict": verdict, "why": why})
     return verdicts
-
-
-def minimum_detectable_difference(n_per_group: int, baseline: float = 0.5, power: float = 0.8) -> float | None:
-    """Smallest difference in proportions a two-group comparison detects at alpha = 0.05."""
-    if n_per_group < 2:
-        return None
-    z_alpha, z_power = sps.norm.ppf(1 - ALPHA / 2), sps.norm.ppf(power)
-    for step in range(1, 1000):
-        delta = step / 1000
-        p1 = min(baseline + delta, 0.999)
-        pooled = (baseline + p1) / 2
-        needed = (
-            z_alpha * math.sqrt(2 * pooled * (1 - pooled))
-            + z_power * math.sqrt(baseline * (1 - baseline) + p1 * (1 - p1))
-        ) ** 2 / (p1 - baseline) ** 2
-        if needed <= n_per_group:
-            return delta
-    return None

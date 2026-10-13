@@ -18,6 +18,7 @@ from __future__ import annotations
 import pandas as pd
 
 from amongagents.envs.governance import BALLOTS, PROTOCOLS, THRESHOLDS
+from govlab.design import LABELS
 from govlab.stats import kaplan_meier, proportion
 
 THRESHOLD_COLOURS = {
@@ -30,17 +31,6 @@ KILL_COLOURS = {
     "light": ["#86b6ef", "#3987e5", "#1c5cab", "#0d366b"],
     "dark": ["#1c5cab", "#3987e5", "#86b6ef", "#cde2fb"],
 }
-
-LABELS = {
-    "plurality": "Plurality",
-    "majority": "Majority",
-    "supermajority": "Supermajority",
-    "freeform": "Free-form",
-    "justification": "Justification",
-    "public": "Public ballot",
-    "secret": "Secret ballot",
-}
-
 
 def condition_label(threshold: str, protocol: str, ballot: str, ballots_vary: bool) -> str:
     label = f"{LABELS[threshold]} · {LABELS[protocol]}"

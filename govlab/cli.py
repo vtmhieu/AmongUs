@@ -28,7 +28,6 @@ from amongagents.agent.llm import (
 )
 from amongagents.envs.configs.game_config import GAME_PRESETS
 from amongagents.envs.governance import BALLOTS, PROTOCOLS, THRESHOLDS
-from govlab.analyze import analyse_run
 from govlab.design import ExperimentSpec, estimate
 from govlab.runner import Runner
 from govlab.store import REPO_ROOT, RunStore, list_runs
@@ -90,6 +89,8 @@ def _run(store: RunStore, analyse: bool) -> int:
     if state["error"]:
         print(f"  {state['error']}")
     if analyse and overview["valid"]:
+        from govlab.analyze import analyse_run
+
         analyse_run(store)
         print(f"report: {store.path / 'analysis' / 'report.md'}")
     return 0 if state["state"] == "completed" else 1
@@ -108,6 +109,8 @@ def cmd_resume(args) -> int:
 
 
 def cmd_analyze(args) -> int:
+    from govlab.analyze import analyse_run
+
     store = RunStore(args.run)
     results = analyse_run(store)
     if not results.get("ok"):

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Governance Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23B8573A'/%3E%3Cpath d='M9 21V11m7 10V8m7 13v-7' stroke='%23FAF9F5' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/design">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M9 21V11m7 10V8m7 13v-7"/></svg>
+      <span class="brand-name">Governance Lab</span>
+    </a>
+    <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+    <div class="topbar-right">
+      <label class="run-picker">
+        <span class="visually-hidden">Run</span>
+        <select id="run-picker"></select>
+      </label>
+      <span class="pill" id="key-status"></span>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch between light and dark"></button>
+    </div>
+  </header>
+  <main id="view"></main>
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

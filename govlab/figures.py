@@ -149,7 +149,7 @@ def damage(data: dict):
                 continue
             ax.barh(row, share, left=left, height=0.5, color=colours[i], edgecolor="white", linewidth=1.5)
             if share >= 0.09:  # a label only where it fits inside its segment
-                ax.text(left + share / 2, row, f"{share:.0%}", ha="center", va="center", fontsize=7.5, color="white" if i >= 1 else INK)
+                ax.text(left + share / 2, row, f"{share:.0%}", ha="center", va="center", fontsize=7.5, color="white" if i >= 2 else INK)
             left += share
         ax.text(1.02, row, f"mean {cell['kills_mean']:.2f}", va="center", ha="left", color=SECONDARY, fontsize=8)
     ax.set_yticks(range(len(cells)), [c["label"] for c in cells])
