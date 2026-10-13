@@ -22,9 +22,7 @@ class Task:
         if identity == "Impostor":
             return nx.shortest_path(self.map_graph, start, self.location)
         else:
-            return nx.shortest_path(
-                self.map_graph, start, self.location, weight="weight"
-            )
+            return nx.shortest_path(self.map_graph, start, self.location, weight="weight")
 
     def __repr__(self):
         return f"{self.task_type}: {self.name} ({self.location})"

@@ -327,7 +327,7 @@ details.prompt pre { margin: 9px 0 6px; padding: 11px 12px; background: var(--su
 .map .token.dead { opacity: 0.38; }
 .map .token.dead .cross { stroke: var(--text); stroke-width: 3; stroke-linecap: round; }
 .map .token .ring { fill: none; stroke: var(--text); stroke-width: 2.5; opacity: 0; }
-.map .token.acting .ring { opacity: 1; animation: ring 0.9s ease-out; }
+.map .token.acting .ring { animation: ring 0.9s ease-out forwards; } /* a pulse that fades: only the insider keeps a ring */
 @keyframes ring { from { r: 14px; opacity: 0.9; } to { r: 26px; opacity: 0; } }
 .banner { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); padding: 6px 14px; border-radius: 999px; background: var(--text); color: var(--bg); font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow); }
 .transport { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 12px; flex: none; }

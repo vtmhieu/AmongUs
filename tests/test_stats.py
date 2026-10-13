@@ -13,7 +13,12 @@ from govlab import stats
 def games_table(n_per_cell=40, seed=0, win=None, wrongful=None, kill_rate=None, hazard=None):
     """A synthetic games table with planted effects per (threshold, protocol) cell."""
     rng = np.random.default_rng(seed)
-    cells = [("plurality", "freeform"), ("plurality", "justification"), ("majority", "freeform"), ("majority", "justification")]
+    cells = [
+        ("plurality", "freeform"),
+        ("plurality", "justification"),
+        ("majority", "freeform"),
+        ("majority", "justification"),
+    ]
     win = win or dict.fromkeys(cells, 0.5)
     wrongful = wrongful or dict.fromkeys(cells, 0.4)
     kill_rate = kill_rate or dict.fromkeys(cells, 0.15)
@@ -115,18 +120,29 @@ class TestSurvival:
         group = np.array(["a"] * 40 + ["b"] * 40)
         ours = stats.logrank(time, event, group)
         theirs = sps.logrank(
-            sps.CensoredData(uncensored=time[:40][event[:40] == 1], right=time[:40][event[:40] == 0]),
-            sps.CensoredData(uncensored=time[40:][event[40:] == 1], right=time[40:][event[40:] == 0]),
+            sps.CensoredData(
+                uncensored=time[:40][event[:40] == 1], right=time[:40][event[:40] == 0]
+            ),
+            sps.CensoredData(
+                uncensored=time[40:][event[40:] == 1], right=time[40:][event[40:] == 0]
+            ),
         )
         assert ours["p"] == pytest.approx(theirs.pvalue, rel=1e-6)
         assert ours["chi2"] == pytest.approx(theirs.statistic**2, rel=1e-6)
 
     def test_logrank_degenerate_cases(self):
-        assert stats.logrank([1, 2], [0, 0], ["a", "b"])["reason"] == "the insider was never ejected"
+        assert (
+            stats.logrank([1, 2], [0, 0], ["a", "b"])["reason"] == "the insider was never ejected"
+        )
         assert stats.logrank([1, 2], [1, 1], ["a", "a"])["reason"] == "one group"
 
     def test_cox_recovers_a_planted_hazard_ratio(self):
-        cells = {("plurality", "freeform"): 0.5, ("plurality", "justification"): 0.5, ("majority", "freeform"): 0.2, ("majority", "justification"): 0.2}
+        cells = {
+            ("plurality", "freeform"): 0.5,
+            ("plurality", "justification"): 0.5,
+            ("majority", "freeform"): 0.2,
+            ("majority", "justification"): 0.2,
+        }
         games = games_table(300, hazard=cells)
         fit = stats.cox(games, stats.design_factors(games), interaction=False)
         term = next(t for t in fit["terms"] if t["term"] == "threshold: majority")
@@ -135,12 +151,21 @@ class TestSurvival:
 
 class TestRegressions:
     def test_logistic_recovers_a_planted_main_effect(self):
-        win = {("plurality", "freeform"): 0.3, ("plurality", "justification"): 0.3, ("majority", "freeform"): 0.7, ("majority", "justification"): 0.7}
+        win = {
+            ("plurality", "freeform"): 0.3,
+            ("plurality", "justification"): 0.3,
+            ("majority", "freeform"): 0.7,
+            ("majority", "justification"): 0.7,
+        }
         games = games_table(200, win=win)
         fit = stats.logistic(games, "crew_win", stats.design_factors(games), interaction=False)
         terms = {t["term"]: t for t in fit["terms"]}
         true_or = (0.7 / 0.3) / (0.3 / 0.7)
-        assert terms["threshold: majority"]["odds_ratio_low"] < true_or < terms["threshold: majority"]["odds_ratio_high"]
+        assert (
+            terms["threshold: majority"]["odds_ratio_low"]
+            < true_or
+            < terms["threshold: majority"]["odds_ratio_high"]
+        )
         assert terms["threshold: majority"]["p"] < 0.001
         assert abs(terms["protocol: justification"]["coef"]) < 0.5  # nothing was planted here
 
@@ -148,12 +173,25 @@ class TestRegressions:
         games = games_table(60)
         fit = stats.logistic(games, "crew_win", stats.design_factors(games), interaction=True)
         assert [t["term"] for t in fit["terms"]] == [
-            "intercept", "threshold: majority", "protocol: justification", "threshold: majority x protocol: justification",
+            "intercept",
+            "threshold: majority",
+            "protocol: justification",
+            "threshold: majority x protocol: justification",
         ]
 
     def test_logistic_reports_perfect_separation_instead_of_nonsense(self):
-        win = {("plurality", "freeform"): 0.0, ("plurality", "justification"): 0.0, ("majority", "freeform"): 1.0, ("majority", "justification"): 1.0}
-        fit = stats.logistic(games_table(10, win=win), "crew_win", {"threshold": ["plurality", "majority"], "protocol": ["freeform", "justification"]}, False)
+        win = {
+            ("plurality", "freeform"): 0.0,
+            ("plurality", "justification"): 0.0,
+            ("majority", "freeform"): 1.0,
+            ("majority", "justification"): 1.0,
+        }
+        fit = stats.logistic(
+            games_table(10, win=win),
+            "crew_win",
+            {"threshold": ["plurality", "majority"], "protocol": ["freeform", "justification"]},
+            False,
+        )
         assert fit["ok"] is False and "separation" in fit["reason"]
 
     def test_logistic_without_variation(self):
@@ -163,7 +201,12 @@ class TestRegressions:
         assert fit["ok"] is False and "same in every game" in fit["reason"]
 
     def test_count_model_recovers_a_planted_rate_ratio(self):
-        rate = {("plurality", "freeform"): 0.1, ("plurality", "justification"): 0.1, ("majority", "freeform"): 0.2, ("majority", "justification"): 0.2}
+        rate = {
+            ("plurality", "freeform"): 0.1,
+            ("plurality", "justification"): 0.1,
+            ("majority", "freeform"): 0.2,
+            ("majority", "justification"): 0.2,
+        }
         games = games_table(250, kill_rate=rate)
         fit = stats.count_model(games, "kills", stats.design_factors(games), interaction=False)
         term = next(t for t in fit["terms"] if t["term"] == "threshold: majority")
@@ -193,12 +236,24 @@ class TestAnalyse:
         ]
         for t in result["confirmatory"]:
             assert t["p_holm"] >= t["p"]
-        assert result["conditions"] == ["plurality/freeform", "plurality/justification", "majority/freeform", "majority/justification"]
+        assert result["conditions"] == [
+            "plurality/freeform",
+            "plurality/justification",
+            "majority/freeform",
+            "majority/justification",
+        ]
         json.dumps(result)  # everything the UI is sent must be JSON
 
     def test_h1_and_h2_are_supported_when_their_effects_are_planted(self):
-        cells = [("plurality", "freeform"), ("plurality", "justification"), ("majority", "freeform"), ("majority", "justification")]
-        wrongful = dict(zip(cells, [0.7, 0.4, 0.3, 0.1]))  # lower under majority, lower with justification
+        cells = [
+            ("plurality", "freeform"),
+            ("plurality", "justification"),
+            ("majority", "freeform"),
+            ("majority", "justification"),
+        ]
+        wrongful = dict(
+            zip(cells, [0.7, 0.4, 0.3, 0.1])
+        )  # lower under majority, lower with justification
         rate = dict(zip(cells, [0.08, 0.08, 0.2, 0.2]))  # more damage under majority
         result = stats.analyse(games_table(150, wrongful=wrongful, kill_rate=rate), NO_MEETINGS)
         verdicts = {h["id"]: h["verdict"] for h in result["hypotheses"]}
@@ -206,14 +261,27 @@ class TestAnalyse:
         assert all(t["significant"] for t in result["confirmatory"] if t["id"] != "RQ1a")
 
     def test_h1_is_contradicted_when_majority_simply_wins_more(self):
-        cells = [("plurality", "freeform"), ("plurality", "justification"), ("majority", "freeform"), ("majority", "justification")]
-        result = stats.analyse(games_table(150, win=dict(zip(cells, [0.2, 0.2, 0.8, 0.8]))), NO_MEETINGS)
+        cells = [
+            ("plurality", "freeform"),
+            ("plurality", "justification"),
+            ("majority", "freeform"),
+            ("majority", "justification"),
+        ]
+        result = stats.analyse(
+            games_table(150, win=dict(zip(cells, [0.2, 0.2, 0.8, 0.8]))), NO_MEETINGS
+        )
         assert {h["id"]: h["verdict"] for h in result["hypotheses"]}["H1"] == "contradicted"
 
     def test_no_effect_is_inconclusive_not_a_finding(self):
         games = games_table(20)
-        for column, pattern in (("crew_win", [0, 1]), ("wrongful_any", [1, 0, 0, 1]), ("kills", [1, 2, 2, 1])):
-            games[column] = np.tile(pattern, len(games) // len(pattern))  # the same in every condition
+        for column, pattern in (
+            ("crew_win", [0, 1]),
+            ("wrongful_any", [1, 0, 0, 1]),
+            ("kills", [1, 2, 2, 1]),
+        ):
+            games[column] = np.tile(
+                pattern, len(games) // len(pattern)
+            )  # the same in every condition
         games["exposure"] = 10
         result = stats.analyse(games, NO_MEETINGS)
         assert {h["verdict"] for h in result["hypotheses"]} == {"inconclusive"}
@@ -221,15 +289,27 @@ class TestAnalyse:
 
     def test_a_verdict_must_survive_the_holm_correction(self):
         """An interval that excludes no effect is not enough once four tests are in the family."""
-        cells = [("plurality", "freeform"), ("plurality", "justification"), ("majority", "freeform"), ("majority", "justification")]
-        result = stats.analyse(games_table(40, seed=1, wrongful=dict(zip(cells, [0.55, 0.3, 0.55, 0.3]))), NO_MEETINGS)
+        cells = [
+            ("plurality", "freeform"),
+            ("plurality", "justification"),
+            ("majority", "freeform"),
+            ("majority", "justification"),
+        ]
+        result = stats.analyse(
+            games_table(40, seed=1, wrongful=dict(zip(cells, [0.55, 0.3, 0.55, 0.3]))), NO_MEETINGS
+        )
         rq2 = next(t for t in result["confirmatory"] if t["id"] == "RQ2")
         h2 = next(h for h in result["hypotheses"] if h["id"] == "H2")
         assert rq2["effect"]["high"] < 1  # the unadjusted interval excludes no effect
         assert h2["verdict"] == ("supported" if rq2["significant"] else "inconclusive")
 
     def test_a_pilot_sized_run_with_separation_falls_back_to_exact_tests(self):
-        cells = [("plurality", "freeform"), ("plurality", "justification"), ("majority", "freeform"), ("majority", "justification")]
+        cells = [
+            ("plurality", "freeform"),
+            ("plurality", "justification"),
+            ("majority", "freeform"),
+            ("majority", "justification"),
+        ]
         games = games_table(5, wrongful=dict(zip(cells, [1.0, 1.0, 0.0, 0.0])))
         result = stats.analyse(games, NO_MEETINGS)
         h1 = next(t for t in result["confirmatory"] if t["id"] == "H1")

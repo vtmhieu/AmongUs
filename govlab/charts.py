@@ -32,6 +32,7 @@ KILL_COLOURS = {
     "dark": ["#1c5cab", "#3987e5", "#86b6ef", "#cde2fb"],
 }
 
+
 def condition_label(threshold: str, protocol: str, ballot: str, ballots_vary: bool) -> str:
     label = f"{LABELS[threshold]} · {LABELS[protocol]}"
     return f"{label} · {LABELS[ballot]}" if ballots_vary else label
@@ -48,7 +49,14 @@ def chart_data(games: pd.DataFrame, actions: pd.DataFrame) -> dict:
             cell = games[(games["protocol"] == protocol) & (games["ballot"] == ballot)]
             if len(cell):
                 label = LABELS[protocol] + (f" · {LABELS[ballot]}" if ballots_vary else "")
-                groups.append({"key": f"{protocol}/{ballot}", "protocol": protocol, "ballot": ballot, "label": label})
+                groups.append(
+                    {
+                        "key": f"{protocol}/{ballot}",
+                        "protocol": protocol,
+                        "ballot": ballot,
+                        "label": label,
+                    }
+                )
 
     max_timestep = int(games["timesteps"].max())
     kills = actions[actions["action"] == "KILL"] if len(actions) else actions
@@ -65,7 +73,9 @@ def chart_data(games: pd.DataFrame, actions: pd.DataFrame) -> dict:
             n = len(cell)
             binned = cell["kills"].clip(upper=3).value_counts()
             # mean kills so far per game at each timestep; a finished game keeps its total
-            kill_steps = kills[kills["game_id"].isin(cell["game_id"])]["timestep"] if len(kills) else []
+            kill_steps = (
+                kills[kills["game_id"].isin(cell["game_id"])]["timestep"] if len(kills) else []
+            )
             cumulative = [
                 {"t": t, "mean": float(sum(1 for step in kill_steps if step < t) / n)}
                 for t in range(max_timestep + 1)
@@ -74,7 +84,9 @@ def chart_data(games: pd.DataFrame, actions: pd.DataFrame) -> dict:
                 "condition": cell.iloc[0]["condition"],
                 "threshold": threshold,
                 "group": group["key"],
-                "label": condition_label(threshold, group["protocol"], group["ballot"], ballots_vary),
+                "label": condition_label(
+                    threshold, group["protocol"], group["ballot"], ballots_vary
+                ),
                 "n": n,
                 "win": proportion(int(cell["crew_win"].sum()), n),
                 "wrongful": proportion(int(cell["wrongful_any"].sum()), n),

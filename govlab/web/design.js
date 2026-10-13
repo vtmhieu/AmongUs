@@ -229,6 +229,7 @@ export async function mountDesign(view) {
           h("label", { class: "stack" }, h("span", {}, "Attempts per game"), number(spec.max_attempts, (v) => (spec.max_attempts = v), { min: 1, max: 10 })),
           h("label", { class: "stack" }, h("span", {}, "Budget cap (USD)"), number(spec.budget_usd ?? "", (v) => (spec.budget_usd = v > 0 ? v : null), { min: 0, step: "0.5", placeholder: "none" })),
         ),
+        h("p", { class: "field-hint" }, "If games are excluded for rate limits, lower the number in parallel. The budget cap stops new games from starting once that much has been spent."),
         h(
           "div",
           { class: "field" },

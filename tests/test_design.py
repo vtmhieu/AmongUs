@@ -22,7 +22,9 @@ def test_the_default_design_is_the_2x2_of_the_research_plan():
 
 
 def test_levels_multiply_into_a_full_factorial():
-    spec = ExperimentSpec(thresholds=("plurality", "majority", "supermajority"), ballots=("public", "secret"))
+    spec = ExperimentSpec(
+        thresholds=("plurality", "majority", "supermajority"), ballots=("public", "secret")
+    )
     assert len(spec.conditions()) == 3 * 2 * 2
     assert len({g.condition for g in spec.conditions()}) == 12
 
@@ -34,7 +36,9 @@ def test_every_block_holds_each_condition_once_in_a_shuffled_order():
     orders = set()
     for block in range(12):
         in_block = [s for s in schedule if s["block"] == block]
-        assert Counter(s["condition"] for s in in_block) == Counter(g.condition for g in spec.conditions())
+        assert Counter(s["condition"] for s in in_block) == Counter(
+            g.condition for g in spec.conditions()
+        )
         orders.add(tuple(s["condition"] for s in in_block))
     assert len(orders) > 1  # interleaved, not the same order every time
 
@@ -63,7 +67,10 @@ def test_the_schedule_is_a_function_of_the_seed():
 
 def test_round_trip_through_json_types():
     spec = ExperimentSpec(
-        name="pilot", thresholds=("majority",), games_per_condition=5, budget_usd=2.5,
+        name="pilot",
+        thresholds=("majority",),
+        games_per_condition=5,
+        budget_usd=2.5,
         llm=LLMConfig(effort="low", thinking="adaptive"),
     )
     assert ExperimentSpec.from_dict(spec.to_dict()) == spec
@@ -92,7 +99,10 @@ def test_unknown_settings_are_rejected_rather_than_ignored():
 
 
 def test_the_estimate_scales_with_the_design():
-    small, large = estimate(ExperimentSpec(games_per_condition=5)), estimate(ExperimentSpec(games_per_condition=20))
+    small, large = (
+        estimate(ExperimentSpec(games_per_condition=5)),
+        estimate(ExperimentSpec(games_per_condition=20)),
+    )
     assert large["games"] == 4 * small["games"]
     assert large["cost_usd"] == pytest.approx(4 * small["cost_usd"])
     assert 0 < large["cost_usd"] < 10  # Haiku 5.5: the full study costs a few dollars

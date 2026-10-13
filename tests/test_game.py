@@ -124,7 +124,9 @@ def test_an_unreadable_ballot_is_an_abstention():
 
 
 def test_occasional_bad_replies_are_recovered_by_the_reprompt():
-    summary, events, _ = play(seed=3, llm_config=LLMConfig(provider="mock", mock_malformed_rate=0.2))
+    summary, events, _ = play(
+        seed=3, llm_config=LLMConfig(provider="mock", mock_malformed_rate=0.2)
+    )
     assert summary["reprompts"] > 0
     assert summary["fallbacks"] < summary["reprompts"]
 
@@ -156,14 +158,23 @@ def test_public_votes_are_seen_as_they_are_cast_and_secret_votes_are_not():
         seen = []
         for seed in range(20):
             _, _, calls = play(seed=seed, ballot=ballot)
-            seen += [c["prompt"] for c in calls if c["type"] == "llm_call" and "Meeting phase - Voting" in c["prompt"]]
+            seen += [
+                c["prompt"]
+                for c in calls
+                if c["type"] == "llm_call" and "Meeting phase - Voting" in c["prompt"]
+            ]
         return seen
 
     public = observations_during_vote("public")
     secret = observations_during_vote("secret")
     assert public and secret
-    assert any(" VOTE Player" in p.split("Observation history:")[1].split("Action history:")[0] for p in public)
-    assert not any(" VOTE " in p.split("Observation history:")[1].split("Action history:")[0] for p in secret)
+    assert any(
+        " VOTE Player" in p.split("Observation history:")[1].split("Action history:")[0]
+        for p in public
+    )
+    assert not any(
+        " VOTE " in p.split("Observation history:")[1].split("Action history:")[0] for p in secret
+    )
 
 
 def test_the_result_of_a_vote_is_announced_to_the_living():
@@ -191,8 +202,14 @@ def test_an_ejected_player_leaves_no_body_to_report():
             if ejected_this_step and not outcome:
                 game.check_actions()
                 for player in game.living():
-                    reports = [a for a in player.available_actions if isinstance(a, CallMeeting) and a.reports_body]
-                    unreported = [p for p in game.players if not p.is_alive and not p.reported_death]
+                    reports = [
+                        a
+                        for a in player.available_actions
+                        if isinstance(a, CallMeeting) and a.reports_body
+                    ]
+                    unreported = [
+                        p for p in game.players if not p.is_alive and not p.reported_death
+                    ]
                     assert bool(reports) <= bool(unreported)
                 return
     pytest.fail("no ejection followed by more play in 40 games")
@@ -229,3 +246,67 @@ def test_unplayable_configs_are_rejected(change):
 def test_a_config_must_be_complete():
     with pytest.raises(ValueError):
         validate_game_config({"num_players": 5})
+
+
+class Scripted:
+    """A model that returns a fixed sequence of replies."""
+
+    def __init__(self, replies):
+        from amongagents.agent.llm import LLMResponse, Usage
+
+        self.config = LLMConfig(provider="mock")
+        self.replies = list(replies)
+        self._response = lambda text: LLMResponse(text=text, model="scripted", usage=Usage(calls=1))
+
+    async def complete(self, system, user, *, seed=None):
+        return self._response(self.replies.pop(0))
+
+    async def close(self):
+        return None
+
+
+def final_round_game(replies):
+    game = AmongUs(Scripted(replies), governance=Governance(protocol="justification"), seed=4)
+    game.initialize_game()
+    game.current_phase = "meeting"
+    game.discussion_rounds_left = 1
+    game.check_actions()
+    game.update_map()
+    return game
+
+
+def test_a_statement_that_breaks_the_protocol_is_reprompted_once():
+    other = "Player 2"
+    game = final_round_game(
+        [
+            "[Action] SPEAK: I have a bad feeling about this.",
+            f"[Action] SPEAK: I was in Admin.\nACCUSE: {other}\nEVIDENCE: they followed me into Storage",
+        ]
+    )
+    decision = asyncio.run(game.decide(game.agents[0]))
+    assert decision.reprompts == 1 and not decision.fallback
+    assert game.justification_of(decision.action).accused.startswith(other)
+
+
+def test_a_second_miss_is_kept_as_said_and_logged_as_non_compliant():
+    game = final_round_game(
+        [
+            "[Action] SPEAK: I have a bad feeling about this.",
+            "[Action] SPEAK: Still just a feeling.",
+        ]
+    )
+    events = []
+    game._emit = events.append
+    decision = asyncio.run(game.decide(game.agents[0]))
+    game.apply(game.agents[0], decision)
+    assert decision.action.message == "Still just a feeling." and decision.reprompts == 1
+    assert events[-1]["final_round"] and events[-1]["justification"] is None
+
+
+def test_an_unreadable_reprompt_does_not_erase_what_the_player_first_said():
+    game = final_round_game(["[Action] SPEAK: I have a bad feeling about this.", "???", "???"])
+    agent = game.agents[0]
+    decision = asyncio.run(game.decide(agent))
+    assert decision.action.message == "I have a bad feeling about this."
+    assert not decision.fallback and agent.fallbacks == 0
+    assert decision.reprompts == 2  # the protocol re-prompt, and one more for its unreadable reply

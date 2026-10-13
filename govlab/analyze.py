@@ -35,7 +35,9 @@ def quality(store: RunStore, games: pd.DataFrame, meetings: pd.DataFrame) -> dic
     invalid = [a for a in attempts if not a.get("valid")]
     reasons: dict[str, int] = {}
     for a in invalid:
-        reasons[a.get("invalid_reason") or "unknown"] = reasons.get(a.get("invalid_reason") or "unknown", 0) + 1
+        reasons[a.get("invalid_reason") or "unknown"] = (
+            reasons.get(a.get("invalid_reason") or "unknown", 0) + 1
+        )
 
     out = {
         "attempts": len(attempts),
@@ -53,7 +55,9 @@ def quality(store: RunStore, games: pd.DataFrame, meetings: pd.DataFrame) -> dic
     if len(games) == 0:
         return out
 
-    usage = games[["input_tokens", "output_tokens", "cache_read_tokens", "cache_write_tokens"]].sum()
+    usage = games[
+        ["input_tokens", "output_tokens", "cache_read_tokens", "cache_write_tokens"]
+    ].sum()
     prompt_tokens = usage["input_tokens"] + usage["cache_read_tokens"] + usage["cache_write_tokens"]
     calls = games["calls"].sum()
     cost_per_game = games["cost_usd"].mean() if games["cost_usd"].notna().all() else None
@@ -66,26 +70,38 @@ def quality(store: RunStore, games: pd.DataFrame, meetings: pd.DataFrame) -> dic
         cache_hit_share=_num(usage["cache_read_tokens"] / prompt_tokens) if prompt_tokens else None,
         meetings_per_game=_num(games["meetings"].mean()),
         games_with_meeting=_num((games["meetings"] > 0).mean()),
-        rule_changed_outcome=stats.proportion(int(meetings["rule_changed_outcome"].sum()) if len(meetings) else 0, len(meetings)),
+        rule_changed_outcome=stats.proportion(
+            int(meetings["rule_changed_outcome"].sum()) if len(meetings) else 0, len(meetings)
+        ),
     )
     justified = games[games["protocol"] == "justification"]
     if len(justified) and justified["final_statements"].sum():
-        out["justification_compliance"] = _num(justified["justified_statements"].sum() / justified["final_statements"].sum())
+        out["justification_compliance"] = _num(
+            justified["justified_statements"].sum() / justified["final_statements"].sum()
+        )
 
     # what the remaining design would cost at the measured rate
     n_conditions = games["condition"].nunique()
     out["projection"] = {
         str(n): {
             "games": n * n_conditions,
-            "cost_usd": _num(cost_per_game * n * n_conditions) if cost_per_game is not None else None,
-            "minutes": _num(games["duration_s"].mean() * n * n_conditions / 60 / store.spec.concurrency),
+            "cost_usd": _num(cost_per_game * n * n_conditions)
+            if cost_per_game is not None
+            else None,
+            "minutes": _num(
+                games["duration_s"].mean() * n * n_conditions / 60 / store.spec.concurrency
+            ),
             "detectable_difference": stats.minimum_detectable_difference(n * n_conditions // 2),
         }
         for n in (15, 20, 30)
     }
 
     # the baseline is the upstream rule set if the design has it, else its first condition
-    reference = games[(games["threshold"] == "plurality") & (games["protocol"] == "freeform") & (games["ballot"] == "public")]
+    reference = games[
+        (games["threshold"] == "plurality")
+        & (games["protocol"] == "freeform")
+        & (games["ballot"] == "public")
+    ]
     if len(reference) == 0:
         reference = games[games["condition"] == stats._condition_order(games)[0]]
     win = reference["crew_win"].mean()
@@ -159,7 +175,9 @@ def _ci(p: dict) -> str:
 def _effect(effect: dict) -> str:
     if effect["value"] is None:
         return "–"
-    name = {"odds_ratio": "OR", "rate_ratio": "RR", "risk_difference": "RD", "cliffs_delta": "δ"}[effect["measure"]]
+    name = {"odds_ratio": "OR", "rate_ratio": "RR", "risk_difference": "RD", "cliffs_delta": "δ"}[
+        effect["measure"]
+    ]
     if effect["low"] is None:
         return f"{name} {effect['value']:.2f}"
     return f"{name} {effect['value']:.2f} [{effect['low']:.2f}, {effect['high']:.2f}]"
@@ -179,7 +197,11 @@ def _model_lines(title: str, model: dict | None, ratio: str) -> list[str]:
             continue
         key = {"OR": "odds_ratio", "RR": "rate_ratio", "HR": "hazard_ratio"}[ratio]
         value = "–" if t[key] is None else f"{t[key]:.2f}"
-        ci = "–" if t[f"{key}_low"] is None or t[f"{key}_high"] is None else f"[{t[f'{key}_low']:.2f}, {t[f'{key}_high']:.2f}]"
+        ci = (
+            "–"
+            if t[f"{key}_low"] is None or t[f"{key}_high"] is None
+            else f"[{t[f'{key}_low']:.2f}, {t[f'{key}_high']:.2f}]"
+        )
         lines.append(f"| {t['term']} | {value} | {ci} | {_p(t['p'])} |")
     return lines + [""]
 
@@ -203,17 +225,25 @@ def report(results: dict) -> str:
 
     lines += ["## Checks before interpreting", ""]
     for gate in q["gates"]:
-        lines.append(f"- {'PASS' if gate['pass'] else 'FAIL'} — **{gate['label']}**: {gate['detail']}.")
+        lines.append(
+            f"- {'PASS' if gate['pass'] else 'FAIL'} — **{gate['label']}**: {gate['detail']}."
+        )
     changed = q["rule_changed_outcome"]
     lines += [
         f"- Manipulation check: in {changed['k']} of {changed['n']} meetings the vote threshold changed who was ejected"
         + (f" ({changed['p']:.0%})." if changed["p"] is not None else "."),
     ]
     if "justification_compliance" in q:
-        lines.append(f"- Protocol compliance: {q['justification_compliance']:.0%} of final-round statements under the justification protocol were valid.")
+        lines.append(
+            f"- Protocol compliance: {q['justification_compliance']:.0%} of final-round statements under the justification protocol were valid."
+        )
     lines += [
         f"- Per game: {q['calls_per_game']:.0f} model calls, {q['seconds_per_game']:.0f} s, "
-        + ("cost not priced" if q["cost_per_game_usd"] is None else f"${q['cost_per_game_usd']:.3f}")
+        + (
+            "cost not priced"
+            if q["cost_per_game_usd"] is None
+            else f"${q['cost_per_game_usd']:.3f}"
+        )
         + f"; {_pct(q['cache_hit_share'])} of prompt tokens read from cache.",
         "",
         "## Conditions",
@@ -241,21 +271,37 @@ def report(results: dict) -> str:
             lines.append(
                 f"| {t['id']} | {t['question']} | {t['contrast']} | {_effect(t['effect'])} | {t['test']} | {_p(t['p'])} | {_p(t['p_holm'])} |"
             )
-        lines += ["", "OR odds ratio, RR rate ratio, RD risk difference, δ Cliff's delta; brackets are 95% intervals.", ""]
+        lines += [
+            "",
+            "OR odds ratio, RR rate ratio, RD risk difference, δ Cliff's delta; brackets are 95% intervals.",
+            "",
+        ]
         fallbacks = [t for t in results["confirmatory"] if t["fallback_reason"]]
         for t in fallbacks:
-            lines.append(f"- {t['id']} ({t['contrast']}): the regression was not estimated ({t['fallback_reason']}); the exact test is reported instead.")
+            lines.append(
+                f"- {t['id']} ({t['contrast']}): the regression was not estimated ({t['fallback_reason']}); the exact test is reported instead."
+            )
         if fallbacks:
             lines.append("")
 
     if results["hypotheses"]:
         lines += ["## Hypotheses", ""]
         for h in results["hypotheses"]:
-            lines.append(f"- **{h['id']} — {h['verdict']}.** {h['statement']} *{h['why'].capitalize()}.*")
-        lines += ["", "Verdicts apply the plan's decision rules mechanically. The study is powered for large effects only, so *inconclusive* is not evidence of no effect.", ""]
+            lines.append(
+                f"- **{h['id']} — {h['verdict']}.** {h['statement']} *{h['why'].capitalize()}.*"
+            )
+        lines += [
+            "",
+            "Verdicts apply the plan's decision rules mechanically. The study is powered for large effects only, so *inconclusive* is not evidence of no effect.",
+            "",
+        ]
 
     lines += ["## Models", ""]
-    for outcome, title, ratio in (("crew_win", "Good-team win", "OR"), ("wrongful_any", "Wrongful removal", "OR"), ("kills", "Damage (kills, offset log exposure)", "RR")):
+    for outcome, title, ratio in (
+        ("crew_win", "Good-team win", "OR"),
+        ("wrongful_any", "Wrongful removal", "OR"),
+        ("kills", "Damage (kills, offset log exposure)", "RR"),
+    ):
         entry = results["models"].get(outcome) or {}
         lines += _model_lines(f"{title}, main effects", entry.get("main"), ratio)
         lines += _model_lines(f"{title}, with interaction", entry.get("interaction"), ratio)
@@ -264,10 +310,16 @@ def report(results: dict) -> str:
     lines += _model_lines("Detection time, with interaction", detection["cox"]["interaction"], "HR")
     for factor, test in detection["logrank"].items():
         if test["ok"]:
-            lines.append(f"- Log-rank test across {factor}: chi2({test['df']}) = {test['chi2']:.2f}, p = {_p(test['p'])}.")
+            lines.append(
+                f"- Log-rank test across {factor}: chi2({test['df']}) = {test['chi2']:.2f}, p = {_p(test['p'])}."
+            )
         else:
             lines.append(f"- Log-rank test across {factor}: not computed ({test['reason']}).")
-    lines += ["", "Detection time is meetings until the insider is first ejected; games in which that never happens are right-censored, not dropped.", ""]
+    lines += [
+        "",
+        "Detection time is meetings until the insider is first ejected; games in which that never happens are right-censored, not dropped.",
+        "",
+    ]
 
     if results.get("figures"):
         lines += ["## Figures", ""]

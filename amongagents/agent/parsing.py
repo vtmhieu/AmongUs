@@ -87,7 +87,7 @@ def match_action(action_text: str, available: Sequence[Action]) -> Action | None
         keyword = _SPEAK.search(action_text)
         if keyword is None:
             return None
-        message = action_text[keyword.end() :].strip().strip("\"“”").strip()
+        message = action_text[keyword.end() :].strip().strip('"“”').strip()
         speak.provide_message(message or "...")
         return speak
 

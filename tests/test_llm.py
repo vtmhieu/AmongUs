@@ -57,7 +57,9 @@ def test_the_request_is_what_haiku_5_5_accepts():
     asyncio.run(llm_with(handler).complete("SYSTEM PROMPT", "USER PROMPT"))
 
     assert sent["model"] == "claude-haiku-5-5"
-    assert sent["messages"] == [{"role": "user", "content": "USER PROMPT"}]  # ends on a user turn: no prefill
+    assert sent["messages"] == [
+        {"role": "user", "content": "USER PROMPT"}
+    ]  # ends on a user turn: no prefill
     assert sent["system"] == [
         {"type": "text", "text": "SYSTEM PROMPT", "cache_control": {"type": "ephemeral"}}
     ]
@@ -117,14 +119,21 @@ def error(status, error_type):
 
 @pytest.mark.parametrize(
     "status, error_type",
-    [(401, "authentication_error"), (403, "permission_error"), (404, "not_found_error"), (400, "invalid_request_error")],
+    [
+        (401, "authentication_error"),
+        (403, "permission_error"),
+        (404, "not_found_error"),
+        (400, "invalid_request_error"),
+    ],
 )
 def test_errors_no_retry_can_fix_are_fatal(status, error_type):
     with pytest.raises(FatalLLMError, match=error_type):
         asyncio.run(llm_with(error(status, error_type)).complete("s", "u"))
 
 
-@pytest.mark.parametrize("status, error_type", [(429, "rate_limit_error"), (529, "overloaded_error"), (500, "api_error")])
+@pytest.mark.parametrize(
+    "status, error_type", [(429, "rate_limit_error"), (529, "overloaded_error"), (500, "api_error")]
+)
 def test_transient_errors_fail_the_game_but_not_the_run(status, error_type):
     with pytest.raises(LLMError) as raised:
         asyncio.run(llm_with(error(status, error_type)).complete("s", "u"))
@@ -137,7 +146,10 @@ def test_a_transient_error_is_retried_by_the_sdk():
     def handler(request):
         attempts.append(1)
         if len(attempts) == 1:
-            return httpx2.Response(529, json={"type": "error", "error": {"type": "overloaded_error", "message": "busy"}})
+            return httpx2.Response(
+                529,
+                json={"type": "error", "error": {"type": "overloaded_error", "message": "busy"}},
+            )
         return httpx2.Response(200, json=message())
 
     response = asyncio.run(llm_with(handler, max_retries=2).complete("s", "u"))
@@ -163,7 +175,12 @@ def test_a_key_in_the_environment_is_enough(monkeypatch):
 
 
 def test_cost_at_list_price():
-    usage = Usage(input_tokens=1_000_000, output_tokens=1_000_000, cache_read_tokens=1_000_000, cache_write_tokens=1_000_000)
+    usage = Usage(
+        input_tokens=1_000_000,
+        output_tokens=1_000_000,
+        cache_read_tokens=1_000_000,
+        cache_write_tokens=1_000_000,
+    )
     assert cost_usd(usage, "claude-haiku-5-5") == pytest.approx(0.10 + 0.50 + 0.01 + 0.125)
     assert cost_usd(usage, "mock-scripted") == 0.0
     assert cost_usd(usage, "some-future-model") is None

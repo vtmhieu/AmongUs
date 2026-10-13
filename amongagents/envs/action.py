@@ -111,10 +111,7 @@ class CallMeeting(Action):
         ]
         if unreported_bodies:
             return [CallMeeting(current_location, reports_body=True)]
-        if (
-            current_location == "Cafeteria"
-            and env.button_num < env.game_config["max_num_buttons"]
-        ):
+        if current_location == "Cafeteria" and env.button_num < env.game_config["max_num_buttons"]:
             return [CallMeeting(current_location, reports_body=False)]
         return []
 
@@ -145,12 +142,9 @@ class Vote(Action):
     @staticmethod
     def can_execute_actions(env, player):
         if env.current_phase == "meeting" and env.discussion_rounds_left == 0:
-            alive_players_excluding_self = [
-                p for p in env.players if p.is_alive and p != player
-            ]
+            alive_players_excluding_self = [p for p in env.players if p.is_alive and p != player]
             return [
-                Vote(player.location, other_player)
-                for other_player in alive_players_excluding_self
+                Vote(player.location, other_player) for other_player in alive_players_excluding_self
             ] + [Vote(player.location, None)]
         else:
             return []
@@ -197,7 +191,11 @@ class ViewMonitor(Action):
                 observations.append(f"({other.name}): leave {match.group(1)}, ")
         observation = "".join(observations) if in_room else "No one here"
         player.observation_history.append(
-            "Monitor Record: {Location: " + choose_location + ", Observation: {" + observation + "}}"
+            "Monitor Record: {Location: "
+            + choose_location
+            + ", Observation: {"
+            + observation
+            + "}}"
         )
 
     def details(self):
@@ -266,10 +264,7 @@ class Kill(Action):
             current_location = player.location
             other_players = env.map.get_players_in_room(current_location)
             other_players = [p for p in other_players if p.identity != player.identity]
-            return [
-                Kill(current_location=current_location, other_player=p)
-                for p in other_players
-            ]
+            return [Kill(current_location=current_location, other_player=p) for p in other_players]
         else:
             return []
 

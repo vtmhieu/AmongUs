@@ -124,8 +124,22 @@ def parse_spec(body: dict) -> ExperimentSpec:
 def game_cards(store: RunStore) -> list[dict]:
     """Every finished attempt, plus the games in flight, for the Watch view."""
     keep = (
-        "game_id", "slot", "block", "attempt", "seed", "condition", "winner", "reason", "kills",
-        "meetings", "wrongful_ejections", "timesteps", "cost_usd", "duration_s", "invalid_reason", "error",
+        "game_id",
+        "slot",
+        "block",
+        "attempt",
+        "seed",
+        "condition",
+        "winner",
+        "reason",
+        "kills",
+        "meetings",
+        "wrongful_ejections",
+        "timesteps",
+        "cost_usd",
+        "duration_s",
+        "invalid_reason",
+        "error",
     )
     cards = [
         {**{k: s.get(k) for k in keep}, "status": "valid" if s.get("valid") else "invalid"}
@@ -133,7 +147,10 @@ def game_cards(store: RunStore) -> list[dict]:
     ]
     runner = hub.runners.get(store.run_id)
     if runner and hub.active(store.run_id):
-        cards += [{**{k: g.get(k) for k in keep}, "status": "running"} for g in list(runner.running.values())]
+        cards += [
+            {**{k: g.get(k) for k in keep}, "status": "running"}
+            for g in list(runner.running.values())
+        ]
     return sorted(cards, key=lambda c: (c["slot"], c["attempt"]))
 
 
@@ -239,7 +256,9 @@ async def resume_run(run_id: str) -> dict:
     if not store.pending_slots():
         raise HTTPException(409, "nothing left to play in this run")
     if store.spec.llm.provider == "anthropic" and not has_api_credentials():
-        raise HTTPException(409, "No Claude API key found. Add ANTHROPIC_API_KEY to .env and restart.")
+        raise HTTPException(
+            409, "No Claude API key found. Add ANTHROPIC_API_KEY to .env and restart."
+        )
     hub.start(store)
     return overview(store)
 
@@ -266,7 +285,9 @@ def get_file(run_id: str, path: str) -> FileResponse:
     target = (store.path / path).resolve()
     if store.path.resolve() not in target.parents or not target.is_file():
         raise HTTPException(404, "no such file")
-    if not (target.parent.name in ("tables", "analysis", "figures") or target.name == "manifest.json"):
+    if not (
+        target.parent.name in ("tables", "analysis", "figures") or target.name == "manifest.json"
+    ):
         raise HTTPException(404, "no such file")
     return FileResponse(target, filename=target.name)
 
@@ -298,7 +319,11 @@ async def stream(run_id: str, request: Request, game: str | None = None) -> Stre
         finally:
             hub.unwatch(run_id, queue)
 
-    return StreamingResponse(messages(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+    return StreamingResponse(
+        messages(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+    )
 
 
 # --- the page -------------------------------------------------------------------------

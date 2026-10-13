@@ -76,7 +76,9 @@ def compare_proportions(k1: int, n1: int, k0: int, n0: int) -> dict:
     """Group 1 against group 0 (the reference): risk difference, odds ratio, exact and z tests."""
     if n1 == 0 or n0 == 0:
         return {"ok": False, "reason": "an empty group"}
-    low, high = confint_proportions_2indep(k1, n1, k0, n0, method="newcomb", compare="diff", alpha=ALPHA)
+    low, high = confint_proportions_2indep(
+        k1, n1, k0, n0, method="newcomb", compare="diff", alpha=ALPHA
+    )
     odds_ratio, p_fisher = sps.fisher_exact([[k1, n1 - k1], [k0, n0 - k0]])
     pooled = (k1 + k0) / (n1 + n0)
     se = math.sqrt(pooled * (1 - pooled) * (1 / n1 + 1 / n0))
@@ -141,7 +143,9 @@ def design_factors(games: pd.DataFrame) -> dict[str, list[str]]:
     return factors
 
 
-def design_matrix(games: pd.DataFrame, factors: dict[str, list[str]], interaction: bool) -> pd.DataFrame:
+def design_matrix(
+    games: pd.DataFrame, factors: dict[str, list[str]], interaction: bool
+) -> pd.DataFrame:
     """Treatment-coded regressors, with product terms for every pair of factors if asked."""
     columns = {"intercept": np.ones(len(games))}
     by_factor: dict[str, list[str]] = {}
@@ -181,10 +185,17 @@ def _terms(fit, names: list[str], exponentiate: str) -> list[dict]:
 
 def _usable(fit, n_params: int) -> bool:
     values = np.concatenate([np.asarray(fit.params)[:n_params], np.asarray(fit.bse)[:n_params]])
-    return bool(np.all(np.isfinite(values)) and np.all(np.abs(np.asarray(fit.params)[:n_params]) < 15))
+    return bool(
+        np.all(np.isfinite(values)) and np.all(np.abs(np.asarray(fit.params)[:n_params]) < 15)
+    )
 
 
-_FIT_PROBLEMS = (PerfectSeparationWarning, ConvergenceWarning, HessianInversionWarning, RuntimeWarning)
+_FIT_PROBLEMS = (
+    PerfectSeparationWarning,
+    ConvergenceWarning,
+    HessianInversionWarning,
+    RuntimeWarning,
+)
 
 
 # --- regression models ----------------------------------------------------------------
@@ -205,7 +216,11 @@ def logistic(games: pd.DataFrame, outcome: str, factors: dict, interaction: bool
                 warnings.simplefilter("error", problem)
             fit = sm.Logit(y, x.to_numpy()).fit(disp=0, maxiter=200)
     except (PerfectSeparationError, PerfectSeparationWarning):
-        return {**info, "ok": False, "reason": f"perfect separation: {outcome} is all 0 or all 1 in some condition"}
+        return {
+            **info,
+            "ok": False,
+            "reason": f"perfect separation: {outcome} is all 0 or all 1 in some condition",
+        }
     except _FIT_PROBLEMS as e:
         return {**info, "ok": False, "reason": f"did not converge ({type(e).__name__})"}
     except np.linalg.LinAlgError:
@@ -226,7 +241,12 @@ def count_model(games: pd.DataFrame, outcome: str, factors: dict, interaction: b
     y = games[outcome].to_numpy(dtype=float)
     x = design_matrix(games, factors, interaction)
     offset = np.log(np.clip(games["exposure"].to_numpy(dtype=float), 1, None))
-    info = {"model": "negative binomial", "outcome": outcome, "interaction": interaction, "n": len(y)}
+    info = {
+        "model": "negative binomial",
+        "outcome": outcome,
+        "interaction": interaction,
+        "n": len(y),
+    }
     if y.sum() == 0:
         return {**info, "ok": False, "reason": f"{outcome} is zero in every game"}
     if len(y) <= x.shape[1]:
@@ -239,19 +259,32 @@ def count_model(games: pd.DataFrame, outcome: str, factors: dict, interaction: b
             fit = sm.NegativeBinomial(y, x.to_numpy(), offset=offset).fit(disp=0, maxiter=500)
         alpha = float(fit.params[-1])
         if fit.mle_retvals.get("converged", True) and alpha > 1e-4 and _usable(fit, len(names)):
-            return {**info, "ok": True, "dispersion": alpha, "terms": _terms(fit, names, "rate_ratio")}
+            return {
+                **info,
+                "ok": True,
+                "dispersion": alpha,
+                "terms": _terms(fit, names, "rate_ratio"),
+            }
     except Exception:  # noqa: BLE001 - any failure of the NB fit leads to the Poisson fallback
         pass
     info["model"] = "Poisson (robust SE)"
-    info["note"] = "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used"
+    info["note"] = (
+        "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used"
+    )
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            fit = sm.GLM(y, x.to_numpy(), family=sm.families.Poisson(), offset=offset).fit(cov_type="HC0")
+            fit = sm.GLM(y, x.to_numpy(), family=sm.families.Poisson(), offset=offset).fit(
+                cov_type="HC0"
+            )
     except Exception as e:  # noqa: BLE001
         return {**info, "ok": False, "reason": f"could not be estimated ({type(e).__name__})"}
     if not _usable(fit, len(names)):
-        return {**info, "ok": False, "reason": "estimates diverged: a condition has no damage at all"}
+        return {
+            **info,
+            "ok": False,
+            "reason": "estimates diverged: a condition has no damage at all",
+        }
     return {**info, "ok": True, "dispersion": None, "terms": _terms(fit, names, "rate_ratio")}
 
 
@@ -273,7 +306,11 @@ def kaplan_meier(time, event) -> list[dict]:
 
 def logrank(time, event, group) -> dict:
     """Log-rank test that detection curves are the same in every group."""
-    time, event, group = np.asarray(time, dtype=float), np.asarray(event, dtype=int), np.asarray(group)
+    time, event, group = (
+        np.asarray(time, dtype=float),
+        np.asarray(event, dtype=int),
+        np.asarray(group),
+    )
     groups = sorted(set(group))
     if len(groups) < 2:
         return {"ok": False, "reason": "one group"}
@@ -287,7 +324,9 @@ def logrank(time, event, group) -> dict:
         n = at_risk.sum()
         d = ((time == t) & (event == 1)).sum()
         n_g = np.array([(at_risk & (group == g)).sum() for g in groups], dtype=float)
-        d_g = np.array([((time == t) & (event == 1) & (group == g)).sum() for g in groups], dtype=float)
+        d_g = np.array(
+            [((time == t) & (event == 1) & (group == g)).sum() for g in groups], dtype=float
+        )
         observed += d_g
         expected += d * n_g / n
         if n > 1:
@@ -312,7 +351,12 @@ def logrank(time, event, group) -> dict:
 def cox(games: pd.DataFrame, factors: dict, interaction: bool) -> dict:
     """Cox proportional hazards model of meetings until the insider is first ejected."""
     used = games[games["time"] > 0]  # a game with no meeting was never at risk of an ejection
-    info = {"model": "Cox proportional hazards", "outcome": "detection", "interaction": interaction, "n": len(used)}
+    info = {
+        "model": "Cox proportional hazards",
+        "outcome": "detection",
+        "interaction": interaction,
+        "n": len(used),
+    }
     if used["event"].sum() == 0:
         return {**info, "ok": False, "reason": "the insider was never ejected"}
     x = design_matrix(used, factors, interaction).drop(columns="intercept")
@@ -322,13 +366,25 @@ def cox(games: pd.DataFrame, factors: dict, interaction: bool) -> dict:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             fit = sm.PHReg(
-                used["time"].to_numpy(dtype=float), x.to_numpy(), status=used["event"].to_numpy(), ties="efron"
+                used["time"].to_numpy(dtype=float),
+                x.to_numpy(),
+                status=used["event"].to_numpy(),
+                ties="efron",
             ).fit()
     except Exception as e:  # noqa: BLE001
         return {**info, "ok": False, "reason": f"could not be estimated ({type(e).__name__})"}
     if not _usable(fit, x.shape[1]):
-        return {**info, "ok": False, "reason": "estimates diverged: too few ejections to separate the conditions (see the log-rank test and the curves)"}
-    return {**info, "ok": True, "events": int(used["event"].sum()), "terms": _terms(fit, list(x.columns), "hazard_ratio")}
+        return {
+            **info,
+            "ok": False,
+            "reason": "estimates diverged: too few ejections to separate the conditions (see the log-rank test and the curves)",
+        }
+    return {
+        **info,
+        "ok": True,
+        "events": int(used["event"].sum()),
+        "terms": _terms(fit, list(x.columns), "hazard_ratio"),
+    }
 
 
 # --- putting it together ---------------------------------------------------------------
@@ -370,7 +426,9 @@ def condition_summary(games: pd.DataFrame, meetings: pd.DataFrame) -> list[dict]
                 "insider_ejected": proportion(int(cell["insider_ejected"].sum()), len(cell)),
                 "kills_mean": _f(cell["kills"].mean()),
                 "kills_sd": _f(cell["kills"].std(ddof=1)) if len(cell) > 1 else None,
-                "kills_distribution": {int(k): int(n) for k, n in cell["kills"].value_counts().sort_index().items()},
+                "kills_distribution": {
+                    int(k): int(n) for k, n in cell["kills"].value_counts().sort_index().items()
+                },
                 "kills_per_exposure": _f(cell["kills"].sum() / max(cell["exposure"].sum(), 1)),
                 "wrongful_mean": _f(cell["wrongful_count"].mean()),
                 "meetings_mean": _f(cell["meetings"].mean()),
@@ -394,7 +452,9 @@ def _condition_order(games: pd.DataFrame) -> list[str]:
     return sorted(games["condition"].unique(), key=key)
 
 
-def main_effect(games: pd.DataFrame, factor: str, level: str, reference: str, outcome: str, kind: str) -> dict:
+def main_effect(
+    games: pd.DataFrame, factor: str, level: str, reference: str, outcome: str, kind: str
+) -> dict:
     """One level against the reference, pooled over the other factors."""
     a = games[games[factor] == level][outcome]
     b = games[games[factor] == reference][outcome]
@@ -425,7 +485,11 @@ def analyse(games: pd.DataFrame, meetings: pd.DataFrame) -> dict:
     multi = len(factors) > 1
 
     # regressions: additive for main effects, with products for the interaction (H3)
-    for outcome, fit in (("crew_win", logistic), ("wrongful_any", logistic), ("kills", count_model)):
+    for outcome, fit in (
+        ("crew_win", logistic),
+        ("wrongful_any", logistic),
+        ("kills", count_model),
+    ):
         entry = {"main": fit(games, outcome, factors, False) if factors else None}
         entry["interaction"] = fit(games, outcome, factors, True) if multi else None
         result["models"][outcome] = entry
@@ -439,19 +503,25 @@ def analyse(games: pd.DataFrame, meetings: pd.DataFrame) -> dict:
                 "level": level,
                 "reference": levels[0],
                 "crew_win": main_effect(games, factor, level, levels[0], "crew_win", "binary"),
-                "wrongful_any": main_effect(games, factor, level, levels[0], "wrongful_any", "binary"),
+                "wrongful_any": main_effect(
+                    games, factor, level, levels[0], "wrongful_any", "binary"
+                ),
                 "kills": main_effect(games, factor, level, levels[0], "kills", "count"),
             }
 
     # detection time (RQ3)
     result["detection"] = {
         "curves": {
-            c: kaplan_meier(games[games["condition"] == c]["time"], games[games["condition"] == c]["event"])
+            c: kaplan_meier(
+                games[games["condition"] == c]["time"], games[games["condition"] == c]["event"]
+            )
             for c in conditions
         },
         "max_time": int(games["time"].max()),
         "logrank": {f: logrank(games["time"], games["event"], games[f]) for f in factors},
-        "logrank_conditions": logrank(games["time"], games["event"], games["condition"]) if len(conditions) > 1 else None,
+        "logrank_conditions": logrank(games["time"], games["event"], games["condition"])
+        if len(conditions) > 1
+        else None,
         "cox": {
             "main": cox(games, factors, False) if factors else None,
             "interaction": cox(games, factors, True) if multi else None,
@@ -471,14 +541,29 @@ def analyse(games: pd.DataFrame, meetings: pd.DataFrame) -> dict:
             if term is not None:
                 ratio = "odds_ratio" if kind == "binary" else "rate_ratio"
                 source, p = model["model"], term["p"]
-                effect = {"measure": ratio, "value": term[ratio], "low": term[f"{ratio}_low"], "high": term[f"{ratio}_high"]}
+                effect = {
+                    "measure": ratio,
+                    "value": term[ratio],
+                    "low": term[f"{ratio}_low"],
+                    "high": term[f"{ratio}_high"],
+                }
             else:
                 source = "Fisher's exact test" if kind == "binary" else "Mann-Whitney U"
                 p = pooled.get("p_fisher") if kind == "binary" else pooled.get("p")
                 if kind == "binary":
-                    effect = {"measure": "risk_difference", "value": pooled.get("risk_difference"), "low": pooled.get("rd_low"), "high": pooled.get("rd_high")}
+                    effect = {
+                        "measure": "risk_difference",
+                        "value": pooled.get("risk_difference"),
+                        "low": pooled.get("rd_low"),
+                        "high": pooled.get("rd_high"),
+                    }
                 else:
-                    effect = {"measure": "cliffs_delta", "value": pooled.get("cliffs_delta"), "low": None, "high": None}
+                    effect = {
+                        "measure": "cliffs_delta",
+                        "value": pooled.get("cliffs_delta"),
+                        "low": None,
+                        "high": None,
+                    }
             family.append(
                 {
                     "id": test_id,
@@ -526,7 +611,10 @@ def hypotheses(result: dict) -> list[dict]:
     if all((i, contrast) in by_id for i in ("RQ1a", "RQ1b", "H1")):
         w, d, r = (direction(by_id[(i, contrast)]) for i in ("RQ1a", "RQ1b", "H1"))
         if r < 0 and d > 0 and w == 0:
-            verdict, why = "supported", "fewer wrongful removals and more damage under majority, with no clear effect on the win rate"
+            verdict, why = (
+                "supported",
+                "fewer wrongful removals and more damage under majority, with no clear effect on the win rate",
+            )
         elif w > 0:
             verdict, why = "contradicted", "the win rate rises with the threshold"
         else:
@@ -536,7 +624,14 @@ def hypotheses(result: dict) -> list[dict]:
                 "win rate " + {-1: "lower", 0: "not clearly different", 1: "higher"}[w],
             ]
             verdict, why = "inconclusive", "under majority: " + ", ".join(parts)
-        verdicts.append({"id": "H1", "statement": "An absolute majority reduces wrongful removal but increases damage absorbed, so its effect on the win rate is non-monotone.", "verdict": verdict, "why": why})
+        verdicts.append(
+            {
+                "id": "H1",
+                "statement": "An absolute majority reduces wrongful removal but increases damage absorbed, so its effect on the win rate is non-monotone.",
+                "verdict": verdict,
+                "why": why,
+            }
+        )
 
     contrast = "justification vs freeform"
     if ("RQ2", contrast) in by_id:
@@ -547,13 +642,27 @@ def hypotheses(result: dict) -> list[dict]:
             0: "the effect of justification on wrongful removal is not clearly different from none",
             1: "wrongful removal is higher with mandatory justification",
         }[sign]
-        verdicts.append({"id": "H2", "statement": "Requiring a justification lowers the wrongful-removal rate.", "verdict": verdict, "why": why})
+        verdicts.append(
+            {
+                "id": "H2",
+                "statement": "Requiring a justification lowers the wrongful-removal rate.",
+                "verdict": verdict,
+                "why": why,
+            }
+        )
 
     interaction = (result["models"].get("wrongful_any") or {}).get("interaction")
     if interaction is not None:
         term = _term(interaction, "threshold: majority x protocol: justification")
         if term is None:
-            verdicts.append({"id": "H3", "statement": "The benefit of justification is larger under plurality.", "verdict": "not testable", "why": interaction.get("reason", "the interaction model has no such term")})
+            verdicts.append(
+                {
+                    "id": "H3",
+                    "statement": "The benefit of justification is larger under plurality.",
+                    "verdict": "not testable",
+                    "why": interaction.get("reason", "the interaction model has no such term"),
+                }
+            )
         else:
             # With plurality and free-form as reference, a larger benefit under plurality
             # is a positive product term: justification lowers the odds less under majority.
@@ -564,5 +673,12 @@ def hypotheses(result: dict) -> list[dict]:
                 0: "the interval for the interaction includes zero",
                 -1: "justification reduces wrongful removal more under majority than under plurality",
             }[sign]
-            verdicts.append({"id": "H3", "statement": "The factors interact: the benefit of justification is larger under plurality (exploratory).", "verdict": verdict, "why": why})
+            verdicts.append(
+                {
+                    "id": "H3",
+                    "statement": "The factors interact: the benefit of justification is larger under plurality (exploratory).",
+                    "verdict": verdict,
+                    "why": why,
+                }
+            )
     return verdicts

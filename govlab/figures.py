@@ -68,12 +68,20 @@ def _legend(ax, thresholds: list[str]) -> None:
     if len(thresholds) < 2:  # one series is named by the title; a legend would repeat it
         return
     handles = [plt.Rectangle((0, 0), 1, 1, color=COLOURS[t]) for t in thresholds]
-    ax.legend(handles, [LABELS[t] for t in thresholds], loc="upper right", ncols=len(thresholds), bbox_to_anchor=(1, 1.16))
+    ax.legend(
+        handles,
+        [LABELS[t] for t in thresholds],
+        loc="upper right",
+        ncols=len(thresholds),
+        bbox_to_anchor=(1, 1.16),
+    )
 
 
 def _rate_bars(data: dict, measure: str, title: str, ylabel: str):
     thresholds, groups = data["thresholds"], data["groups"]
-    fig, ax = plt.subplots(figsize=(max(3.6, 1.5 * len(groups) * len(thresholds) * 0.62 + 1.4), 3.2))
+    fig, ax = plt.subplots(
+        figsize=(max(3.6, 1.5 * len(groups) * len(thresholds) * 0.62 + 1.4), 3.2)
+    )
     width = 0.17
     for gi, group in enumerate(groups):
         for ti, threshold in enumerate(thresholds):
@@ -84,7 +92,15 @@ def _rate_bars(data: dict, measure: str, title: str, ylabel: str):
             x = gi + (ti - (len(thresholds) - 1) / 2) * (width + 0.07)
             ax.bar(x, p["p"], width=width, color=COLOURS[threshold], linewidth=0)
             ax.plot([x, x], [p["low"], p["high"]], color=INK, linewidth=1.1, solid_capstyle="butt")
-            ax.text(x, min(p["high"] + 0.035, 1.07), f"{p['p']:.0%}", ha="center", va="bottom", color=INK, fontsize=8.5)
+            ax.text(
+                x,
+                min(p["high"] + 0.035, 1.07),
+                f"{p['p']:.0%}",
+                ha="center",
+                va="bottom",
+                color=INK,
+                fontsize=8.5,
+            )
             ax.text(x, -0.045, f"n={p['n']}", ha="center", va="top", color=MUTED, fontsize=7)
     ax.set_xticks(range(len(groups)), [g["label"] for g in groups])
     ax.tick_params(axis="x", length=0, pad=14)
@@ -99,7 +115,9 @@ def _rate_bars(data: dict, measure: str, title: str, ylabel: str):
 
 def _panels(data: dict, title: str, height: float = 3.0):
     groups = data["groups"]
-    fig, axes = plt.subplots(1, len(groups), figsize=(3.4 * len(groups) + 0.6, height), sharey=True, squeeze=False)
+    fig, axes = plt.subplots(
+        1, len(groups), figsize=(3.4 * len(groups) + 0.6, height), sharey=True, squeeze=False
+    )
     fig.suptitle(title, x=0.02, ha="left", fontsize=10, fontweight="bold", y=1.04)
     return fig, axes[0]
 
@@ -125,7 +143,13 @@ def _line_legend(fig, thresholds: list[str]) -> None:
     if len(thresholds) < 2:
         return
     handles = [plt.Line2D([0], [0], color=COLOURS[t], linewidth=2) for t in thresholds]
-    fig.legend(handles, [LABELS[t] for t in thresholds], loc="upper right", ncols=len(thresholds), bbox_to_anchor=(0.99, 1.07))
+    fig.legend(
+        handles,
+        [LABELS[t] for t in thresholds],
+        loc="upper right",
+        ncols=len(thresholds),
+        bbox_to_anchor=(0.99, 1.07),
+    )
 
 
 def win_rate(data: dict):
@@ -133,7 +157,9 @@ def win_rate(data: dict):
 
 
 def wrongful_removal(data: dict):
-    return _rate_bars(data, "wrongful", "Wrongful-removal rate by condition", "Games with a good agent ejected")
+    return _rate_bars(
+        data, "wrongful", "Wrongful-removal rate by condition", "Games with a good agent ejected"
+    )
 
 
 def damage(data: dict):
@@ -147,11 +173,35 @@ def damage(data: dict):
             share = cell["kills"][bin_label] / cell["n"]
             if share == 0:
                 continue
-            ax.barh(row, share, left=left, height=0.5, color=colours[i], edgecolor="white", linewidth=1.5)
+            ax.barh(
+                row,
+                share,
+                left=left,
+                height=0.5,
+                color=colours[i],
+                edgecolor="white",
+                linewidth=1.5,
+            )
             if share >= 0.09:  # a label only where it fits inside its segment
-                ax.text(left + share / 2, row, f"{share:.0%}", ha="center", va="center", fontsize=7.5, color="white" if i >= 2 else INK)
+                ax.text(
+                    left + share / 2,
+                    row,
+                    f"{share:.0%}",
+                    ha="center",
+                    va="center",
+                    fontsize=7.5,
+                    color="white" if i >= 2 else INK,
+                )
             left += share
-        ax.text(1.02, row, f"mean {cell['kills_mean']:.2f}", va="center", ha="left", color=SECONDARY, fontsize=8)
+        ax.text(
+            1.02,
+            row,
+            f"mean {cell['kills_mean']:.2f}",
+            va="center",
+            ha="left",
+            color=SECONDARY,
+            fontsize=8,
+        )
     ax.set_yticks(range(len(cells)), [c["label"] for c in cells])
     ax.invert_yaxis()
     ax.set_xlim(0, 1)
@@ -161,7 +211,15 @@ def damage(data: dict):
     ax.spines["bottom"].set_visible(False)
     ax.set_title("Damage absorbed: kills by the insider per game", pad=26)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in colours]
-    ax.legend(handles, [f"{b} kills" if b != "1" else "1 kill" for b in KILL_BINS], loc="lower left", ncols=4, bbox_to_anchor=(0, 1.0), columnspacing=1.2, handlelength=1.2)
+    ax.legend(
+        handles,
+        [f"{b} kills" if b != "1" else "1 kill" for b in KILL_BINS],
+        loc="lower left",
+        ncols=4,
+        bbox_to_anchor=(0, 1.0),
+        columnspacing=1.2,
+        handlelength=1.2,
+    )
     return fig
 
 

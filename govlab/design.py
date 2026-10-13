@@ -148,7 +148,9 @@ class ExperimentSpec:
         return cls(**values)
 
 
-def estimate(spec: ExperimentSpec, calls_per_game: float = 75, seconds_per_call: float = 3.0) -> dict:
+def estimate(
+    spec: ExperimentSpec, calls_per_game: float = 75, seconds_per_call: float = 3.0
+) -> dict:
     """A rough cost and duration for a design, before any game has been played.
 
     Every number here is an estimate, not a measurement. The system prompt is about
@@ -181,7 +183,9 @@ def estimate(spec: ExperimentSpec, calls_per_game: float = 75, seconds_per_call:
     }
 
 
-def minimum_detectable_difference(n_per_group: int, baseline: float = 0.5, power: float = 0.8, alpha: float = 0.05) -> float | None:
+def minimum_detectable_difference(
+    n_per_group: int, baseline: float = 0.5, power: float = 0.8, alpha: float = 0.05
+) -> float | None:
     """Smallest difference in proportions a two-group comparison detects at the given power."""
     if n_per_group < 2:
         return None

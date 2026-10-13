@@ -54,12 +54,16 @@ def test_the_page_and_its_assets_are_served_fresh(client):
     for asset in ("app.js", "styles.css", "watch.js", "charts.js"):
         response = client.get(f"/static/{asset}")
         assert response.status_code == 200
-        assert response.headers["cache-control"] == "no-cache"  # an updated UI is never served stale
+        assert (
+            response.headers["cache-control"] == "no-cache"
+        )  # an updated UI is never served stale
 
 
 def test_estimate_validates_the_design(client):
     spec = mock_spec(client)
-    guess = client.post("/api/estimate", json={**spec, "games_per_condition": 20, "llm": {"provider": "anthropic"}}).json()
+    guess = client.post(
+        "/api/estimate", json={**spec, "games_per_condition": 20, "llm": {"provider": "anthropic"}}
+    ).json()
     assert guess["games"] == 80 and guess["conditions"] == 4
     assert 0 < guess["cost_usd"] < 10
     assert guess["detectable_difference"] == pytest.approx(0.29, abs=0.02)

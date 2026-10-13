@@ -12,7 +12,9 @@ from govlab.store import RunStore, list_runs
 
 
 def spec(**changes) -> ExperimentSpec:
-    defaults = dict(name="test", games_per_condition=2, concurrency=4, llm=LLMConfig(provider="mock"))
+    defaults = dict(
+        name="test", games_per_condition=2, concurrency=4, llm=LLMConfig(provider="mock")
+    )
     return ExperimentSpec(**{**defaults, **changes})
 
 
@@ -68,7 +70,10 @@ def test_a_game_that_aborts_on_an_api_error_is_played_again(tmp_path):
     overview = run(store, llm=Flaky(fail_on_call=10, error=LLMError("rate limited after retries")))
 
     attempts = [s for s in store.summaries() if s["slot"] == 0]
-    assert [(a["attempt"], a["valid"], a["invalid_reason"]) for a in attempts] == [(1, False, "error"), (2, True, None)]
+    assert [(a["attempt"], a["valid"], a["invalid_reason"]) for a in attempts] == [
+        (1, False, "error"),
+        (2, True, None),
+    ]
     assert "rate limited" in attempts[0]["error"]
     assert overview["valid"] == 4 and overview["attempts"] == 5
     assert [s["game_id"] for s in store.valid_games() if s["slot"] == 0] == ["g0000-2"]
@@ -87,7 +92,10 @@ def test_games_with_too_many_unreadable_replies_are_excluded(tmp_path):
 
 def test_an_error_no_retry_can_fix_ends_the_run_at_once(tmp_path):
     store = RunStore.create(spec(concurrency=1), tmp_path)
-    overview = run(store, llm=Flaky(fail_on_call=5, error=FatalLLMError("AuthenticationError: invalid x-api-key")))
+    overview = run(
+        store,
+        llm=Flaky(fail_on_call=5, error=FatalLLMError("AuthenticationError: invalid x-api-key")),
+    )
 
     assert overview["status"]["state"] == "failed"
     assert "invalid x-api-key" in overview["status"]["error"]
@@ -163,4 +171,7 @@ def test_the_exclusion_rule(summary, reason):
 def test_the_exclusion_rule_never_looks_at_the_outcome():
     for winner in ("crew", "impostor"):
         for kills in (0, 3):
-            assert judge({"winner": winner, "kills": kills, "decisions": 50, "fallbacks": 0}, 0.05) is None
+            assert (
+                judge({"winner": winner, "kills": kills, "decisions": 50, "fallbacks": 0}, 0.05)
+                is None
+            )

@@ -67,31 +67,46 @@ export async function mountWatch(view, runId, initialGame) {
     return bySlot;
   }
 
+  // The header's buttons are built once and only shown or hidden: a button that is
+  // rebuilt on every status message can swallow a click that lands mid-update.
+  const head = {
+    title: h("h2", { style: { fontSize: "17px", overflowWrap: "anywhere" } }),
+    pill: h("span", {}),
+    bar: h("i", {}),
+    facts: h("div", { class: "run-facts num" }),
+    notes: h("div", {}),
+    stop: h("button", { class: "button small", type: "button", onClick: stopRun }, "Stop"),
+    resume: h("button", { class: "button small", type: "button", onClick: resumeRun }, "Resume"),
+  };
+  add(
+    el.runHead,
+    h("div", { style: { display: "flex", justifyContent: "space-between", gap: "8px", alignItems: "flex-start" } }, head.title, head.pill),
+    h("div", { class: "progress" }, head.bar),
+    head.facts,
+    head.notes,
+    h("div", { style: { display: "flex", gap: "8px", marginTop: "12px", flexWrap: "wrap" } }, head.stop, head.resume, h("a", { class: "button small", href: `#/results/${runId}` }, "Results")),
+  );
+
   function renderRun() {
     const running = [...games.values()].filter((g) => g.status === "running").length;
     const state = run.status.state;
-    const canResume = !run.active && run.valid + run.failed < run.total;
-    fill(el.runHead, 
-      h("div", { style: { display: "flex", justifyContent: "space-between", gap: "8px", alignItems: "flex-start" } }, h("h2", { style: { fontSize: "17px", overflowWrap: "anywhere" } }, run.name), statusPill(state)),
-      h("div", { class: "progress" }, h("i", { style: { width: `${(100 * run.valid) / Math.max(run.total, 1)}%` } })),
-      h(
-        "div",
-        { class: "run-facts num" },
-        h("span", {}, `${run.valid} of ${run.total} games`),
-        running ? h("span", {}, `${running} playing`) : null,
-        run.attempts > run.valid + running ? h("span", {}, `${run.attempts - run.valid} excluded`) : null,
-        h("span", {}, run.provider === "mock" ? "offline mock" : fmt.usd(run.cost_usd)),
-      ),
+    head.title.textContent = run.name;
+    fill(head.pill, statusPill(state));
+    head.bar.style.width = `${(100 * run.valid) / Math.max(run.total, 1)}%`;
+    fill(
+      head.facts,
+      h("span", {}, `${run.valid} of ${run.total} games`),
+      running ? h("span", {}, `${running} playing`) : null,
+      run.attempts > run.valid ? h("span", {}, `${run.attempts - run.valid} excluded`) : null, // attempts counts finished games only
+      h("span", {}, run.provider === "mock" ? "offline mock" : fmt.usd(run.cost_usd)),
+    );
+    fill(
+      head.notes,
       run.status.error ? h("div", { class: `notice ${state === "failed" ? "error" : ""}`, style: { marginTop: "10px" } }, run.status.error) : null,
       state === "interrupted" ? h("div", { class: "notice", style: { marginTop: "10px" } }, "The server stopped while this run was in progress. Resume plays the games that are left.") : null,
-      h(
-        "div",
-        { style: { display: "flex", gap: "8px", marginTop: "12px", flexWrap: "wrap" } },
-        run.active ? h("button", { class: "button small", type: "button", onClick: stopRun }, "Stop") : null,
-        canResume ? h("button", { class: "button small", type: "button", onClick: resumeRun }, "Resume") : null,
-        h("a", { class: "button small", href: `#/results/${runId}` }, "Results"),
-      ),
     );
+    head.stop.hidden = !run.active;
+    head.resume.hidden = run.active || run.valid + run.failed >= run.total;
   }
 
   function renderRail() {
@@ -208,10 +223,12 @@ export async function mountWatch(view, runId, initialGame) {
 
   function schedule() {
     if (frame || disposed) return;
-    frame = requestAnimationFrame(() => {
+    const draw = () => {
       frame = null;
       renderGame();
-    });
+    };
+    // browsers pause animation frames in a background tab; a timer keeps the view current there
+    frame = document.hidden ? setTimeout(draw, 250) : requestAnimationFrame(draw);
   }
 
   function byName(name) {
@@ -447,6 +464,7 @@ export async function mountWatch(view, runId, initialGame) {
     disposed = true;
     stopPlaying();
     if (source) source.close();
-    if (frame) cancelAnimationFrame(frame);
+    cancelAnimationFrame(frame);
+    clearTimeout(frame);
   };
 }

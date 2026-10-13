@@ -80,7 +80,9 @@ class Runner:
         """Play every pending slot. Returns the run's overview."""
         store = self.store
         try:
-            llm = self._llm or make_llm(self.spec.llm, max_concurrency=max(8, 2 * self.spec.concurrency))
+            llm = self._llm or make_llm(
+                self.spec.llm, max_concurrency=max(8, 2 * self.spec.concurrency)
+            )
         except LLMError as e:
             return self._finish("failed", str(e))
 
@@ -191,10 +193,17 @@ class Runner:
         if not self._fatal:  # a fatal error does not use up one of the slot's attempts
             self.store.write_summary(game, summary)
         self.cost += summary["cost_usd"] or 0
-        self.publish({"kind": "game", "game": {**summary, "status": "valid" if summary["valid"] else "invalid"}})
+        self.publish(
+            {
+                "kind": "game",
+                "game": {**summary, "status": "valid" if summary["valid"] else "invalid"},
+            }
+        )
         self._publish_run()
         return summary
 
 
-async def run_experiment(store: RunStore, publish: Publish = discard, llm: LLM | None = None) -> dict:
+async def run_experiment(
+    store: RunStore, publish: Publish = discard, llm: LLM | None = None
+) -> dict:
     return await Runner(store, publish=publish, llm=llm).run()

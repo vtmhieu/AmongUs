@@ -74,7 +74,9 @@ class AmongUs:
         # every condition the same starting position. Anything random during play is
         # drawn separately per condition, as a model's own sampling would be.
         self.rng = np.random.default_rng(seed)
-        self.play_rng = np.random.default_rng([seed, zlib.crc32(self.governance.condition.encode())])
+        self.play_rng = np.random.default_rng(
+            [seed, zlib.crc32(self.governance.condition.encode())]
+        )
 
         self.map = Map()
         self.players = []
@@ -160,7 +162,7 @@ class AmongUs:
         self.players = []
         for i in range(num_players):
             role = Crewmate if identities[i] == "Crewmate" else Impostor
-            player = role(name=f"Player {i+1}", color=str(colors[i]), location="Cafeteria")
+            player = role(name=f"Player {i + 1}", color=str(colors[i]), location="Cafeteria")
             self.players.append(player)
             self.camera_record[player.name] = "stand quietly and do nothing"
         self.task_assignment.assign_tasks_to_players(self.players, self.rng)
@@ -244,10 +246,17 @@ class AmongUs:
             and self.justification_of(decision.action) is None
         ):
             # format check: one re-prompt; a second miss is kept and logged as non-compliant
+            first_statement = decision.action.message
             retry = await agent.choose_action(self.timestep, phase, note=JUSTIFICATION_REPROMPT)
             retry.usage.add(decision.usage)
             retry.latency_s = round(retry.latency_s + decision.latency_s, 3)
             retry.reprompts += decision.reprompts + 1
+            if retry.fallback:
+                # nothing readable came back: the player's first statement stands
+                retry.action.provide_message(first_statement)
+                retry.fallback = False
+                retry.thought, retry.memory = decision.thought, decision.memory
+                agent.fallbacks -= 1
             decision = retry
         return decision
 
@@ -411,7 +420,9 @@ class AmongUs:
         if self.governance.ballot == SECRET:
             detail = "Totals: " + ", ".join(f"{option}: {n}" for option, n in result.counts.items())
         else:
-            detail = "Votes: " + "; ".join(f"{voter} -> {target}" for voter, target in self.ballots.items())
+            detail = "Votes: " + "; ".join(
+                f"{voter} -> {target}" for voter, target in self.ballots.items()
+            )
         template = VOTE_RESULT_EJECTED if ejected else VOTE_RESULT_NONE
         announcement = template.format(player=result.ejected, detail=detail)
         for player in self.living():
@@ -478,7 +489,11 @@ class AmongUs:
     def finish(self, outcome: int) -> dict:
         winner, reason = OUTCOMES[outcome]
         summary = {**self.summary(), "winner": winner, "reason": reason}
-        self.emit("game_end", **{k: v for k, v in summary.items() if k != "game_id"}, state=self.snapshot())
+        self.emit(
+            "game_end",
+            **{k: v for k, v in summary.items() if k != "game_id"},
+            state=self.snapshot(),
+        )
         return summary
 
 
@@ -493,7 +508,9 @@ class MessageSystem:
     def meeting_instruction(self, env):
         governance = env.governance
         if governance.disclose_rules:
-            voting_rules = f"{VOTING_RULE_TEXT[governance.threshold]} {BALLOT_TEXT[governance.ballot]}"
+            voting_rules = (
+                f"{VOTING_RULE_TEXT[governance.threshold]} {BALLOT_TEXT[governance.ballot]}"
+            )
         else:
             voting_rules = VOTING_RULE_UNDISCLOSED
         instruction = MEETING_PHASE_INSTRUCTION.format(
@@ -510,7 +527,9 @@ class MessageSystem:
         else:
             max_rounds = env.game_config["discussion_rounds"]
             if env.discussion_rounds_left > 0:
-                phase_info = f"Meeting phase - Discussion round ({env.discussion_round + 1}/{max_rounds})"
+                phase_info = (
+                    f"Meeting phase - Discussion round ({env.discussion_round + 1}/{max_rounds})"
+                )
             else:
                 phase_info = "Meeting phase - Voting"
             instruction = self.meeting_instruction(env)
@@ -526,8 +545,7 @@ class MessageSystem:
         for location in env.map.ship_map:
             players = env.map.get_players_in_room(location, include_new_deaths=True)
             player_names = [
-                player.name if player.is_alive else f"{player.name} (dead)"
-                for player in players
+                player.name if player.is_alive else f"{player.name} (dead)" for player in players
             ]
             record = {"location": location, "players": player_names}
             for player in players:

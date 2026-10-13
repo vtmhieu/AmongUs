@@ -69,7 +69,9 @@ def game_row(events: list[dict]) -> dict:
         "protocol": governance["protocol"],
         "ballot": governance["ballot"],
         "disclose_rules": governance["disclose_rules"],
-        "model": start["model"]["model"] if start["model"]["provider"] != "mock" else "mock-scripted",
+        "model": start["model"]["model"]
+        if start["model"]["provider"] != "mock"
+        else "mock-scripted",
         "effort": start["model"]["effort"],
         "thinking": start["model"]["thinking"],
         # outcome
@@ -127,7 +129,9 @@ def meeting_rows(events: list[dict]) -> list[dict]:
     rows = []
     for index, t in enumerate(_by_type(events, "tally"), start=1):
         call = calls.get(t["meeting"], {})
-        statements = [s for s in turns if s["action"] == "SPEAK" and s.get("meeting") == t["meeting"]]
+        statements = [
+            s for s in turns if s["action"] == "SPEAK" and s.get("meeting") == t["meeting"]
+        ]
         accusations = [s["justification"]["accused"] for s in statements if s.get("justification")]
         outcome = "none" if t["ejected"] is None else "wrongful" if t["wrongful"] else "correct"
         row = {
@@ -150,7 +154,9 @@ def meeting_rows(events: list[dict]) -> list[dict]:
             "outcome": outcome,
             "skips": t["skips"],
             "votes_for_insider": sum(n for option, n in t["counts"].items() if option in insiders),
-            "top_votes": max((n for option, n in t["counts"].items() if option != "SKIP"), default=0),
+            "top_votes": max(
+                (n for option, n in t["counts"].items() if option != "SKIP"), default=0
+            ),
             "rule_changed_outcome": int(t["rule_changed_outcome"]),
             "statements": len(statements),
             "justified_statements": len(accusations),

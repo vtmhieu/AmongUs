@@ -42,23 +42,37 @@ class TestSplitReply:
         assert reply.action_text == "MOVE from Admin to O2"
 
     def test_tags_are_case_insensitive_and_may_be_bold(self):
-        reply = split_reply("**[condensed memory]**\nm\n**[THINKING PROCESS]**\nt\n**[Action]** SKIP VOTE")
+        reply = split_reply(
+            "**[condensed memory]**\nm\n**[THINKING PROCESS]**\nt\n**[Action]** SKIP VOTE"
+        )
         assert (reply.memory, reply.thought) == ("m", "t")
         assert reply.action_text.strip("* ") == "SKIP VOTE"
 
     def test_the_last_action_tag_wins(self):
-        reply = split_reply("[Thinking Process]\nI will choose under [Action] below.\n[Action] SKIP VOTE")
+        reply = split_reply(
+            "[Thinking Process]\nI will choose under [Action] below.\n[Action] SKIP VOTE"
+        )
         assert reply.action_text == "SKIP VOTE"
 
     def test_without_tags_the_whole_reply_is_the_action(self):
         reply = split_reply("  VOTE Player 1: red  ")
-        assert (reply.memory, reply.thought, reply.action_text) == (None, None, "VOTE Player 1: red")
+        assert (reply.memory, reply.thought, reply.action_text) == (
+            None,
+            None,
+            "VOTE Player 1: red",
+        )
 
 
 class TestMatchAction:
     def test_verbatim(self):
-        assert repr(match_action("MOVE from Cafeteria to Admin", task_actions())) == "MOVE from Cafeteria to Admin"
-        assert repr(match_action("COMPLETE TASK - Fix Wiring", task_actions())) == "COMPLETE TASK - Fix Wiring"
+        assert (
+            repr(match_action("MOVE from Cafeteria to Admin", task_actions()))
+            == "MOVE from Cafeteria to Admin"
+        )
+        assert (
+            repr(match_action("COMPLETE TASK - Fix Wiring", task_actions()))
+            == "COMPLETE TASK - Fix Wiring"
+        )
         assert repr(match_action("KILL Player 2: blue", task_actions())) == "KILL Player 2: blue"
 
     @pytest.mark.parametrize(
@@ -93,7 +107,9 @@ class TestMatchAction:
 
     def test_speak_keeps_the_message_and_its_line_breaks(self):
         speak = [Speak("Cafeteria")]
-        action = match_action('SPEAK: "I was in Admin.\nACCUSE: NONE\nEVIDENCE: nothing seen"', speak)
+        action = match_action(
+            'SPEAK: "I was in Admin.\nACCUSE: NONE\nEVIDENCE: nothing seen"', speak
+        )
         assert action.message == "I was in Admin.\nACCUSE: NONE\nEVIDENCE: nothing seen"
 
     def test_speak_with_no_words_is_silence(self):

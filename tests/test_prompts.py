@@ -29,7 +29,9 @@ def test_every_level_has_a_text():
 
 
 def new_game(**governance) -> AmongUs:
-    game = AmongUs(make_llm(LLMConfig(provider="mock")), governance=Governance(**governance), seed=3)
+    game = AmongUs(
+        make_llm(LLMConfig(provider="mock")), governance=Governance(**governance), seed=3
+    )
     game.initialize_game()
     return game
 
@@ -45,7 +47,9 @@ def test_the_rule_in_force_is_stated_in_the_meeting():
     for threshold in THRESHOLDS:
         prompt = meeting_prompt(new_game(threshold=threshold), rounds_left=3)
         assert VOTING_RULE_TEXT[threshold] in prompt
-        assert all(VOTING_RULE_TEXT[other] not in prompt for other in THRESHOLDS if other != threshold)
+        assert all(
+            VOTING_RULE_TEXT[other] not in prompt for other in THRESHOLDS if other != threshold
+        )
 
 
 def test_the_rule_can_be_withheld():

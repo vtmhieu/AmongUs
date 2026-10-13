@@ -65,7 +65,13 @@ class Governance:
 
     @classmethod
     def from_dict(cls, data: Mapping) -> Governance:
-        return cls(**{k: data[k] for k in ("threshold", "protocol", "ballot", "disclose_rules") if k in data})
+        return cls(
+            **{
+                k: data[k]
+                for k in ("threshold", "protocol", "ballot", "disclose_rules")
+                if k in data
+            }
+        )
 
 
 @dataclass(frozen=True)
@@ -156,7 +162,9 @@ def resolve_player(text: str, players: Sequence[str]) -> str | None:
         prefix = f"Player {int(match.group(1))}:"
         return next((name for name in players if name.startswith(prefix)), None)
     lowered = text.lower()
-    by_colour = [name for name in players if re.search(rf"\b{re.escape(name.split(': ')[-1])}\b", lowered)]
+    by_colour = [
+        name for name in players if re.search(rf"\b{re.escape(name.split(': ')[-1])}\b", lowered)
+    ]
     return by_colour[0] if len(by_colour) == 1 else None
 
 
@@ -172,10 +180,10 @@ def parse_justification(message: str, players: Sequence[str]) -> Justification |
     evidence_tags = list(_EVIDENCE.finditer(message))
     if not accusations or not evidence_tags:
         return None
-    evidence_text = message[evidence_tags[-1].end() :].strip(" \n\t*_`\"")
+    evidence_text = message[evidence_tags[-1].end() :].strip(' \n\t*_`"')
     if not evidence_text or evidence_text.startswith("<"):
         return None
-    target = accusations[-1].strip(" \n\t*_`\"")
+    target = accusations[-1].strip(' \n\t*_`"')
     if _NOBODY.match(target):
         return Justification(accused=None, evidence=evidence_text)
     accused = resolve_player(target, players)

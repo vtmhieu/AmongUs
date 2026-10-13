@@ -15,7 +15,13 @@ from amongagents.envs.governance import (
     votes_required,
 )
 
-A, B, C, D, E = "Player 1: red", "Player 2: blue", "Player 3: green", "Player 4: pink", "Player 5: cyan"
+A, B, C, D, E = (
+    "Player 1: red",
+    "Player 2: blue",
+    "Player 3: green",
+    "Player 4: pink",
+    "Player 5: cyan",
+)
 
 
 def ejected(ballots, n_voters, rule):
@@ -121,7 +127,10 @@ class TestGovernance:
         assert g.condition == "plurality/freeform"
 
     def test_condition_names_the_ballot_only_when_secret(self):
-        assert Governance(threshold="majority", protocol="justification").condition == "majority/justification"
+        assert (
+            Governance(threshold="majority", protocol="justification").condition
+            == "majority/justification"
+        )
         assert Governance(ballot="secret").condition == "plurality/freeform/secret"
 
     def test_round_trip(self):
@@ -146,7 +155,9 @@ class TestJustification:
         assert j.evidence == "I saw them vent in Electrical."
 
     def test_abstention_is_a_valid_accusation(self):
-        j = parse_justification("ACCUSE: NONE\nEVIDENCE: I have not seen anything suspicious.", self.players)
+        j = parse_justification(
+            "ACCUSE: NONE\nEVIDENCE: I have not seen anything suspicious.", self.players
+        )
         assert j is not None and j.accused is None
 
     @pytest.mark.parametrize(

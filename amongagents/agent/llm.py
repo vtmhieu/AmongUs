@@ -249,7 +249,9 @@ async def check_connection(config: LLMConfig) -> dict:
     except LLMError as e:
         return {"ok": False, "error": str(e)}
     try:
-        response = await llm.complete("You are a connectivity check.", "Reply with the single word OK.")
+        response = await llm.complete(
+            "You are a connectivity check.", "Reply with the single word OK."
+        )
         return {
             "ok": True,
             "model": response.model,

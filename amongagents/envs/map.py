@@ -52,9 +52,7 @@ class Map:
         alive_players = [player for player in players if player.is_alive]
         if include_new_deaths:
             unreported_death_players = [
-                player
-                for player in players
-                if (not player.reported_death and not player.is_alive)
+                player for player in players if (not player.reported_death and not player.is_alive)
             ]
             return alive_players + unreported_death_players
         else:
