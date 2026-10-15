@@ -43,14 +43,19 @@ of its turns were neutralised this way, or if it aborted on an API error
 (`govlab/design.py: MAX_FALLBACK_RATE`, `govlab/runner.py: judge`). The rule looks only
 at whether the game ran properly, never at its outcome.
 
-**6. The study game gives each Crewmate three tasks and 30 timesteps.**
+**6. The study game gives each Crewmate five tasks, a kill cooldown of 2 and 30 timesteps.**
 The plan fixed five agents and one insider and left the rest open. Upstream's five-player
-preset gives two one-step tasks and 20 timesteps, which a crew can finish before the
-insider gets more than a kill or two, so few games would reach a meeting. The study preset
-uses the per-player load of the published seven-player configuration (one common, one
-short, one long task). **This is a guess until the pilot.** Tasks per player and the time
-limit are the knobs if the baseline win rate falls outside 15–85% or too few games hold a
-meeting. *To use upstream's:* `--preset five`.
+preset gives two one-step tasks, a cooldown of 3 and 20 timesteps, which a crew can finish
+before the insider gets more than a kill or two. Two pilots set the values (RESULT.md):
+
+| Pilot | Tasks per Crewmate | Kill cooldown | Crew wins, baseline | Gates |
+| --- | --- | --- | --- | --- |
+| 1 | 3 (1 common, 1 short, 1 long) | 3 | 5 of 5 | win-rate gate failed |
+| 2 | 5 (2 common, 2 short, 1 long) | 2 | 3 of 5 | all passed |
+
+Pilot 2's configuration is the study preset. Games still end well before the time limit
+(median timestep 13.5); the win rate moved through more kills and ejections, not longer
+games. *To use upstream's:* `--preset five`.
 
 **7. Every condition starts from the same positions.**
 Replicate *k* uses the same seed in all conditions, so roles, colours and tasks are

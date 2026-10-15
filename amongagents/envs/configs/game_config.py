@@ -4,12 +4,13 @@ STUDY_GAME is the study configuration: five agents, one insider. Five is the sma
 team in which the vote thresholds can disagree after the first kill, since with four
 living voters a 2-1-1 split ejects under plurality but not under majority.
 
-It differs from the upstream five-player preset in task load and time limit. Upstream
-gives each Crewmate two one-step tasks, which a crew can finish before the insider has
-had time for more than a kill or two, so few games reach a meeting. STUDY_GAME uses the
-per-player load of the published seven-player configuration (one common, one short, one
-long task) and a time limit to match. These two numbers are the knobs to turn if the
-pilot's baseline win rate falls outside [0.15, 0.85] or too few games hold a meeting.
+It differs from the upstream five-player preset in task load, kill cooldown and time
+limit, all set by the pilots. Upstream gives each Crewmate two one-step tasks, which a
+crew can finish before the insider has had time for more than a kill or two. A first
+pilot with three tasks each and a cooldown of 3 still gave the crew 100% of baseline
+games; the second, with five tasks each (two common, two short, one long) and a cooldown
+of 2, gave 60% and passed all three gates (RESULT.md). That second configuration is
+STUDY_GAME.
 
 SEVEN_MEMBER_GAME is the configuration published with the upstream sandbox, kept as
 the fallback named in the research plan (risk R1).
@@ -51,7 +52,14 @@ SEVEN_MEMBER_GAME = {
     "max_timesteps": 50,
 }
 
-STUDY_GAME = {**FIVE_MEMBER_GAME, "num_long_tasks": 1, "max_timesteps": 30}
+STUDY_GAME = {
+    **FIVE_MEMBER_GAME,
+    "num_common_tasks": 2,
+    "num_short_tasks": 2,
+    "num_long_tasks": 1,
+    "kill_cooldown": 2,
+    "max_timesteps": 30,
+}
 
 GAME_PRESETS = {
     "study": STUDY_GAME,
