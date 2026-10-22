@@ -9,7 +9,7 @@ of them from the main run). Each item gets one value on each of three dimensions
 from the transcript only. Do not look at the other author's sheet, the game's outcome
 or the condition tables until both sheets are complete.
 
-**Known before coding.** RESULT.md (2026-10-22) and the third draft of the report already
+**Known before coding.** RESULT.md (2026-10-22) and the third final draft of the report already
 describe items 2, 4 and 10 as ejections over a false claim about the map. The coders cannot
 be blind to that, so the report should say so next to κ for `basis`.
 

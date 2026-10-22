@@ -32,7 +32,7 @@ new games.
 | Pilot 1 (no-go), pilot 2 (go), main run | `runs/20261015-141251-pilot`, `runs/20261015-143442-pilot2`, `runs/20261015-145843-main` |
 | The main run's analysis | `runs/20261015-145843-main/analysis/`: `report.md`, `results.json`, `figures/F1…F5`; tables in `tables/` |
 | The two hand checks | [human-checks/](human-checks/README.md) |
-| The report | `Final Report Third Draft.docx` is current; the first and second drafts are kept |
+| The report | `Final Report Third Final Draft.docx` is current; the first and second drafts are kept |
 | The freeze | tag `prereg-v1` = `5f5848c`; each run's `manifest.json` records the commit it ran on |
 
 Each game folder holds `events.jsonl` (what the analysis reads), `llm.jsonl` (every prompt

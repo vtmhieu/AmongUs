@@ -1,8 +1,8 @@
 # Response to the opposition report
 
-**Draft by Claude for the authors to edit and sign.** Opponent: Vivienne Curewitz, report
-dated 2026-10-19, on the second draft. Section numbers below refer to the revised report
-(`Final Report Third Draft.docx`).
+**Draft by Claude for the authors to edit and sign.** It answers the opposition report of
+2026-10-19 on the second draft. Section numbers below refer to the revised report
+(`Final Report Third Final Draft.docx`).
 
 We thank the opponent for a careful review. Most of the points were correct and led to
 changes; where we disagree we say why.
