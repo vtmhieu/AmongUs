@@ -69,6 +69,9 @@ govlab analyze runs/<main>                # T7: tables, tests, five figures, rep
 govlab sample runs/<main>                 #     20 wrongful ejections to code by hand; then `govlab kappa`
 ```
 
+For the main run, the material for both hand checks (gate G2 and the coding) is already
+exported, with instructions, in [docs/human-checks/](docs/human-checks/README.md).
+
 `govlab --help` lists every command; `govlab run --help` every setting. A run that is
 stopped or interrupted is continued with `govlab resume runs/<run_id>`.
 

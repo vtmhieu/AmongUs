@@ -132,45 +132,40 @@ These are the same in every condition, but worth knowing when reading results.
   cooldown keeps counting down during meetings.
 - **Players act in a fixed order** (Player 1 first), and a meeting called mid-timestep
   costs the remaining players their turn.
+- **The map in the prompt lists vents, not corridors.** `SKELD_MAP` in `agent/prompts.py`
+  says which rooms share a vent and nothing about which are joined by a corridor, so
+  agents guess the walkable routes. They guess wrong for some corridors the engine has
+  (`envs/configs/map_config.py`), such as Electrical–Lower Engine and Upper
+  Engine–Lower Engine, and accuse a Crewmate who used one of venting. In the main run
+  that was the decisive reason in 3 of the 10 wrongful ejections (RESULT.md,
+  2026-10-22). It is left as it is because the prompt was frozen at `prereg-v1`. A
+  follow-up study should list the corridors.
 - **The justification check applies to the final discussion round only**, as the plan
   specifies. A statement is re-prompted once; a second miss is kept and logged as
   non-compliant, so compliance is itself measured.
 
 ## Still to do, by a person
 
-1. **Run the pilot** and read "Checks before interpreting". Tune tasks and time limit if a
-   gate fails, then pilot again.
-2. **Freeze before the main run.** The confirmatory family (`govlab/stats.py:
-   CONFIRMATORY`), the exclusion rule and the damage weights are constants in code;
-   commit and tag (`git tag prereg-v1`) before any main-experiment game is played.
-3. **Hand-annotate ten transcripts** (gate G2): `govlab annotate`, fill in the sheet from
-   the Watch view, then `govlab validate`. The tests already check the metrics against
-   the engine's independent counters on several hundred mock games, but that is not a
-   substitute for a person reading real transcripts.
-4. **Write the codebook and code the sample** for the qualitative sub-study:
-   `govlab sample`, then `govlab kappa` on the two authors' sheets.
-5. **Review this code.** The plan commits to line-by-line review by the author who did
-   not prompt for it. Nothing here has been merged to `main`.
+Done: the pilots (two; the second passed and set the study preset), the freeze
+(`prereg-v1`, commit `5f5848c`), the main run, and Rong's code review, which came after
+the freeze. Left:
 
-## Not yet verified
+1. **Hand-annotate ten games** (gate G2) and **code the ten wrongful ejections** with κ.
+   Everything both need, including a draft codebook, is in `docs/human-checks/`.
+2. **Merge to `main`.** Nothing on `governance-lab` has been merged yet.
 
-No Claude API key was available when this was built, so **no real model call has been
-made**. What that leaves unverified:
+## Verified by the pilots and the main run
 
-- That the API accepts the request as sent. The request body is checked in tests against
-  the installed SDK and the documented constraints of Haiku 5.5 (no sampling parameters,
-  no prefill, thinking `disabled` only at effort `high` or below), but not against the
-  live service. `govlab check` is the first thing to run.
-- How Haiku 5.5 actually plays: how often its replies parse, how long games last, whether
-  the baseline win rate is usable, whether it ever declines to play the insider (a
-  refusal is handled as an unreadable reply and counted). The pilot answers all of these.
-- The cost and time estimates in the UI. They are derived from prompt lengths and guesses
-  at call counts; the pilot report replaces them with measured values.
-- Whether the default of four games in parallel fits the account's rate limits. Rate
-  limits are retried by the SDK with backoff, so a run slows down rather than fails, but
-  on a new account's limits it may slow down a lot, and a game whose call runs out of
-  retries is excluded and replayed. If the pilot shows games excluded for rate limits,
-  lower "Games in parallel" (`--concurrency`).
-- Whether the system prompt is long enough to be cached (it is close to the 512-token
-  minimum). If it is not, cost rises by a fraction of a cent per game and nothing else
-  changes; the report shows the share of prompt tokens read from cache.
+Written before any real model call was made, this section listed what could not be
+checked offline. All of it has since been checked against the live API (RESULT.md):
+
+- The API accepts the request as sent: 120 games ran against it.
+- How Haiku 5.5 plays: 99.97% of decisions in the main run parsed into a valid move,
+  and no agent refused to play the insider. Games last 5–24 timesteps of 30. The
+  baseline crew win rate came out at 95% in the main run, above the pilot gate's
+  range (a limitation, reported).
+- Cost and time were measured at $0.021–0.028 and 171–222 s per game. The whole study
+  cost $3.17.
+- Four games in parallel fit the account's rate limits: no game in any run was
+  excluded or replayed.
+- The system prompt is cached: 39% of prompt tokens in the main run were read from cache.

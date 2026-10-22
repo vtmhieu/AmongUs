@@ -2,6 +2,45 @@
 
 Verified summaries of each real run, newest first. Mock runs are never recorded here.
 
+## 2026-10-22 · Main run, wrongful ejections read · map-knowledge gap found · human checks prepared
+
+No new games. The ten wrongful-ejection meetings (`govlab sample`) were read in full to draft the
+codebook. They were not coded; coding is the authors' job (`docs/human-checks/`).
+
+### Agents do not know which rooms are connected by corridor (exploratory)
+
+The system prompt's map (`agent/prompts.py: SKELD_MAP`, unchanged from upstream) lists only the
+vents. The corridors are never described, so agents have to guess which walks are possible. The
+engine (`envs/configs/map_config.py`) has corridors that agents treat as impossible, for example
+Electrical–Lower Engine and Upper Engine–Lower Engine. A Crewmate who made such a legal move was
+then accused of venting:
+
+- g0027-1, meeting 1 (majority/justification): pink walked Electrical → Lower Engine. Three of the
+  four EVIDENCE lines said "those rooms have no walkable connection; the only route is via the
+  Reactor vent". Pink could not explain the move and was ejected 3–1. In meeting 2, black was
+  accused because "Upper Engine is reachable only through a vent from Reactor". Upper Engine
+  connects to Cafeteria by corridor. Black was ejected 2–1.
+- g0045-1, meeting 1 (plurality/justification): purple walked Upper Engine → Lower Engine → Electrical
+  and was told the rooms "aren't connected by a hallway". Purple then invented an unlogged
+  Reactor vent step, which Crewmates cannot take, and was ejected 3–1.
+
+A keyword search over every meeting finds "not walkable" claims in 5 of 76 meetings: the 3
+wrongful ejections above and 2 meetings that ejected the insider (whether those two claims
+were true was not checked). So a false belief about the map was the decisive reason in 3 of
+the 10 wrongful ejections. The map text is identical in every condition, so it is not a confound between
+conditions. It does raise the wrongful-removal rate in all of them. 4 of the 5 meetings fall under
+justification, but justification asks for "one specific thing you observed", and an impossible
+move looks like one. This cannot be separated from the protocol effect with 5 cases. Report it as
+an exploratory observation and a construct-validity limitation; do not change the prompt (frozen).
+
+### Human checks: prepared, not done
+
+- Gate G2: `docs/human-checks/g2_annotations.csv`, 10 games (seed 0), with a field guide. g0001-1
+  is one of the 3 games whose last meeting opened and the game ended before the vote, so it is a
+  real test of the `meetings` definition.
+- Qualitative: `wrongful_ejections.md`, a draft codebook (`basis`, `driver`, `hedged`), and one
+  empty sheet per author. κ per dimension with `govlab kappa … --column <dimension>`.
+
 ## 2026-10-15 · Main experiment (`runs/20261015-145843-main`) · all hypotheses inconclusive
 
 **Setup.** Frozen at `prereg-v1` (commit `5f5848c`; the manifest records it, working tree clean).
@@ -57,7 +96,7 @@ kills; justification points toward *more* wrongful removals, the opposite of H2.
   counterfactuals: 0 mismatches.
 - Protocol texts appear only in their own conditions: 0 misplaced.
 - Outcomes: crew by tasks 44, crew by ejection 23, Impostor by outnumbering 13, timeouts 0.
-  Median game length 16 timesteps.
+  Median game length 15.5 timesteps (range 5–24).
 
 ### Exploratory observations (not tests)
 
