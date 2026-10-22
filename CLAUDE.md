@@ -3,6 +3,7 @@
 II2202 course project (Rong Jin, Hieu Vu): does the team's voting rule limit the damage
 an undisclosed malicious agent does? See README.md for the study and
 docs/design-notes.md for every decision that departs from the research plan.
+**Where the study stands and what is still open: docs/status.md.** Read it first.
 
 ## Commands
 
@@ -38,6 +39,9 @@ uv pip install -e ".[dev]"                 # into .venv
 - **A model reply never becomes a move by guessing.** `match_action` returns None when
   unsure; the caller re-prompts once, then takes a neutral turn. Keep it that way: a
   guessed vote biases the study's main outcome.
+- **The human checks are the authors' own work.** Never fill in, suggest values for or
+  pre-code the sheets in `docs/human-checks/`: G2 and Cohen's κ measure human judgement.
+  Running `govlab validate` / `govlab kappa` on sheets the authors filled is fine.
 - **Tests never call a model.** Use `LLMConfig(provider="mock")`, or point the SDK at an
   `httpx2.MockTransport` as `tests/test_llm.py` does. Do not use real credentials in
   tests even if they are present in the environment.
@@ -60,7 +64,8 @@ uv pip install -e ".[dev]"                 # into .venv
 ## Gotchas
 
 - Branch from `main`. Do not base work on, or merge from, the `II2202` branch.
-- `runs/` is untracked output. Tests write to a temp directory via `GOVLAB_RUNS`.
+- `runs/` is ignored, except the study's three runs, which are committed as the record.
+  Do not edit them. Tests write to a temp directory via `GOVLAB_RUNS`.
 - If the Claude desktop app's preview launcher hangs starting the server from
   `.claude/launch.json`, macOS is probably waiting on a folder-permission prompt for the
   project directory. Start `govlab serve` from a shell and open the URL instead.

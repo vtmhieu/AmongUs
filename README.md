@@ -13,6 +13,10 @@ which builds on [AmongAgents](https://github.com/cyzus/among-agents). This repos
 fork trimmed down to the game engine, with the governance rules, the measurements, the
 experiment runner, the analysis and a web UI added on top.
 
+**Status (2026-10-22):** the experiment is done and its runs are committed in `runs/`.
+[RESULT.md](RESULT.md) has the verified results; [docs/status.md](docs/status.md) says
+where everything is and what is still open.
+
 ## Quick start
 
 Requires Python 3.10 or newer.
@@ -94,7 +98,8 @@ runs/<run_id>/
 
 Model sampling cannot be reproduced token for token, so the logs are the record: every
 number in the analysis is recomputed from `events.jsonl` and can be rebuilt at any time.
-`runs/` is not tracked by git; archive finished runs deliberately. The formats are
+`runs/` is not tracked by git, except the study's two pilots and main run, which are
+committed as the record; archive other runs deliberately. The formats are
 described in [docs/log-schema.md](docs/log-schema.md).
 
 ## Layout
