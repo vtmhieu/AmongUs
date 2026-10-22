@@ -70,7 +70,7 @@ committed ones back.
 | 1 | Gate G2: hand-annotate ten games | one author | [human-checks/README.md](human-checks/README.md), then `govlab validate runs/20261015-145843-main docs/human-checks/g2_annotations.csv` |
 | 2 | Agree the codebook | both | `human-checks/codebook.md` is a draft |
 | 3 | Code the ten wrongful ejections | each author on their own sheet, without seeing the other's | then `govlab kappa docs/human-checks/coding_sheet_hieu.csv docs/human-checks/coding_sheet_rong.csv --column <dimension>` |
-| 4 | Fill the third draft's placeholders | both | §3.2 the G2 result; §3.3 κ, raw agreement and the agreed codes; A.3 the codebook as used |
+| 4 | Fill the third draft's placeholders | both | §3.2 the G2 result; §3.4 κ, raw agreement and the agreed codes; A.3 the codebook as used |
 | 5 | Settle the AI-use paragraph | both | It says Rong Jin reviewed the code; the plan requires the reviewer to be the author who did not prompt it. The code commits (`4b0c0df`…`997f025`) are under Rong's account. Check, then remove the bracketed note |
 | 6 | Merge into `main` | either | pull request from `governance-lab` |
 
