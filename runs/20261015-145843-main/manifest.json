@@ -1,0 +1,1015 @@
+{
+  "run_id": "20261015-145843-main",
+  "name": "main",
+  "created": "2026-10-15T12:58:43+00:00",
+  "spec": {
+    "name": "main",
+    "thresholds": [
+      "plurality",
+      "majority"
+    ],
+    "protocols": [
+      "freeform",
+      "justification"
+    ],
+    "ballots": [
+      "public"
+    ],
+    "disclose_rules": true,
+    "games_per_condition": 20,
+    "seed": 2202,
+    "matched_seeds": true,
+    "game": {
+      "num_players": 5,
+      "num_impostors": 1,
+      "num_common_tasks": 2,
+      "num_short_tasks": 2,
+      "num_long_tasks": 1,
+      "discussion_rounds": 3,
+      "max_num_buttons": 2,
+      "kill_cooldown": 2,
+      "max_timesteps": 30
+    },
+    "llm": {
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "medium",
+      "thinking": "disabled",
+      "max_tokens": 4096,
+      "mock_latency": 0.0,
+      "mock_malformed_rate": 0.0
+    },
+    "concurrency": 4,
+    "max_attempts": 3,
+    "max_fallback_rate": 0.05,
+    "budget_usd": 5.0
+  },
+  "schedule": [
+    {
+      "slot": 0,
+      "block": 0,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2202
+    },
+    {
+      "slot": 1,
+      "block": 0,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2202
+    },
+    {
+      "slot": 2,
+      "block": 0,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2202
+    },
+    {
+      "slot": 3,
+      "block": 0,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2202
+    },
+    {
+      "slot": 4,
+      "block": 1,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2203
+    },
+    {
+      "slot": 5,
+      "block": 1,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2203
+    },
+    {
+      "slot": 6,
+      "block": 1,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2203
+    },
+    {
+      "slot": 7,
+      "block": 1,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2203
+    },
+    {
+      "slot": 8,
+      "block": 2,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2204
+    },
+    {
+      "slot": 9,
+      "block": 2,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2204
+    },
+    {
+      "slot": 10,
+      "block": 2,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2204
+    },
+    {
+      "slot": 11,
+      "block": 2,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2204
+    },
+    {
+      "slot": 12,
+      "block": 3,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2205
+    },
+    {
+      "slot": 13,
+      "block": 3,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2205
+    },
+    {
+      "slot": 14,
+      "block": 3,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2205
+    },
+    {
+      "slot": 15,
+      "block": 3,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2205
+    },
+    {
+      "slot": 16,
+      "block": 4,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2206
+    },
+    {
+      "slot": 17,
+      "block": 4,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2206
+    },
+    {
+      "slot": 18,
+      "block": 4,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2206
+    },
+    {
+      "slot": 19,
+      "block": 4,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2206
+    },
+    {
+      "slot": 20,
+      "block": 5,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2207
+    },
+    {
+      "slot": 21,
+      "block": 5,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2207
+    },
+    {
+      "slot": 22,
+      "block": 5,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2207
+    },
+    {
+      "slot": 23,
+      "block": 5,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2207
+    },
+    {
+      "slot": 24,
+      "block": 6,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2208
+    },
+    {
+      "slot": 25,
+      "block": 6,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2208
+    },
+    {
+      "slot": 26,
+      "block": 6,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2208
+    },
+    {
+      "slot": 27,
+      "block": 6,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2208
+    },
+    {
+      "slot": 28,
+      "block": 7,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2209
+    },
+    {
+      "slot": 29,
+      "block": 7,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2209
+    },
+    {
+      "slot": 30,
+      "block": 7,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2209
+    },
+    {
+      "slot": 31,
+      "block": 7,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2209
+    },
+    {
+      "slot": 32,
+      "block": 8,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2210
+    },
+    {
+      "slot": 33,
+      "block": 8,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2210
+    },
+    {
+      "slot": 34,
+      "block": 8,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2210
+    },
+    {
+      "slot": 35,
+      "block": 8,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2210
+    },
+    {
+      "slot": 36,
+      "block": 9,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2211
+    },
+    {
+      "slot": 37,
+      "block": 9,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2211
+    },
+    {
+      "slot": 38,
+      "block": 9,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2211
+    },
+    {
+      "slot": 39,
+      "block": 9,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2211
+    },
+    {
+      "slot": 40,
+      "block": 10,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2212
+    },
+    {
+      "slot": 41,
+      "block": 10,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2212
+    },
+    {
+      "slot": 42,
+      "block": 10,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2212
+    },
+    {
+      "slot": 43,
+      "block": 10,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2212
+    },
+    {
+      "slot": 44,
+      "block": 11,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2213
+    },
+    {
+      "slot": 45,
+      "block": 11,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2213
+    },
+    {
+      "slot": 46,
+      "block": 11,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2213
+    },
+    {
+      "slot": 47,
+      "block": 11,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2213
+    },
+    {
+      "slot": 48,
+      "block": 12,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2214
+    },
+    {
+      "slot": 49,
+      "block": 12,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2214
+    },
+    {
+      "slot": 50,
+      "block": 12,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2214
+    },
+    {
+      "slot": 51,
+      "block": 12,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2214
+    },
+    {
+      "slot": 52,
+      "block": 13,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2215
+    },
+    {
+      "slot": 53,
+      "block": 13,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2215
+    },
+    {
+      "slot": 54,
+      "block": 13,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2215
+    },
+    {
+      "slot": 55,
+      "block": 13,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2215
+    },
+    {
+      "slot": 56,
+      "block": 14,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2216
+    },
+    {
+      "slot": 57,
+      "block": 14,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2216
+    },
+    {
+      "slot": 58,
+      "block": 14,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2216
+    },
+    {
+      "slot": 59,
+      "block": 14,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2216
+    },
+    {
+      "slot": 60,
+      "block": 15,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2217
+    },
+    {
+      "slot": 61,
+      "block": 15,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2217
+    },
+    {
+      "slot": 62,
+      "block": 15,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2217
+    },
+    {
+      "slot": 63,
+      "block": 15,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2217
+    },
+    {
+      "slot": 64,
+      "block": 16,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2218
+    },
+    {
+      "slot": 65,
+      "block": 16,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2218
+    },
+    {
+      "slot": 66,
+      "block": 16,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2218
+    },
+    {
+      "slot": 67,
+      "block": 16,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2218
+    },
+    {
+      "slot": 68,
+      "block": 17,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2219
+    },
+    {
+      "slot": 69,
+      "block": 17,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2219
+    },
+    {
+      "slot": 70,
+      "block": 17,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2219
+    },
+    {
+      "slot": 71,
+      "block": 17,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2219
+    },
+    {
+      "slot": 72,
+      "block": 18,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2220
+    },
+    {
+      "slot": 73,
+      "block": 18,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2220
+    },
+    {
+      "slot": 74,
+      "block": 18,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2220
+    },
+    {
+      "slot": 75,
+      "block": 18,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2220
+    },
+    {
+      "slot": 76,
+      "block": 19,
+      "condition": "majority/freeform",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2221
+    },
+    {
+      "slot": 77,
+      "block": 19,
+      "condition": "plurality/justification",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2221
+    },
+    {
+      "slot": 78,
+      "block": 19,
+      "condition": "majority/justification",
+      "governance": {
+        "threshold": "majority",
+        "protocol": "justification",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2221
+    },
+    {
+      "slot": 79,
+      "block": 19,
+      "condition": "plurality/freeform",
+      "governance": {
+        "threshold": "plurality",
+        "protocol": "freeform",
+        "ballot": "public",
+        "disclose_rules": true
+      },
+      "seed": 2221
+    }
+  ],
+  "provenance": {
+    "commit": "5f5848c6ab975abdc02f31d311bce04ba36a0404",
+    "dirty": false,
+    "python": "3.14.7",
+    "anthropic_sdk": "1.14.0"
+  }
+}

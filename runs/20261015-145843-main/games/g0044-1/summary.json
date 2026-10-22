@@ -1,0 +1,39 @@
+{
+  "game_id": "g0044-1",
+  "slot": 44,
+  "block": 11,
+  "attempt": 1,
+  "seed": 2213,
+  "condition": "plurality/freeform",
+  "governance": {
+    "threshold": "plurality",
+    "protocol": "freeform",
+    "ballot": "public",
+    "disclose_rules": true
+  },
+  "model": "claude-haiku-5-5",
+  "started": "2026-10-15T13:38:31+00:00",
+  "timesteps": 21,
+  "meetings": 2,
+  "kills": 2,
+  "wrongful_ejections": 0,
+  "decisions": 109,
+  "fallbacks": 0,
+  "reprompts": 0,
+  "refusals": 0,
+  "usage": {
+    "calls": 109,
+    "input_tokens": 167453,
+    "output_tokens": 58170,
+    "cache_read_tokens": 89593,
+    "cache_write_tokens": 4307
+  },
+  "duration_s": 350.84,
+  "winner": "crew",
+  "reason": "tasks",
+  "error": null,
+  "finished": "2026-10-15T13:44:22+00:00",
+  "invalid_reason": null,
+  "valid": true,
+  "cost_usd": 0.04726460500000001
+}

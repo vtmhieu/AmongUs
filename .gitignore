@@ -189,6 +189,10 @@ cython_debug/
 .pypirc
 
 
-# Experiment output (raw logs are the primary record; archive them deliberately)
-runs/
+# Experiment output (raw logs are the primary record; archive them deliberately).
+# The study's runs are committed.
+runs/*
+!runs/20261015-141251-pilot/
+!runs/20261015-143442-pilot2/
+!runs/20261015-145843-main/
 .venv/

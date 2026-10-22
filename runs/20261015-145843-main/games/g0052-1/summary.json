@@ -1,0 +1,39 @@
+{
+  "game_id": "g0052-1",
+  "slot": 52,
+  "block": 13,
+  "attempt": 1,
+  "seed": 2215,
+  "condition": "plurality/justification",
+  "governance": {
+    "threshold": "plurality",
+    "protocol": "justification",
+    "ballot": "public",
+    "disclose_rules": true
+  },
+  "model": "claude-haiku-5-5",
+  "started": "2026-10-15T13:45:56+00:00",
+  "timesteps": 15,
+  "meetings": 1,
+  "kills": 3,
+  "wrongful_ejections": 0,
+  "decisions": 66,
+  "fallbacks": 0,
+  "reprompts": 0,
+  "refusals": 0,
+  "usage": {
+    "calls": 66,
+    "input_tokens": 88803,
+    "output_tokens": 33673,
+    "cache_read_tokens": 54259,
+    "cache_write_tokens": 2584
+  },
+  "duration_s": 215.05,
+  "winner": "impostor",
+  "reason": "outnumbered",
+  "error": null,
+  "finished": "2026-10-15T13:49:32+00:00",
+  "invalid_reason": null,
+  "valid": true,
+  "cost_usd": 0.02658239
+}

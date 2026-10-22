@@ -1,0 +1,1469 @@
+{
+  "ok": true,
+  "n_games": 20,
+  "conditions": [
+    "plurality/freeform",
+    "plurality/justification",
+    "majority/freeform",
+    "majority/justification"
+  ],
+  "factors": {
+    "threshold": [
+      "plurality",
+      "majority"
+    ],
+    "protocol": [
+      "freeform",
+      "justification"
+    ]
+  },
+  "cells": [
+    {
+      "condition": "plurality/freeform",
+      "threshold": "plurality",
+      "protocol": "freeform",
+      "ballot": "public",
+      "n": 5,
+      "crew_win": {
+        "k": 3,
+        "n": 5,
+        "p": 0.6,
+        "low": 0.2307242812760129,
+        "high": 0.8823792257673522
+      },
+      "wrongful_any": {
+        "k": 0,
+        "n": 5,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.43448246478317487
+      },
+      "insider_ejected": {
+        "k": 1,
+        "n": 5,
+        "p": 0.2,
+        "low": 0.036224108632430196,
+        "high": 0.6244653702374748
+      },
+      "kills_mean": 1.6,
+      "kills_sd": 1.3416407864998738,
+      "kills_distribution": {
+        "0": 1,
+        "1": 2,
+        "3": 2
+      },
+      "kills_per_exposure": 0.13793103448275862,
+      "wrongful_mean": 0.0,
+      "meetings_mean": 0.6,
+      "games_with_meeting": {
+        "k": 3,
+        "n": 5,
+        "p": 0.6,
+        "low": 0.2307242812760129,
+        "high": 0.8823792257673522
+      },
+      "timesteps_mean": 12.2,
+      "reasons": {
+        "tasks": 2,
+        "outnumbered": 2,
+        "ejected": 1
+      },
+      "meetings": 3,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 3,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.5614970317550455
+      }
+    },
+    {
+      "condition": "plurality/justification",
+      "threshold": "plurality",
+      "protocol": "justification",
+      "ballot": "public",
+      "n": 5,
+      "crew_win": {
+        "k": 4,
+        "n": 5,
+        "p": 0.8,
+        "low": 0.3755346297625252,
+        "high": 0.9637758913675698
+      },
+      "wrongful_any": {
+        "k": 2,
+        "n": 5,
+        "p": 0.4,
+        "low": 0.11762077423264788,
+        "high": 0.7692757187239871
+      },
+      "insider_ejected": {
+        "k": 0,
+        "n": 5,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.43448246478317487
+      },
+      "kills_mean": 1.2,
+      "kills_sd": 0.4472135954999579,
+      "kills_distribution": {
+        "1": 4,
+        "2": 1
+      },
+      "kills_per_exposure": 0.0821917808219178,
+      "wrongful_mean": 0.4,
+      "meetings_mean": 0.8,
+      "games_with_meeting": {
+        "k": 4,
+        "n": 5,
+        "p": 0.8,
+        "low": 0.3755346297625252,
+        "high": 0.9637758913675698
+      },
+      "timesteps_mean": 15.4,
+      "reasons": {
+        "tasks": 4,
+        "outnumbered": 1
+      },
+      "meetings": 4,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 4,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.4898908364545974
+      }
+    },
+    {
+      "condition": "majority/freeform",
+      "threshold": "majority",
+      "protocol": "freeform",
+      "ballot": "public",
+      "n": 5,
+      "crew_win": {
+        "k": 4,
+        "n": 5,
+        "p": 0.8,
+        "low": 0.3755346297625252,
+        "high": 0.9637758913675698
+      },
+      "wrongful_any": {
+        "k": 0,
+        "n": 5,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.43448246478317487
+      },
+      "insider_ejected": {
+        "k": 1,
+        "n": 5,
+        "p": 0.2,
+        "low": 0.036224108632430196,
+        "high": 0.6244653702374748
+      },
+      "kills_mean": 1.6,
+      "kills_sd": 1.140175425099138,
+      "kills_distribution": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 1
+      },
+      "kills_per_exposure": 0.11940298507462686,
+      "wrongful_mean": 0.0,
+      "meetings_mean": 1.0,
+      "games_with_meeting": {
+        "k": 4,
+        "n": 5,
+        "p": 0.8,
+        "low": 0.3755346297625252,
+        "high": 0.9637758913675698
+      },
+      "timesteps_mean": 14.4,
+      "reasons": {
+        "tasks": 3,
+        "ejected": 1,
+        "outnumbered": 1
+      },
+      "meetings": 5,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 5,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.43448246478317487
+      }
+    },
+    {
+      "condition": "majority/justification",
+      "threshold": "majority",
+      "protocol": "justification",
+      "ballot": "public",
+      "n": 5,
+      "crew_win": {
+        "k": 5,
+        "n": 5,
+        "p": 1.0,
+        "low": 0.5655175352168252,
+        "high": 1.0
+      },
+      "wrongful_any": {
+        "k": 0,
+        "n": 5,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.43448246478317487
+      },
+      "insider_ejected": {
+        "k": 2,
+        "n": 5,
+        "p": 0.4,
+        "low": 0.11762077423264788,
+        "high": 0.7692757187239871
+      },
+      "kills_mean": 1.0,
+      "kills_sd": 0.7071067811865476,
+      "kills_distribution": {
+        "0": 1,
+        "1": 3,
+        "2": 1
+      },
+      "kills_per_exposure": 0.08928571428571429,
+      "wrongful_mean": 0.0,
+      "meetings_mean": 0.4,
+      "games_with_meeting": {
+        "k": 2,
+        "n": 5,
+        "p": 0.4,
+        "low": 0.11762077423264788,
+        "high": 0.7692757187239871
+      },
+      "timesteps_mean": 11.6,
+      "reasons": {
+        "tasks": 3,
+        "ejected": 2
+      },
+      "meetings": 2,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 2,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.657619772493347
+      }
+    }
+  ],
+  "models": {
+    "crew_win": {
+      "main": {
+        "model": "logistic",
+        "outcome": "crew_win",
+        "interaction": false,
+        "n": 20,
+        "ok": true,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": 0.2317682942951775,
+            "se": 0.8577453369803869,
+            "p": 0.7870014561232317,
+            "low": -1.449381674093553,
+            "high": 1.912918262683908,
+            "odds_ratio": 1.2608275540432852,
+            "odds_ratio_low": 0.23471537383032104,
+            "odds_ratio_high": 6.772824869085819
+          },
+          {
+            "term": "threshold: majority",
+            "coef": 1.4437932487447176,
+            "se": 1.3052957226330508,
+            "p": 0.2686813654457044,
+            "low": -1.114539356790246,
+            "high": 4.002125854279681,
+            "odds_ratio": 4.236736369775955,
+            "odds_ratio_low": 0.32806636564205766,
+            "odds_ratio_high": 54.71434120304463
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 1.4437932487447176,
+            "se": 1.3052957226330508,
+            "p": 0.2686813654457044,
+            "low": -1.114539356790246,
+            "high": 4.002125854279681,
+            "odds_ratio": 4.236736369775955,
+            "odds_ratio_low": 0.32806636564205766,
+            "odds_ratio_high": 54.71434120304463
+          }
+        ]
+      },
+      "interaction": {
+        "model": "logistic",
+        "outcome": "crew_win",
+        "interaction": true,
+        "n": 20,
+        "ok": false,
+        "reason": "did not converge (ConvergenceWarning)"
+      }
+    },
+    "wrongful_any": {
+      "main": {
+        "model": "logistic",
+        "outcome": "wrongful_any",
+        "interaction": false,
+        "n": 20,
+        "ok": false,
+        "reason": "did not converge (ConvergenceWarning)"
+      },
+      "interaction": {
+        "model": "logistic",
+        "outcome": "wrongful_any",
+        "interaction": true,
+        "n": 20,
+        "ok": false,
+        "reason": "did not converge (ConvergenceWarning)"
+      }
+    },
+    "kills": {
+      "main": {
+        "model": "Poisson (robust SE)",
+        "outcome": "kills",
+        "interaction": false,
+        "n": 20,
+        "note": "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used",
+        "ok": true,
+        "dispersion": null,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -2.0278820203322225,
+            "se": 0.2913634929800945,
+            "p": 3.4033815799852844e-12,
+            "low": -2.5989439729829966,
+            "high": -1.4568200676814484,
+            "rate_ratio": 0.13161398189494805,
+            "rate_ratio_low": 0.07435205454884942,
+            "rate_ratio_high": 0.23297594579397893
+          },
+          {
+            "term": "threshold: majority",
+            "coef": -0.052588223403406964,
+            "se": 0.3109915282101206,
+            "p": 0.8657191079349882,
+            "low": -0.6621204181923156,
+            "high": 0.5569439713855017,
+            "rate_ratio": 0.9487706135907934,
+            "rate_ratio_low": 0.5157565546250866,
+            "rate_ratio_high": 1.745330561756599
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -0.41154498007983786,
+            "se": 0.31179038392444297,
+            "p": 0.18685464350459924,
+            "low": -1.0226429032976623,
+            "high": 0.19955294313798655,
+            "rate_ratio": 0.6626257153665784,
+            "rate_ratio_low": 0.3596431808744672,
+            "rate_ratio_high": 1.2208568437123444
+          }
+        ]
+      },
+      "interaction": {
+        "model": "Poisson (robust SE)",
+        "outcome": "kills",
+        "interaction": true,
+        "n": 20,
+        "note": "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used",
+        "ok": true,
+        "dispersion": null,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -1.981001468866583,
+            "se": 0.325880313300617,
+            "p": 1.2099212129298542e-09,
+            "low": -2.6197151462064214,
+            "high": -1.3422877915267444,
+            "rate_ratio": 0.1379310344827587,
+            "rate_ratio_low": 0.07282360395304928,
+            "rate_ratio_high": 0.2612473050049777
+          },
+          {
+            "term": "threshold: majority",
+            "coef": -0.14424960884454707,
+            "se": 0.40174047050402256,
+            "p": 0.7195489465049585,
+            "low": -0.9316464621646072,
+            "high": 0.6431472444755131,
+            "rate_ratio": 0.8656716417910445,
+            "rate_ratio_low": 0.3939046271077167,
+            "rate_ratio_high": 1.9024589705981694
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -0.5176985030537524,
+            "se": 0.39784665827591126,
+            "p": 0.1931724321470587,
+            "low": -1.2974636246441529,
+            "high": 0.2620666185366479,
+            "rate_ratio": 0.5958904109589043,
+            "rate_ratio_low": 0.27322391332492785,
+            "rate_ratio_high": 1.2996131178697061
+          },
+          {
+            "term": "threshold: majority x protocol: justification",
+            "coef": 0.22703580246383503,
+            "se": 0.6138161018348453,
+            "p": 0.7114749355088772,
+            "low": -0.976021650263232,
+            "high": 1.430093255190902,
+            "rate_ratio": 1.2548747947454857,
+            "rate_ratio_low": 0.3768071916797215,
+            "rate_ratio_high": 4.179088895484768
+          }
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "threshold: majority": {
+      "factor": "threshold",
+      "level": "majority",
+      "reference": "plurality",
+      "crew_win": {
+        "ok": true,
+        "p1": 0.9,
+        "p0": 0.7,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": 0.20000000000000007,
+        "rd_low": -0.15979360150622524,
+        "rd_high": 0.5141461574374271,
+        "odds_ratio": 3.857142857142857,
+        "p_fisher": 0.5820433436532508,
+        "z": 1.1180339887498953,
+        "p_z": 0.2635524772829726
+      },
+      "wrongful_any": {
+        "ok": true,
+        "p1": 0.0,
+        "p0": 0.2,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": -0.2,
+        "rd_low": -0.5098375284633583,
+        "rd_high": 0.11235310261222181,
+        "odds_ratio": 0.0,
+        "p_fisher": 0.4736842105263158,
+        "z": -1.4907119849998598,
+        "p_z": 0.13603712811414362
+      },
+      "kills": {
+        "ok": true,
+        "n1": 10,
+        "n0": 10,
+        "mean1": 1.3,
+        "mean0": 1.4,
+        "median1": 1.0,
+        "median0": 1.0,
+        "cliffs_delta": -0.03,
+        "u": 48.5,
+        "p": 0.9351237474130928
+      }
+    },
+    "protocol: justification": {
+      "factor": "protocol",
+      "level": "justification",
+      "reference": "freeform",
+      "crew_win": {
+        "ok": true,
+        "p1": 0.9,
+        "p0": 0.7,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": 0.20000000000000007,
+        "rd_low": -0.15979360150622524,
+        "rd_high": 0.5141461574374271,
+        "odds_ratio": 3.857142857142857,
+        "p_fisher": 0.5820433436532508,
+        "z": 1.1180339887498953,
+        "p_z": 0.2635524772829726
+      },
+      "wrongful_any": {
+        "ok": true,
+        "p1": 0.2,
+        "p0": 0.0,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": 0.2,
+        "rd_low": -0.11235310261222181,
+        "rd_high": 0.5098375284633583,
+        "odds_ratio": null,
+        "p_fisher": 0.4736842105263158,
+        "z": 1.4907119849998598,
+        "p_z": 0.13603712811414362
+      },
+      "kills": {
+        "ok": true,
+        "n1": 10,
+        "n0": 10,
+        "mean1": 1.1,
+        "mean0": 1.6,
+        "median1": 1.0,
+        "median0": 1.5,
+        "cliffs_delta": -0.25,
+        "u": 37.5,
+        "p": 0.32866741618016915
+      }
+    }
+  },
+  "detection": {
+    "curves": {
+      "plurality/freeform": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 5
+        },
+        {
+          "t": 1.0,
+          "s": 0.6666666666666667,
+          "at_risk": 3
+        }
+      ],
+      "plurality/justification": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 5
+        }
+      ],
+      "majority/freeform": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 5
+        },
+        {
+          "t": 1.0,
+          "s": 0.75,
+          "at_risk": 4
+        }
+      ],
+      "majority/justification": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 5
+        },
+        {
+          "t": 1.0,
+          "s": 0.0,
+          "at_risk": 2
+        }
+      ]
+    },
+    "max_time": 2,
+    "logrank": {
+      "threshold": {
+        "ok": true,
+        "chi2": 1.7857142857142854,
+        "df": 1,
+        "p": 0.1814492077214165,
+        "groups": [
+          "majority",
+          "plurality"
+        ],
+        "observed": [
+          3.0,
+          1.0
+        ],
+        "expected": [
+          1.8461538461538463,
+          2.1538461538461537
+        ]
+      },
+      "protocol": {
+        "ok": true,
+        "chi2": 0.0317460317460317,
+        "df": 1,
+        "p": 0.8585862013366392,
+        "groups": [
+          "freeform",
+          "justification"
+        ],
+        "observed": [
+          2.0,
+          2.0
+        ],
+        "expected": [
+          2.1538461538461537,
+          1.8461538461538463
+        ]
+      }
+    },
+    "logrank_conditions": {
+      "ok": true,
+      "chi2": 5.861111111111109,
+      "df": 3,
+      "p": 0.11856650158223472,
+      "groups": [
+        "majority/freeform",
+        "majority/justification",
+        "plurality/freeform",
+        "plurality/justification"
+      ],
+      "observed": [
+        1.0,
+        2.0,
+        1.0,
+        0.0
+      ],
+      "expected": [
+        1.2307692307692308,
+        0.6153846153846154,
+        0.9230769230769231,
+        1.2307692307692308
+      ]
+    },
+    "cox": {
+      "main": {
+        "model": "Cox proportional hazards",
+        "outcome": "detection",
+        "interaction": false,
+        "n": 13,
+        "ok": true,
+        "events": 4,
+        "terms": [
+          {
+            "term": "threshold: majority",
+            "coef": 1.7173654440512818,
+            "se": 1.2274285251238994,
+            "p": 0.16176585151458822,
+            "low": -0.6883502587886781,
+            "high": 4.123081146891241,
+            "hazard_ratio": 5.569835075366049,
+            "hazard_ratio_low": 0.5024042227095757,
+            "hazard_ratio_high": 61.749207837990994
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 0.7727075767668641,
+            "se": 1.0644472993756944,
+            "p": 0.46788551506827936,
+            "low": -1.3135707934504217,
+            "high": 2.85898594698415,
+            "hazard_ratio": 2.1656219104581975,
+            "hazard_ratio_low": 0.2688583028281146,
+            "hazard_ratio_high": 17.44382899736949
+          }
+        ]
+      },
+      "interaction": {
+        "model": "Cox proportional hazards",
+        "outcome": "detection",
+        "interaction": true,
+        "n": 13,
+        "ok": false,
+        "reason": "estimates diverged: too few ejections to separate the conditions (see the log-rank test and the curves)"
+      }
+    }
+  },
+  "confirmatory": [
+    {
+      "id": "RQ1a",
+      "question": "Vote threshold -> good-team win",
+      "outcome": "crew_win",
+      "contrast": "majority vs plurality",
+      "test": "logistic",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "odds_ratio",
+        "value": 4.236736369775955,
+        "low": 0.32806636564205766,
+        "high": 54.71434120304463
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.9,
+        "p0": 0.7,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": 0.20000000000000007,
+        "rd_low": -0.15979360150622524,
+        "rd_high": 0.5141461574374271,
+        "odds_ratio": 3.857142857142857,
+        "p_fisher": 0.5820433436532508,
+        "z": 1.1180339887498953,
+        "p_z": 0.2635524772829726
+      },
+      "p": 0.2686813654457044,
+      "p_holm": 1.0,
+      "significant": false
+    },
+    {
+      "id": "RQ1b",
+      "question": "Vote threshold -> damage absorbed",
+      "outcome": "kills",
+      "contrast": "majority vs plurality",
+      "test": "Poisson (robust SE)",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "rate_ratio",
+        "value": 0.9487706135907934,
+        "low": 0.5157565546250866,
+        "high": 1.745330561756599
+      },
+      "pooled": {
+        "ok": true,
+        "n1": 10,
+        "n0": 10,
+        "mean1": 1.3,
+        "mean0": 1.4,
+        "median1": 1.0,
+        "median0": 1.0,
+        "cliffs_delta": -0.03,
+        "u": 48.5,
+        "p": 0.9351237474130928
+      },
+      "p": 0.8657191079349882,
+      "p_holm": 1.0,
+      "significant": false
+    },
+    {
+      "id": "H1",
+      "question": "Vote threshold -> wrongful removal",
+      "outcome": "wrongful_any",
+      "contrast": "majority vs plurality",
+      "test": "Fisher's exact test",
+      "fallback_reason": "did not converge (ConvergenceWarning)",
+      "effect": {
+        "measure": "risk_difference",
+        "value": -0.2,
+        "low": -0.5098375284633583,
+        "high": 0.11235310261222181
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.0,
+        "p0": 0.2,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": -0.2,
+        "rd_low": -0.5098375284633583,
+        "rd_high": 0.11235310261222181,
+        "odds_ratio": 0.0,
+        "p_fisher": 0.4736842105263158,
+        "z": -1.4907119849998598,
+        "p_z": 0.13603712811414362
+      },
+      "p": 0.4736842105263158,
+      "p_holm": 1.0,
+      "significant": false
+    },
+    {
+      "id": "RQ2",
+      "question": "Discussion protocol -> wrongful removal",
+      "outcome": "wrongful_any",
+      "contrast": "justification vs freeform",
+      "test": "Fisher's exact test",
+      "fallback_reason": "did not converge (ConvergenceWarning)",
+      "effect": {
+        "measure": "risk_difference",
+        "value": 0.2,
+        "low": -0.11235310261222181,
+        "high": 0.5098375284633583
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.2,
+        "p0": 0.0,
+        "n1": 10,
+        "n0": 10,
+        "risk_difference": 0.2,
+        "rd_low": -0.11235310261222181,
+        "rd_high": 0.5098375284633583,
+        "odds_ratio": null,
+        "p_fisher": 0.4736842105263158,
+        "z": 1.4907119849998598,
+        "p_z": 0.13603712811414362
+      },
+      "p": 0.4736842105263158,
+      "p_holm": 1.0,
+      "significant": false
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "An absolute majority reduces wrongful removal but increases damage absorbed, so its effect on the win rate is non-monotone.",
+      "verdict": "inconclusive",
+      "why": "under majority: wrongful removal not clearly different, damage not clearly different, win rate not clearly different"
+    },
+    {
+      "id": "H2",
+      "statement": "Requiring a justification lowers the wrongful-removal rate.",
+      "verdict": "inconclusive",
+      "why": "the effect of justification on wrongful removal is not clearly different from none"
+    },
+    {
+      "id": "H3",
+      "statement": "The benefit of justification is larger under plurality.",
+      "verdict": "not testable",
+      "why": "did not converge (ConvergenceWarning)"
+    }
+  ],
+  "run": {
+    "run_id": "20261015-143442-pilot2",
+    "name": "pilot2",
+    "created": "2026-10-15T12:34:42+00:00",
+    "status": {
+      "state": "completed",
+      "error": null,
+      "updated": "2026-10-15T12:52:41+00:00"
+    },
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "conditions": [
+      "plurality/freeform",
+      "plurality/justification",
+      "majority/freeform",
+      "majority/justification"
+    ],
+    "games_per_condition": 5,
+    "total": 20,
+    "valid": 20,
+    "failed": 0,
+    "attempts": 20,
+    "cost_usd": 0.48700205
+  },
+  "quality": {
+    "attempts": 20,
+    "valid_games": 20,
+    "invalid_attempts": 0,
+    "invalid_reasons": {},
+    "failed_slots": 0,
+    "decisions": 1302,
+    "parse_rate": 1.0,
+    "reprompts": 2,
+    "refusals": 0,
+    "cost_usd": 0.48700205,
+    "gates": [
+      {
+        "id": "parse",
+        "label": "Coherent play",
+        "detail": "100.0% of turns were read as a valid move (need at least 95%)",
+        "pass": true
+      },
+      {
+        "id": "baseline",
+        "label": "Baseline win rate",
+        "detail": "the crew wins 60% of 5 baseline games (need 15%-85%); adjust tasks per player or the time limit if not",
+        "pass": true
+      },
+      {
+        "id": "meetings",
+        "label": "Governance is exercised",
+        "detail": "65% of games held at least one meeting (want at least 50%); 0.70 meetings per game",
+        "pass": true
+      }
+    ],
+    "cost_per_game_usd": 0.0243501025,
+    "seconds_per_game": 194.24599999999995,
+    "calls_per_game": 65.2,
+    "prompt_tokens_per_call": 2121.8657975460123,
+    "output_tokens_per_call": 472.64493865030676,
+    "cache_hit_share": 0.395805722839858,
+    "meetings_per_game": 0.7,
+    "games_with_meeting": 0.65,
+    "rule_changed_outcome": {
+      "k": 0,
+      "n": 14,
+      "p": 0.0,
+      "low": 2.7755575615628914e-17,
+      "high": 0.21531080273763586
+    },
+    "justification_compliance": 1.0,
+    "projection": {
+      "15": {
+        "games": 60,
+        "cost_usd": 1.46100615,
+        "minutes": 48.56149999999999,
+        "detectable_difference": 0.335
+      },
+      "20": {
+        "games": 80,
+        "cost_usd": 1.9480082,
+        "minutes": 64.74866666666665,
+        "detectable_difference": 0.295
+      },
+      "30": {
+        "games": 120,
+        "cost_usd": 2.9220123,
+        "minutes": 97.12299999999998,
+        "detectable_difference": 0.246
+      }
+    }
+  },
+  "charts": {
+    "thresholds": [
+      "plurality",
+      "majority"
+    ],
+    "groups": [
+      {
+        "key": "freeform/public",
+        "protocol": "freeform",
+        "ballot": "public",
+        "label": "Free-form"
+      },
+      {
+        "key": "justification/public",
+        "protocol": "justification",
+        "ballot": "public",
+        "label": "Justification"
+      }
+    ],
+    "cells": {
+      "plurality|freeform/public": {
+        "condition": "plurality/freeform",
+        "threshold": "plurality",
+        "group": "freeform/public",
+        "label": "Plurality · Free-form",
+        "n": 5,
+        "win": {
+          "k": 3,
+          "n": 5,
+          "p": 0.6,
+          "low": 0.2307242812760129,
+          "high": 0.8823792257673522
+        },
+        "wrongful": {
+          "k": 0,
+          "n": 5,
+          "p": 0.0,
+          "low": 0.0,
+          "high": 0.43448246478317487
+        },
+        "kills": {
+          "0": 1,
+          "1": 2,
+          "2": 0,
+          "3+": 2
+        },
+        "kills_mean": 1.6,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.0
+          },
+          {
+            "t": 2,
+            "mean": 0.0
+          },
+          {
+            "t": 3,
+            "mean": 0.2
+          },
+          {
+            "t": 4,
+            "mean": 0.4
+          },
+          {
+            "t": 5,
+            "mean": 0.6
+          },
+          {
+            "t": 6,
+            "mean": 0.8
+          },
+          {
+            "t": 7,
+            "mean": 0.8
+          },
+          {
+            "t": 8,
+            "mean": 0.8
+          },
+          {
+            "t": 9,
+            "mean": 0.8
+          },
+          {
+            "t": 10,
+            "mean": 1.0
+          },
+          {
+            "t": 11,
+            "mean": 1.0
+          },
+          {
+            "t": 12,
+            "mean": 1.0
+          },
+          {
+            "t": 13,
+            "mean": 1.2
+          },
+          {
+            "t": 14,
+            "mean": 1.4
+          },
+          {
+            "t": 15,
+            "mean": 1.4
+          },
+          {
+            "t": 16,
+            "mean": 1.4
+          },
+          {
+            "t": 17,
+            "mean": 1.6
+          },
+          {
+            "t": 18,
+            "mean": 1.6
+          },
+          {
+            "t": 19,
+            "mean": 1.6
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 5
+          },
+          {
+            "t": 1.0,
+            "s": 0.6666666666666667,
+            "at_risk": 3
+          }
+        ],
+        "meetings_max": 1
+      },
+      "majority|freeform/public": {
+        "condition": "majority/freeform",
+        "threshold": "majority",
+        "group": "freeform/public",
+        "label": "Majority · Free-form",
+        "n": 5,
+        "win": {
+          "k": 4,
+          "n": 5,
+          "p": 0.8,
+          "low": 0.3755346297625252,
+          "high": 0.9637758913675698
+        },
+        "wrongful": {
+          "k": 0,
+          "n": 5,
+          "p": 0.0,
+          "low": 0.0,
+          "high": 0.43448246478317487
+        },
+        "kills": {
+          "0": 1,
+          "1": 1,
+          "2": 2,
+          "3+": 1
+        },
+        "kills_mean": 1.6,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.2
+          },
+          {
+            "t": 2,
+            "mean": 0.2
+          },
+          {
+            "t": 3,
+            "mean": 0.4
+          },
+          {
+            "t": 4,
+            "mean": 0.6
+          },
+          {
+            "t": 5,
+            "mean": 0.6
+          },
+          {
+            "t": 6,
+            "mean": 0.6
+          },
+          {
+            "t": 7,
+            "mean": 0.8
+          },
+          {
+            "t": 8,
+            "mean": 0.8
+          },
+          {
+            "t": 9,
+            "mean": 0.8
+          },
+          {
+            "t": 10,
+            "mean": 0.8
+          },
+          {
+            "t": 11,
+            "mean": 1.0
+          },
+          {
+            "t": 12,
+            "mean": 1.0
+          },
+          {
+            "t": 13,
+            "mean": 1.2
+          },
+          {
+            "t": 14,
+            "mean": 1.2
+          },
+          {
+            "t": 15,
+            "mean": 1.2
+          },
+          {
+            "t": 16,
+            "mean": 1.2
+          },
+          {
+            "t": 17,
+            "mean": 1.6
+          },
+          {
+            "t": 18,
+            "mean": 1.6
+          },
+          {
+            "t": 19,
+            "mean": 1.6
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 5
+          },
+          {
+            "t": 1.0,
+            "s": 0.75,
+            "at_risk": 4
+          }
+        ],
+        "meetings_max": 2
+      },
+      "plurality|justification/public": {
+        "condition": "plurality/justification",
+        "threshold": "plurality",
+        "group": "justification/public",
+        "label": "Plurality · Justification",
+        "n": 5,
+        "win": {
+          "k": 4,
+          "n": 5,
+          "p": 0.8,
+          "low": 0.3755346297625252,
+          "high": 0.9637758913675698
+        },
+        "wrongful": {
+          "k": 2,
+          "n": 5,
+          "p": 0.4,
+          "low": 0.11762077423264788,
+          "high": 0.7692757187239871
+        },
+        "kills": {
+          "0": 0,
+          "1": 4,
+          "2": 1,
+          "3+": 0
+        },
+        "kills_mean": 1.2,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.2
+          },
+          {
+            "t": 2,
+            "mean": 0.2
+          },
+          {
+            "t": 3,
+            "mean": 0.4
+          },
+          {
+            "t": 4,
+            "mean": 0.8
+          },
+          {
+            "t": 5,
+            "mean": 0.8
+          },
+          {
+            "t": 6,
+            "mean": 1.0
+          },
+          {
+            "t": 7,
+            "mean": 1.0
+          },
+          {
+            "t": 8,
+            "mean": 1.0
+          },
+          {
+            "t": 9,
+            "mean": 1.0
+          },
+          {
+            "t": 10,
+            "mean": 1.0
+          },
+          {
+            "t": 11,
+            "mean": 1.2
+          },
+          {
+            "t": 12,
+            "mean": 1.2
+          },
+          {
+            "t": 13,
+            "mean": 1.2
+          },
+          {
+            "t": 14,
+            "mean": 1.2
+          },
+          {
+            "t": 15,
+            "mean": 1.2
+          },
+          {
+            "t": 16,
+            "mean": 1.2
+          },
+          {
+            "t": 17,
+            "mean": 1.2
+          },
+          {
+            "t": 18,
+            "mean": 1.2
+          },
+          {
+            "t": 19,
+            "mean": 1.2
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 5
+          }
+        ],
+        "meetings_max": 1
+      },
+      "majority|justification/public": {
+        "condition": "majority/justification",
+        "threshold": "majority",
+        "group": "justification/public",
+        "label": "Majority · Justification",
+        "n": 5,
+        "win": {
+          "k": 5,
+          "n": 5,
+          "p": 1.0,
+          "low": 0.5655175352168252,
+          "high": 1.0
+        },
+        "wrongful": {
+          "k": 0,
+          "n": 5,
+          "p": 0.0,
+          "low": 0.0,
+          "high": 0.43448246478317487
+        },
+        "kills": {
+          "0": 1,
+          "1": 3,
+          "2": 1,
+          "3+": 0
+        },
+        "kills_mean": 1.0,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.0
+          },
+          {
+            "t": 2,
+            "mean": 0.0
+          },
+          {
+            "t": 3,
+            "mean": 0.2
+          },
+          {
+            "t": 4,
+            "mean": 0.6
+          },
+          {
+            "t": 5,
+            "mean": 0.6
+          },
+          {
+            "t": 6,
+            "mean": 0.6
+          },
+          {
+            "t": 7,
+            "mean": 0.6
+          },
+          {
+            "t": 8,
+            "mean": 0.6
+          },
+          {
+            "t": 9,
+            "mean": 0.8
+          },
+          {
+            "t": 10,
+            "mean": 0.8
+          },
+          {
+            "t": 11,
+            "mean": 0.8
+          },
+          {
+            "t": 12,
+            "mean": 1.0
+          },
+          {
+            "t": 13,
+            "mean": 1.0
+          },
+          {
+            "t": 14,
+            "mean": 1.0
+          },
+          {
+            "t": 15,
+            "mean": 1.0
+          },
+          {
+            "t": 16,
+            "mean": 1.0
+          },
+          {
+            "t": 17,
+            "mean": 1.0
+          },
+          {
+            "t": 18,
+            "mean": 1.0
+          },
+          {
+            "t": 19,
+            "mean": 1.0
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 5
+          },
+          {
+            "t": 1.0,
+            "s": 0.0,
+            "at_risk": 2
+          }
+        ],
+        "meetings_max": 1
+      }
+    },
+    "max_timestep": 19,
+    "max_meetings": 2,
+    "labels": {
+      "plurality": "Plurality",
+      "majority": "Majority",
+      "supermajority": "Supermajority",
+      "freeform": "Free-form",
+      "justification": "Justification",
+      "public": "Public ballot",
+      "secret": "Secret ballot"
+    },
+    "colours": {
+      "threshold": {
+        "light": {
+          "plurality": "#2a78d6",
+          "majority": "#eb6834",
+          "supermajority": "#1baf7a"
+        },
+        "dark": {
+          "plurality": "#3987e5",
+          "majority": "#d95926",
+          "supermajority": "#199e70"
+        }
+      },
+      "kills": {
+        "light": [
+          "#86b6ef",
+          "#3987e5",
+          "#1c5cab",
+          "#0d366b"
+        ],
+        "dark": [
+          "#1c5cab",
+          "#3987e5",
+          "#86b6ef",
+          "#cde2fb"
+        ]
+      }
+    },
+    "kill_bins": [
+      "0",
+      "1",
+      "2",
+      "3+"
+    ]
+  },
+  "damage_weights": {
+    "KILL": 1.0
+  },
+  "is_mock": false,
+  "max_fallback_rate": 0.05,
+  "figures": {}
+}

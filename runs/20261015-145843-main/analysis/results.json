@@ -1,0 +1,1762 @@
+{
+  "ok": true,
+  "n_games": 80,
+  "conditions": [
+    "plurality/freeform",
+    "plurality/justification",
+    "majority/freeform",
+    "majority/justification"
+  ],
+  "factors": {
+    "threshold": [
+      "plurality",
+      "majority"
+    ],
+    "protocol": [
+      "freeform",
+      "justification"
+    ]
+  },
+  "cells": [
+    {
+      "condition": "plurality/freeform",
+      "threshold": "plurality",
+      "protocol": "freeform",
+      "ballot": "public",
+      "n": 20,
+      "crew_win": {
+        "k": 19,
+        "n": 20,
+        "p": 0.95,
+        "low": 0.7638688065532577,
+        "high": 0.9911185511992044
+      },
+      "wrongful_any": {
+        "k": 1,
+        "n": 20,
+        "p": 0.05,
+        "low": 0.008881448800795402,
+        "high": 0.2361311934467421
+      },
+      "insider_ejected": {
+        "k": 7,
+        "n": 20,
+        "p": 0.35,
+        "low": 0.18119182410108203,
+        "high": 0.5671457233147638
+      },
+      "kills_mean": 1.4,
+      "kills_sd": 0.5982430416161189,
+      "kills_distribution": {
+        "1": 13,
+        "2": 6,
+        "3": 1
+      },
+      "kills_per_exposure": 0.1037037037037037,
+      "wrongful_mean": 0.05,
+      "meetings_mean": 1.2,
+      "games_with_meeting": {
+        "k": 18,
+        "n": 20,
+        "p": 0.9,
+        "low": 0.6989663547715127,
+        "high": 0.9721335187862318
+      },
+      "timesteps_mean": 14.7,
+      "reasons": {
+        "tasks": 12,
+        "ejected": 7,
+        "outnumbered": 1
+      },
+      "meetings": 24,
+      "rule_changed_outcome": {
+        "k": 1,
+        "n": 24,
+        "p": 0.041666666666666664,
+        "low": 0.007393456165505796,
+        "high": 0.20241806478655947
+      }
+    },
+    {
+      "condition": "plurality/justification",
+      "threshold": "plurality",
+      "protocol": "justification",
+      "ballot": "public",
+      "n": 20,
+      "crew_win": {
+        "k": 17,
+        "n": 20,
+        "p": 0.85,
+        "low": 0.639581135259243,
+        "high": 0.9476312541037833
+      },
+      "wrongful_any": {
+        "k": 3,
+        "n": 20,
+        "p": 0.15,
+        "low": 0.052368745896216595,
+        "high": 0.36041886474075696
+      },
+      "insider_ejected": {
+        "k": 4,
+        "n": 20,
+        "p": 0.2,
+        "low": 0.080657662579798,
+        "high": 0.4160174322518936
+      },
+      "kills_mean": 1.25,
+      "kills_sd": 0.7163503994113789,
+      "kills_distribution": {
+        "0": 2,
+        "1": 12,
+        "2": 5,
+        "3": 1
+      },
+      "kills_per_exposure": 0.08928571428571429,
+      "wrongful_mean": 0.15,
+      "meetings_mean": 0.65,
+      "games_with_meeting": {
+        "k": 12,
+        "n": 20,
+        "p": 0.6,
+        "low": 0.3865815007622531,
+        "high": 0.781193467627183
+      },
+      "timesteps_mean": 14.65,
+      "reasons": {
+        "tasks": 13,
+        "ejected": 4,
+        "outnumbered": 3
+      },
+      "meetings": 13,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 13,
+        "p": 0.0,
+        "low": 0.0,
+        "high": 0.22809537235419847
+      }
+    },
+    {
+      "condition": "majority/freeform",
+      "threshold": "majority",
+      "protocol": "freeform",
+      "ballot": "public",
+      "n": 20,
+      "crew_win": {
+        "k": 15,
+        "n": 20,
+        "p": 0.75,
+        "low": 0.5312991223812559,
+        "high": 0.8881382985923344
+      },
+      "wrongful_any": {
+        "k": 1,
+        "n": 20,
+        "p": 0.05,
+        "low": 0.008881448800795402,
+        "high": 0.2361311934467421
+      },
+      "insider_ejected": {
+        "k": 4,
+        "n": 20,
+        "p": 0.2,
+        "low": 0.080657662579798,
+        "high": 0.4160174322518936
+      },
+      "kills_mean": 1.6,
+      "kills_sd": 1.046296727561194,
+      "kills_distribution": {
+        "0": 4,
+        "1": 4,
+        "2": 8,
+        "3": 4
+      },
+      "kills_per_exposure": 0.11149825783972125,
+      "wrongful_mean": 0.05,
+      "meetings_mean": 0.9,
+      "games_with_meeting": {
+        "k": 15,
+        "n": 20,
+        "p": 0.75,
+        "low": 0.5312991223812559,
+        "high": 0.8881382985923344
+      },
+      "timesteps_mean": 15.25,
+      "reasons": {
+        "tasks": 11,
+        "outnumbered": 5,
+        "ejected": 4
+      },
+      "meetings": 18,
+      "rule_changed_outcome": {
+        "k": 0,
+        "n": 18,
+        "p": 0.0,
+        "low": 1.3877787807814457e-17,
+        "high": 0.1758792236466577
+      }
+    },
+    {
+      "condition": "majority/justification",
+      "threshold": "majority",
+      "protocol": "justification",
+      "ballot": "public",
+      "n": 20,
+      "crew_win": {
+        "k": 16,
+        "n": 20,
+        "p": 0.8,
+        "low": 0.5839825677481064,
+        "high": 0.919342337420202
+      },
+      "wrongful_any": {
+        "k": 4,
+        "n": 20,
+        "p": 0.2,
+        "low": 0.080657662579798,
+        "high": 0.4160174322518936
+      },
+      "insider_ejected": {
+        "k": 8,
+        "n": 20,
+        "p": 0.4,
+        "low": 0.21880653237281705,
+        "high": 0.6134184992377469
+      },
+      "kills_mean": 1.45,
+      "kills_sd": 0.5104177855340404,
+      "kills_distribution": {
+        "1": 11,
+        "2": 9
+      },
+      "kills_per_exposure": 0.10820895522388059,
+      "wrongful_mean": 0.25,
+      "meetings_mean": 1.05,
+      "games_with_meeting": {
+        "k": 17,
+        "n": 20,
+        "p": 0.85,
+        "low": 0.639581135259243,
+        "high": 0.9476312541037833
+      },
+      "timesteps_mean": 14.45,
+      "reasons": {
+        "tasks": 8,
+        "ejected": 8,
+        "outnumbered": 4
+      },
+      "meetings": 21,
+      "rule_changed_outcome": {
+        "k": 4,
+        "n": 21,
+        "p": 0.19047619047619047,
+        "low": 0.07667565052761788,
+        "high": 0.4000056469020493
+      }
+    }
+  ],
+  "models": {
+    "crew_win": {
+      "main": {
+        "model": "logistic",
+        "outcome": "crew_win",
+        "interaction": false,
+        "n": 80,
+        "ok": true,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": 2.2955329027450753,
+            "se": 0.6228733789285709,
+            "p": 0.0002283504185190375,
+            "low": 1.0747235131163067,
+            "high": 3.516342292373844,
+            "odds_ratio": 9.929726180927121,
+            "odds_ratio_low": 2.929182907908718,
+            "odds_ratio_high": 33.66108062489835
+          },
+          {
+            "term": "threshold: majority",
+            "coef": -0.9615808429792773,
+            "se": 0.6493437269467888,
+            "p": 0.13864647339186062,
+            "low": -2.234271161381994,
+            "high": 0.3111094754234397,
+            "odds_ratio": 0.38228807062950554,
+            "odds_ratio_low": 0.10707013827349555,
+            "odds_ratio_high": 1.3649386402427648
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -0.18944379735704645,
+            "se": 0.6165760426541805,
+            "p": 0.7586520926146062,
+            "low": -1.3979106346894725,
+            "high": 1.0190230399753797,
+            "odds_ratio": 0.8274192187376044,
+            "odds_ratio_low": 0.24711273371185008,
+            "odds_ratio_high": 2.770486786547646
+          }
+        ]
+      },
+      "interaction": {
+        "model": "logistic",
+        "outcome": "crew_win",
+        "interaction": true,
+        "n": 80,
+        "ok": true,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": 2.9444389791664394,
+            "se": 1.0259783520851493,
+            "p": 0.004106222531187238,
+            "low": 0.9335583601617916,
+            "high": 4.955319598171087,
+            "odds_ratio": 18.99999999999998,
+            "odds_ratio_low": 2.5435439390396204,
+            "odds_ratio_high": 141.92795904139322
+          },
+          {
+            "term": "threshold: majority",
+            "coef": -1.8458266904983298,
+            "se": 1.1486070893103633,
+            "p": 0.10805148466686011,
+            "low": -4.097055217934023,
+            "high": 0.4054018369373633,
+            "odds_ratio": 0.15789473684210542,
+            "odds_ratio_low": 0.016621550246633778,
+            "odds_ratio_high": 1.499905096246166
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -1.2098379237783339,
+            "se": 1.201993528140836,
+            "p": 0.3141625367592753,
+            "low": -3.5657019485846044,
+            "high": 1.146026101027937,
+            "odds_ratio": 0.29824561403508776,
+            "odds_ratio_low": 0.028277129425059264,
+            "odds_ratio_high": 3.14566747402367
+          },
+          {
+            "term": "threshold: majority x protocol: justification",
+            "coef": 1.4975199962301144,
+            "se": 1.4226577622039394,
+            "p": 0.292514548141922,
+            "low": -1.2908379800159553,
+            "high": 4.285877972476184,
+            "odds_ratio": 4.470588235294115,
+            "odds_ratio_low": 0.2750402082965739,
+            "odds_ratio_high": 72.66631774798257
+          }
+        ]
+      }
+    },
+    "wrongful_any": {
+      "main": {
+        "model": "logistic",
+        "outcome": "wrongful_any",
+        "interaction": false,
+        "n": 80,
+        "ok": true,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -3.0828860050940747,
+            "se": 0.8313555112556071,
+            "p": 0.00020868473846408052,
+            "low": -4.712312865503948,
+            "high": -1.4534591446842011,
+            "odds_ratio": 0.0458268092141509,
+            "odds_ratio_low": 0.008983974809277064,
+            "odds_ratio_high": 0.23376027730861146
+          },
+          {
+            "term": "threshold: majority",
+            "coef": 0.26153518838607015,
+            "se": 0.7258743389655816,
+            "p": 0.7186200550120134,
+            "low": -1.1611523732882891,
+            "high": 1.6842227500604294,
+            "odds_ratio": 1.2989226477593512,
+            "odds_ratio_low": 0.31312513585078827,
+            "odds_ratio_high": 5.388261278603182
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 1.3959655801559445,
+            "se": 0.8369365035195024,
+            "p": 0.09532628400941505,
+            "low": -0.2443998240891605,
+            "high": 3.0363309844010495,
+            "odds_ratio": 4.0388725456091,
+            "odds_ratio_low": 0.7831744396486728,
+            "odds_ratio_high": 20.82868210943224
+          }
+        ]
+      },
+      "interaction": {
+        "model": "logistic",
+        "outcome": "wrongful_any",
+        "interaction": true,
+        "n": 80,
+        "ok": true,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -2.9444389791664416,
+            "se": 1.0259783520851558,
+            "p": 0.00410622253118744,
+            "low": -4.955319598171101,
+            "high": -0.9335583601617814,
+            "odds_ratio": 0.05263157894736836,
+            "odds_ratio_low": 0.007045828085982243,
+            "odds_ratio_high": 0.39315224111189745
+          },
+          {
+            "term": "threshold: majority",
+            "coef": 1.836505042315237e-15,
+            "se": 1.4509525002200245,
+            "p": 0.999999999999999,
+            "low": -2.843814643709591,
+            "high": 2.8438146437095946,
+            "odds_ratio": 1.0000000000000018,
+            "odds_ratio_low": 0.05820321741607538,
+            "odds_ratio_high": 17.181180773071997
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 1.2098379237783354,
+            "se": 1.2019935281408423,
+            "p": 0.3141625367592773,
+            "low": -1.1460261010279473,
+            "high": 3.565701948584618,
+            "odds_ratio": 3.3529411764705928,
+            "odds_ratio_low": 0.3178975553702994,
+            "odds_ratio_high": 35.364268592052035
+          },
+          {
+            "term": "threshold: majority x protocol: justification",
+            "coef": 0.34830669426821403,
+            "se": 1.6762816054111664,
+            "p": 0.8353966026302111,
+            "low": -2.9371448802846545,
+            "high": 3.6337582688210825,
+            "odds_ratio": 1.4166666666666643,
+            "odds_ratio_low": 0.05301688240095838,
+            "odds_ratio_high": 37.85481819293392
+          }
+        ]
+      }
+    },
+    "kills": {
+      "main": {
+        "model": "Poisson (robust SE)",
+        "outcome": "kills",
+        "interaction": false,
+        "n": 80,
+        "note": "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used",
+        "ok": true,
+        "dispersion": null,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -2.2969212452698216,
+            "se": 0.10663240400371539,
+            "p": 6.492324429877312e-103,
+            "low": -2.5059169167020285,
+            "high": -2.0879255738376146,
+            "rate_ratio": 0.10056799176345957,
+            "rate_ratio_low": 0.08160074258867873,
+            "rate_ratio_high": 0.12394398196001803
+          },
+          {
+            "term": "threshold: majority",
+            "coef": 0.1292885538090393,
+            "se": 0.13186286539744704,
+            "p": 0.3268505410794491,
+            "low": -0.1291579132682098,
+            "high": 0.3877350208862884,
+            "rate_ratio": 1.1380184563530396,
+            "rate_ratio_low": 0.8788351748527469,
+            "rate_ratio_high": 1.4736392489264585
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -0.0856876600100388,
+            "se": 0.13206014182954207,
+            "p": 0.5164331965687747,
+            "low": -0.3445207817891927,
+            "high": 0.1731454617691151,
+            "rate_ratio": 0.9178808773563141,
+            "rate_ratio_low": 0.7085598268928731,
+            "rate_ratio_high": 1.1890390522292127
+          }
+        ]
+      },
+      "interaction": {
+        "model": "Poisson (robust SE)",
+        "outcome": "kills",
+        "interaction": true,
+        "n": 80,
+        "note": "negative binomial could not be estimated (no overdispersion); Poisson with robust standard errors used",
+        "ok": true,
+        "dispersion": null,
+        "terms": [
+          {
+            "term": "intercept",
+            "coef": -2.2662174488231717,
+            "se": 0.11608000164302665,
+            "p": 7.015149257387188e-85,
+            "low": -2.493730071368854,
+            "high": -2.038704826277489,
+            "rate_ratio": 0.10370370370370362,
+            "rate_ratio_low": 0.08260128254728964,
+            "rate_ratio_high": 0.13019722975498077
+          },
+          {
+            "term": "threshold: majority",
+            "coef": 0.07247113586327626,
+            "se": 0.19627217917892792,
+            "p": 0.7119503759212268,
+            "low": -0.31221526649461473,
+            "high": 0.4571575382211672,
+            "rate_ratio": 1.0751617720258835,
+            "rate_ratio_low": 0.7318239740892802,
+            "rate_ratio_high": 1.579577708511655
+          },
+          {
+            "term": "protocol: justification",
+            "coef": -0.14969632947787742,
+            "se": 0.17832289975592994,
+            "p": 0.40120686019561436,
+            "low": -0.4992027906182465,
+            "high": 0.19981013166249167,
+            "rate_ratio": 0.8609693877551026,
+            "rate_ratio_low": 0.6070143844342016,
+            "rate_ratio_high": 1.2211708744634324
+          },
+          {
+            "term": "threshold: majority x protocol: justification",
+            "coef": 0.11975149191339013,
+            "se": 0.2638197376450352,
+            "p": 0.6498906733698988,
+            "low": -0.39732569228168474,
+            "high": 0.6368286761084649,
+            "rate_ratio": 1.1272166943062467,
+            "rate_ratio_low": 0.672115087284995,
+            "rate_ratio_high": 1.8904760508432483
+          }
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "threshold: majority": {
+      "factor": "threshold",
+      "level": "majority",
+      "reference": "plurality",
+      "crew_win": {
+        "ok": true,
+        "p1": 0.775,
+        "p0": 0.9,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": -0.125,
+        "rd_low": -0.28674029967861236,
+        "rd_high": 0.04054782768741699,
+        "odds_ratio": 0.38271604938271603,
+        "p_fisher": 0.22468486934301732,
+        "z": -1.515325460564539,
+        "p_z": 0.12969000366584144
+      },
+      "wrongful_any": {
+        "ok": true,
+        "p1": 0.125,
+        "p0": 0.1,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": 0.024999999999999994,
+        "rd_low": -0.1232961473896752,
+        "rd_high": 0.1739282176249362,
+        "odds_ratio": 1.2857142857142858,
+        "p_fisher": 1.0,
+        "z": 0.35382992828951676,
+        "p_z": 0.7234663430229299
+      },
+      "kills": {
+        "ok": true,
+        "n1": 40,
+        "n0": 40,
+        "mean1": 1.525,
+        "mean0": 1.325,
+        "median1": 2.0,
+        "median0": 1.0,
+        "cliffs_delta": 0.1625,
+        "u": 930.0,
+        "p": 0.17174227973157663
+      }
+    },
+    "protocol: justification": {
+      "factor": "protocol",
+      "level": "justification",
+      "reference": "freeform",
+      "crew_win": {
+        "ok": true,
+        "p1": 0.825,
+        "p0": 0.85,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": -0.025000000000000022,
+        "rd_low": -0.18987175654076838,
+        "rd_high": 0.14073264420559908,
+        "odds_ratio": 0.8319327731092437,
+        "p_fisher": 1.0,
+        "z": -0.3030650921129081,
+        "p_z": 0.7618402562982077
+      },
+      "wrongful_any": {
+        "ok": true,
+        "p1": 0.175,
+        "p0": 0.05,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": 0.12499999999999999,
+        "rd_low": -0.019562088737791347,
+        "rd_high": 0.2739602838586835,
+        "odds_ratio": 4.03030303030303,
+        "p_fisher": 0.1543042703784857,
+        "z": 1.7691496414475838,
+        "p_z": 0.07686890551568952
+      },
+      "kills": {
+        "ok": true,
+        "n1": 40,
+        "n0": 40,
+        "mean1": 1.35,
+        "mean0": 1.5,
+        "median1": 1.0,
+        "median0": 1.0,
+        "cliffs_delta": -0.09875,
+        "u": 721.0,
+        "p": 0.4074334619939911
+      }
+    }
+  },
+  "detection": {
+    "curves": {
+      "plurality/freeform": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 20
+        },
+        {
+          "t": 1.0,
+          "s": 0.6666666666666667,
+          "at_risk": 18
+        },
+        {
+          "t": 3.0,
+          "s": 0.0,
+          "at_risk": 1
+        }
+      ],
+      "plurality/justification": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 20
+        },
+        {
+          "t": 1.0,
+          "s": 0.6666666666666667,
+          "at_risk": 12
+        }
+      ],
+      "majority/freeform": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 20
+        },
+        {
+          "t": 1.0,
+          "s": 0.7333333333333334,
+          "at_risk": 15
+        }
+      ],
+      "majority/justification": [
+        {
+          "t": 0.0,
+          "s": 1.0,
+          "at_risk": 20
+        },
+        {
+          "t": 1.0,
+          "s": 0.6470588235294117,
+          "at_risk": 17
+        },
+        {
+          "t": 2.0,
+          "s": 0.32352941176470584,
+          "at_risk": 4
+        }
+      ]
+    },
+    "max_time": 3,
+    "logrank": {
+      "threshold": {
+        "ok": true,
+        "chi2": 0.09258718402915908,
+        "df": 1,
+        "p": 0.7609134973230681,
+        "groups": [
+          "majority",
+          "plurality"
+        ],
+        "observed": [
+          12.0,
+          11.0
+        ],
+        "expected": [
+          11.399503722084367,
+          11.600496277915633
+        ]
+      },
+      "protocol": {
+        "ok": true,
+        "chi2": 0.9111641846071382,
+        "df": 1,
+        "p": 0.33980571488723177,
+        "groups": [
+          "freeform",
+          "justification"
+        ],
+        "observed": [
+          11.0,
+          12.0
+        ],
+        "expected": [
+          12.87593052109181,
+          10.12406947890819
+        ]
+      }
+    },
+    "logrank_conditions": {
+      "ok": true,
+      "chi2": 1.3535448642824548,
+      "df": 3,
+      "p": 0.7164592665357676,
+      "groups": [
+        "majority/freeform",
+        "majority/justification",
+        "plurality/freeform",
+        "plurality/justification"
+      ],
+      "observed": [
+        4.0,
+        8.0,
+        7.0,
+        4.0
+      ],
+      "expected": [
+        5.300248138957817,
+        6.099255583126551,
+        7.575682382133995,
+        4.024813895781638
+      ]
+    },
+    "cox": {
+      "main": {
+        "model": "Cox proportional hazards",
+        "outcome": "detection",
+        "interaction": false,
+        "n": 62,
+        "ok": true,
+        "events": 23,
+        "terms": [
+          {
+            "term": "threshold: majority",
+            "coef": 0.0525367506526704,
+            "se": 0.4327365402399373,
+            "p": 0.90336957774564,
+            "low": -0.7956112830120745,
+            "high": 0.9006847843174153,
+            "hazard_ratio": 1.0539412943972593,
+            "hazard_ratio_low": 0.4513052753384084,
+            "hazard_ratio_high": 2.4612879856164986
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 0.3683528994665765,
+            "se": 0.4334923103983041,
+            "p": 0.3954733185793965,
+            "low": -0.4812764164891575,
+            "high": 1.2179822154223106,
+            "hazard_ratio": 1.4453520129381976,
+            "hazard_ratio_low": 0.617994070340256,
+            "hazard_ratio_high": 3.3803600092057717
+          }
+        ]
+      },
+      "interaction": {
+        "model": "Cox proportional hazards",
+        "outcome": "detection",
+        "interaction": true,
+        "n": 62,
+        "ok": true,
+        "events": 23,
+        "terms": [
+          {
+            "term": "threshold: majority",
+            "coef": -0.224617145937295,
+            "se": 0.6460304744540584,
+            "p": 0.7280743907048264,
+            "low": -1.4908136087825727,
+            "high": 1.0415793169079828,
+            "hazard_ratio": 0.7988219924674832,
+            "hazard_ratio_low": 0.2251893649410713,
+            "hazard_ratio_high": 2.8336887748526904
+          },
+          {
+            "term": "protocol: justification",
+            "coef": 0.08959887031338262,
+            "se": 0.6484073543600158,
+            "p": 0.8900957940560407,
+            "low": -1.181256191543149,
+            "high": 1.360453932169914,
+            "hazard_ratio": 1.0937354659349843,
+            "hazard_ratio_low": 0.3068929799923898,
+            "hazard_ratio_high": 3.897962310749764
+          },
+          {
+            "term": "threshold: majority x protocol: justification",
+            "coef": 0.523711172762923,
+            "se": 0.8922355906377969,
+            "p": 0.5572271310669474,
+            "low": -1.225038450611982,
+            "high": 2.272460796137828,
+            "hazard_ratio": 1.6882815423591826,
+            "hazard_ratio_low": 0.29374640537733115,
+            "hazard_ratio_high": 9.703249177157971
+          }
+        ]
+      }
+    }
+  },
+  "confirmatory": [
+    {
+      "id": "RQ1a",
+      "question": "Vote threshold -> good-team win",
+      "outcome": "crew_win",
+      "contrast": "majority vs plurality",
+      "test": "logistic",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "odds_ratio",
+        "value": 0.38228807062950554,
+        "low": 0.10707013827349555,
+        "high": 1.3649386402427648
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.775,
+        "p0": 0.9,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": -0.125,
+        "rd_low": -0.28674029967861236,
+        "rd_high": 0.04054782768741699,
+        "odds_ratio": 0.38271604938271603,
+        "p_fisher": 0.22468486934301732,
+        "z": -1.515325460564539,
+        "p_z": 0.12969000366584144
+      },
+      "p": 0.13864647339186062,
+      "p_holm": 0.41593942017558183,
+      "significant": false
+    },
+    {
+      "id": "RQ1b",
+      "question": "Vote threshold -> damage absorbed",
+      "outcome": "kills",
+      "contrast": "majority vs plurality",
+      "test": "Poisson (robust SE)",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "rate_ratio",
+        "value": 1.1380184563530396,
+        "low": 0.8788351748527469,
+        "high": 1.4736392489264585
+      },
+      "pooled": {
+        "ok": true,
+        "n1": 40,
+        "n0": 40,
+        "mean1": 1.525,
+        "mean0": 1.325,
+        "median1": 2.0,
+        "median0": 1.0,
+        "cliffs_delta": 0.1625,
+        "u": 930.0,
+        "p": 0.17174227973157663
+      },
+      "p": 0.3268505410794491,
+      "p_holm": 0.6537010821588982,
+      "significant": false
+    },
+    {
+      "id": "H1",
+      "question": "Vote threshold -> wrongful removal",
+      "outcome": "wrongful_any",
+      "contrast": "majority vs plurality",
+      "test": "logistic",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "odds_ratio",
+        "value": 1.2989226477593512,
+        "low": 0.31312513585078827,
+        "high": 5.388261278603182
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.125,
+        "p0": 0.1,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": 0.024999999999999994,
+        "rd_low": -0.1232961473896752,
+        "rd_high": 0.1739282176249362,
+        "odds_ratio": 1.2857142857142858,
+        "p_fisher": 1.0,
+        "z": 0.35382992828951676,
+        "p_z": 0.7234663430229299
+      },
+      "p": 0.7186200550120134,
+      "p_holm": 0.7186200550120134,
+      "significant": false
+    },
+    {
+      "id": "RQ2",
+      "question": "Discussion protocol -> wrongful removal",
+      "outcome": "wrongful_any",
+      "contrast": "justification vs freeform",
+      "test": "logistic",
+      "fallback_reason": null,
+      "effect": {
+        "measure": "odds_ratio",
+        "value": 4.0388725456091,
+        "low": 0.7831744396486728,
+        "high": 20.82868210943224
+      },
+      "pooled": {
+        "ok": true,
+        "p1": 0.175,
+        "p0": 0.05,
+        "n1": 40,
+        "n0": 40,
+        "risk_difference": 0.12499999999999999,
+        "rd_low": -0.019562088737791347,
+        "rd_high": 0.2739602838586835,
+        "odds_ratio": 4.03030303030303,
+        "p_fisher": 0.1543042703784857,
+        "z": 1.7691496414475838,
+        "p_z": 0.07686890551568952
+      },
+      "p": 0.09532628400941505,
+      "p_holm": 0.3813051360376602,
+      "significant": false
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "An absolute majority reduces wrongful removal but increases damage absorbed, so its effect on the win rate is non-monotone.",
+      "verdict": "inconclusive",
+      "why": "under majority: wrongful removal not clearly different, damage not clearly different, win rate not clearly different"
+    },
+    {
+      "id": "H2",
+      "statement": "Requiring a justification lowers the wrongful-removal rate.",
+      "verdict": "inconclusive",
+      "why": "the effect of justification on wrongful removal is not clearly different from none"
+    },
+    {
+      "id": "H3",
+      "statement": "The factors interact: the benefit of justification is larger under plurality (exploratory).",
+      "verdict": "inconclusive",
+      "why": "the interval for the interaction includes zero"
+    }
+  ],
+  "run": {
+    "run_id": "20261015-145843-main",
+    "name": "main",
+    "created": "2026-10-15T12:58:43+00:00",
+    "status": {
+      "state": "completed",
+      "error": null,
+      "updated": "2026-10-15T14:14:27+00:00"
+    },
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "conditions": [
+      "plurality/freeform",
+      "plurality/justification",
+      "majority/freeform",
+      "majority/justification"
+    ],
+    "games_per_condition": 20,
+    "total": 80,
+    "valid": 80,
+    "failed": 0,
+    "attempts": 80,
+    "cost_usd": 2.25034809
+  },
+  "quality": {
+    "attempts": 80,
+    "valid_games": 80,
+    "invalid_attempts": 0,
+    "invalid_reasons": {},
+    "failed_slots": 0,
+    "decisions": 5793,
+    "parse_rate": 0.9996547557396859,
+    "reprompts": 16,
+    "refusals": 0,
+    "cost_usd": 2.25034809,
+    "gates": [
+      {
+        "id": "parse",
+        "label": "Coherent play",
+        "detail": "100.0% of turns were read as a valid move (need at least 95%)",
+        "pass": true
+      },
+      {
+        "id": "baseline",
+        "label": "Baseline win rate",
+        "detail": "the crew wins 95% of 20 baseline games (need 15%-85%); adjust tasks per player or the time limit if not",
+        "pass": false
+      },
+      {
+        "id": "meetings",
+        "label": "Governance is exercised",
+        "detail": "78% of games held at least one meeting (want at least 50%); 0.95 meetings per game",
+        "pass": true
+      }
+    ],
+    "cost_per_game_usd": 0.028129351125,
+    "seconds_per_game": 222.37662500000002,
+    "calls_per_game": 72.6125,
+    "prompt_tokens_per_call": 2184.833362024445,
+    "output_tokens_per_call": 489.42967808572905,
+    "cache_hit_share": 0.3874319564988039,
+    "meetings_per_game": 0.95,
+    "games_with_meeting": 0.775,
+    "rule_changed_outcome": {
+      "k": 5,
+      "n": 76,
+      "p": 0.06578947368421052,
+      "low": 0.028426532219532126,
+      "high": 0.14493526533703452
+    },
+    "justification_compliance": 0.9618320610687023,
+    "projection": {
+      "15": {
+        "games": 60,
+        "cost_usd": 1.6877610675,
+        "minutes": 55.594156250000005,
+        "detectable_difference": 0.335
+      },
+      "20": {
+        "games": 80,
+        "cost_usd": 2.25034809,
+        "minutes": 74.12554166666668,
+        "detectable_difference": 0.295
+      },
+      "30": {
+        "games": 120,
+        "cost_usd": 3.375522135,
+        "minutes": 111.18831250000001,
+        "detectable_difference": 0.246
+      }
+    }
+  },
+  "charts": {
+    "thresholds": [
+      "plurality",
+      "majority"
+    ],
+    "groups": [
+      {
+        "key": "freeform/public",
+        "protocol": "freeform",
+        "ballot": "public",
+        "label": "Free-form"
+      },
+      {
+        "key": "justification/public",
+        "protocol": "justification",
+        "ballot": "public",
+        "label": "Justification"
+      }
+    ],
+    "cells": {
+      "plurality|freeform/public": {
+        "condition": "plurality/freeform",
+        "threshold": "plurality",
+        "group": "freeform/public",
+        "label": "Plurality · Free-form",
+        "n": 20,
+        "win": {
+          "k": 19,
+          "n": 20,
+          "p": 0.95,
+          "low": 0.7638688065532577,
+          "high": 0.9911185511992044
+        },
+        "wrongful": {
+          "k": 1,
+          "n": 20,
+          "p": 0.05,
+          "low": 0.008881448800795402,
+          "high": 0.2361311934467421
+        },
+        "kills": {
+          "0": 0,
+          "1": 13,
+          "2": 6,
+          "3+": 1
+        },
+        "kills_mean": 1.4,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.05
+          },
+          {
+            "t": 2,
+            "mean": 0.2
+          },
+          {
+            "t": 3,
+            "mean": 0.45
+          },
+          {
+            "t": 4,
+            "mean": 0.6
+          },
+          {
+            "t": 5,
+            "mean": 0.75
+          },
+          {
+            "t": 6,
+            "mean": 0.95
+          },
+          {
+            "t": 7,
+            "mean": 0.95
+          },
+          {
+            "t": 8,
+            "mean": 0.95
+          },
+          {
+            "t": 9,
+            "mean": 0.95
+          },
+          {
+            "t": 10,
+            "mean": 1.05
+          },
+          {
+            "t": 11,
+            "mean": 1.2
+          },
+          {
+            "t": 12,
+            "mean": 1.25
+          },
+          {
+            "t": 13,
+            "mean": 1.25
+          },
+          {
+            "t": 14,
+            "mean": 1.3
+          },
+          {
+            "t": 15,
+            "mean": 1.3
+          },
+          {
+            "t": 16,
+            "mean": 1.35
+          },
+          {
+            "t": 17,
+            "mean": 1.35
+          },
+          {
+            "t": 18,
+            "mean": 1.35
+          },
+          {
+            "t": 19,
+            "mean": 1.35
+          },
+          {
+            "t": 20,
+            "mean": 1.35
+          },
+          {
+            "t": 21,
+            "mean": 1.4
+          },
+          {
+            "t": 22,
+            "mean": 1.4
+          },
+          {
+            "t": 23,
+            "mean": 1.4
+          },
+          {
+            "t": 24,
+            "mean": 1.4
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 20
+          },
+          {
+            "t": 1.0,
+            "s": 0.6666666666666667,
+            "at_risk": 18
+          },
+          {
+            "t": 3.0,
+            "s": 0.0,
+            "at_risk": 1
+          }
+        ],
+        "meetings_max": 3
+      },
+      "majority|freeform/public": {
+        "condition": "majority/freeform",
+        "threshold": "majority",
+        "group": "freeform/public",
+        "label": "Majority · Free-form",
+        "n": 20,
+        "win": {
+          "k": 15,
+          "n": 20,
+          "p": 0.75,
+          "low": 0.5312991223812559,
+          "high": 0.8881382985923344
+        },
+        "wrongful": {
+          "k": 1,
+          "n": 20,
+          "p": 0.05,
+          "low": 0.008881448800795402,
+          "high": 0.2361311934467421
+        },
+        "kills": {
+          "0": 4,
+          "1": 4,
+          "2": 8,
+          "3+": 4
+        },
+        "kills_mean": 1.6,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.05
+          },
+          {
+            "t": 2,
+            "mean": 0.35
+          },
+          {
+            "t": 3,
+            "mean": 0.55
+          },
+          {
+            "t": 4,
+            "mean": 0.55
+          },
+          {
+            "t": 5,
+            "mean": 0.65
+          },
+          {
+            "t": 6,
+            "mean": 0.8
+          },
+          {
+            "t": 7,
+            "mean": 0.8
+          },
+          {
+            "t": 8,
+            "mean": 0.9
+          },
+          {
+            "t": 9,
+            "mean": 0.95
+          },
+          {
+            "t": 10,
+            "mean": 1.0
+          },
+          {
+            "t": 11,
+            "mean": 1.0
+          },
+          {
+            "t": 12,
+            "mean": 1.05
+          },
+          {
+            "t": 13,
+            "mean": 1.15
+          },
+          {
+            "t": 14,
+            "mean": 1.2
+          },
+          {
+            "t": 15,
+            "mean": 1.35
+          },
+          {
+            "t": 16,
+            "mean": 1.4
+          },
+          {
+            "t": 17,
+            "mean": 1.45
+          },
+          {
+            "t": 18,
+            "mean": 1.55
+          },
+          {
+            "t": 19,
+            "mean": 1.55
+          },
+          {
+            "t": 20,
+            "mean": 1.55
+          },
+          {
+            "t": 21,
+            "mean": 1.6
+          },
+          {
+            "t": 22,
+            "mean": 1.6
+          },
+          {
+            "t": 23,
+            "mean": 1.6
+          },
+          {
+            "t": 24,
+            "mean": 1.6
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 20
+          },
+          {
+            "t": 1.0,
+            "s": 0.7333333333333334,
+            "at_risk": 15
+          }
+        ],
+        "meetings_max": 2
+      },
+      "plurality|justification/public": {
+        "condition": "plurality/justification",
+        "threshold": "plurality",
+        "group": "justification/public",
+        "label": "Plurality · Justification",
+        "n": 20,
+        "win": {
+          "k": 17,
+          "n": 20,
+          "p": 0.85,
+          "low": 0.639581135259243,
+          "high": 0.9476312541037833
+        },
+        "wrongful": {
+          "k": 3,
+          "n": 20,
+          "p": 0.15,
+          "low": 0.052368745896216595,
+          "high": 0.36041886474075696
+        },
+        "kills": {
+          "0": 2,
+          "1": 12,
+          "2": 5,
+          "3+": 1
+        },
+        "kills_mean": 1.25,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.0
+          },
+          {
+            "t": 2,
+            "mean": 0.15
+          },
+          {
+            "t": 3,
+            "mean": 0.2
+          },
+          {
+            "t": 4,
+            "mean": 0.4
+          },
+          {
+            "t": 5,
+            "mean": 0.5
+          },
+          {
+            "t": 6,
+            "mean": 0.55
+          },
+          {
+            "t": 7,
+            "mean": 0.6
+          },
+          {
+            "t": 8,
+            "mean": 0.65
+          },
+          {
+            "t": 9,
+            "mean": 0.7
+          },
+          {
+            "t": 10,
+            "mean": 0.75
+          },
+          {
+            "t": 11,
+            "mean": 0.8
+          },
+          {
+            "t": 12,
+            "mean": 0.85
+          },
+          {
+            "t": 13,
+            "mean": 1.0
+          },
+          {
+            "t": 14,
+            "mean": 1.1
+          },
+          {
+            "t": 15,
+            "mean": 1.2
+          },
+          {
+            "t": 16,
+            "mean": 1.2
+          },
+          {
+            "t": 17,
+            "mean": 1.2
+          },
+          {
+            "t": 18,
+            "mean": 1.25
+          },
+          {
+            "t": 19,
+            "mean": 1.25
+          },
+          {
+            "t": 20,
+            "mean": 1.25
+          },
+          {
+            "t": 21,
+            "mean": 1.25
+          },
+          {
+            "t": 22,
+            "mean": 1.25
+          },
+          {
+            "t": 23,
+            "mean": 1.25
+          },
+          {
+            "t": 24,
+            "mean": 1.25
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 20
+          },
+          {
+            "t": 1.0,
+            "s": 0.6666666666666667,
+            "at_risk": 12
+          }
+        ],
+        "meetings_max": 2
+      },
+      "majority|justification/public": {
+        "condition": "majority/justification",
+        "threshold": "majority",
+        "group": "justification/public",
+        "label": "Majority · Justification",
+        "n": 20,
+        "win": {
+          "k": 16,
+          "n": 20,
+          "p": 0.8,
+          "low": 0.5839825677481064,
+          "high": 0.919342337420202
+        },
+        "wrongful": {
+          "k": 4,
+          "n": 20,
+          "p": 0.2,
+          "low": 0.080657662579798,
+          "high": 0.4160174322518936
+        },
+        "kills": {
+          "0": 0,
+          "1": 11,
+          "2": 9,
+          "3+": 0
+        },
+        "kills_mean": 1.45,
+        "cumulative": [
+          {
+            "t": 0,
+            "mean": 0.0
+          },
+          {
+            "t": 1,
+            "mean": 0.05
+          },
+          {
+            "t": 2,
+            "mean": 0.15
+          },
+          {
+            "t": 3,
+            "mean": 0.3
+          },
+          {
+            "t": 4,
+            "mean": 0.5
+          },
+          {
+            "t": 5,
+            "mean": 0.55
+          },
+          {
+            "t": 6,
+            "mean": 0.7
+          },
+          {
+            "t": 7,
+            "mean": 0.75
+          },
+          {
+            "t": 8,
+            "mean": 0.85
+          },
+          {
+            "t": 9,
+            "mean": 0.9
+          },
+          {
+            "t": 10,
+            "mean": 1.0
+          },
+          {
+            "t": 11,
+            "mean": 1.05
+          },
+          {
+            "t": 12,
+            "mean": 1.15
+          },
+          {
+            "t": 13,
+            "mean": 1.25
+          },
+          {
+            "t": 14,
+            "mean": 1.35
+          },
+          {
+            "t": 15,
+            "mean": 1.4
+          },
+          {
+            "t": 16,
+            "mean": 1.4
+          },
+          {
+            "t": 17,
+            "mean": 1.4
+          },
+          {
+            "t": 18,
+            "mean": 1.4
+          },
+          {
+            "t": 19,
+            "mean": 1.4
+          },
+          {
+            "t": 20,
+            "mean": 1.4
+          },
+          {
+            "t": 21,
+            "mean": 1.45
+          },
+          {
+            "t": 22,
+            "mean": 1.45
+          },
+          {
+            "t": 23,
+            "mean": 1.45
+          },
+          {
+            "t": 24,
+            "mean": 1.45
+          }
+        ],
+        "survival": [
+          {
+            "t": 0.0,
+            "s": 1.0,
+            "at_risk": 20
+          },
+          {
+            "t": 1.0,
+            "s": 0.6470588235294117,
+            "at_risk": 17
+          },
+          {
+            "t": 2.0,
+            "s": 0.32352941176470584,
+            "at_risk": 4
+          }
+        ],
+        "meetings_max": 2
+      }
+    },
+    "max_timestep": 24,
+    "max_meetings": 3,
+    "labels": {
+      "plurality": "Plurality",
+      "majority": "Majority",
+      "supermajority": "Supermajority",
+      "freeform": "Free-form",
+      "justification": "Justification",
+      "public": "Public ballot",
+      "secret": "Secret ballot"
+    },
+    "colours": {
+      "threshold": {
+        "light": {
+          "plurality": "#2a78d6",
+          "majority": "#eb6834",
+          "supermajority": "#1baf7a"
+        },
+        "dark": {
+          "plurality": "#3987e5",
+          "majority": "#d95926",
+          "supermajority": "#199e70"
+        }
+      },
+      "kills": {
+        "light": [
+          "#86b6ef",
+          "#3987e5",
+          "#1c5cab",
+          "#0d366b"
+        ],
+        "dark": [
+          "#1c5cab",
+          "#3987e5",
+          "#86b6ef",
+          "#cde2fb"
+        ]
+      }
+    },
+    "kill_bins": [
+      "0",
+      "1",
+      "2",
+      "3+"
+    ]
+  },
+  "damage_weights": {
+    "KILL": 1.0
+  },
+  "is_mock": false,
+  "max_fallback_rate": 0.05,
+  "figures": {
+    "F1_win_rate": [
+      "F1_win_rate.png",
+      "F1_win_rate.pdf"
+    ],
+    "F2_damage": [
+      "F2_damage.png",
+      "F2_damage.pdf"
+    ],
+    "F3_cumulative_damage": [
+      "F3_cumulative_damage.png",
+      "F3_cumulative_damage.pdf"
+    ],
+    "F4_wrongful_removal": [
+      "F4_wrongful_removal.png",
+      "F4_wrongful_removal.pdf"
+    ],
+    "F5_detection": [
+      "F5_detection.png",
+      "F5_detection.pdf"
+    ]
+  }
+}

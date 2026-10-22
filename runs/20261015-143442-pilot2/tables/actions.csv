@@ -1,0 +1,1303 @@
+game_id,condition,seq,timestep,phase,meeting,round,player,identity,action,target,from,to,fallback,reprompts
+g0000-1,majority/justification,3,0,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,4,0,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,5,0,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,6,0,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,7,0,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0000-1,majority/justification,9,1,task,,,Player 1: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0000-1,majority/justification,10,1,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0000-1,majority/justification,11,1,task,,,Player 3: purple,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0000-1,majority/justification,12,1,task,,,Player 4: pink,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0000-1,majority/justification,13,1,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0000-1,majority/justification,15,2,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,16,2,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,17,2,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,18,2,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,19,2,task,,,Player 5: black,Impostor,KILL,Player 2: blue,,,0,0
+g0000-1,majority/justification,21,3,task,,,Player 1: green,Crewmate,MOVE,,Admin,Electrical,0,0
+g0000-1,majority/justification,22,3,task,,,Player 3: purple,Crewmate,MOVE,,Admin,Storage,0,0
+g0000-1,majority/justification,23,3,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,24,3,task,,,Player 5: black,Impostor,VENT,,Medbay,Electrical,0,0
+g0000-1,majority/justification,26,4,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,27,4,task,,,Player 3: purple,Crewmate,MOVE,,Storage,Communications,0,0
+g0000-1,majority/justification,28,4,task,,,Player 4: pink,Crewmate,MOVE,,Admin,Storage,0,0
+g0000-1,majority/justification,29,4,task,,,Player 5: black,Impostor,MOVE,,Electrical,Admin,0,0
+g0000-1,majority/justification,31,5,task,,,Player 1: green,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0000-1,majority/justification,32,5,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,33,5,task,,,Player 4: pink,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0000-1,majority/justification,34,5,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0000-1,majority/justification,36,6,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,37,6,task,,,Player 3: purple,Crewmate,MOVE,,Communications,Shields,0,0
+g0000-1,majority/justification,38,6,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,39,6,task,,,Player 5: black,Impostor,MOVE,,Admin,Cafeteria,0,0
+g0000-1,majority/justification,41,7,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,42,7,task,,,Player 3: purple,Crewmate,MOVE,,Shields,Navigation,0,0
+g0000-1,majority/justification,43,7,task,,,Player 4: pink,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0000-1,majority/justification,44,7,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0000-1,majority/justification,46,8,task,,,Player 1: green,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0000-1,majority/justification,47,8,task,,,Player 3: purple,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0000-1,majority/justification,48,8,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,49,8,task,,,Player 5: black,Impostor,KILL,Player 3: purple,,,0,0
+g0000-1,majority/justification,51,9,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,52,9,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0000-1,majority/justification,53,9,task,,,Player 5: black,Impostor,MOVE,,Weapons,Cafeteria,0,0
+g0001-1,plurality/justification,3,0,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,4,0,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,5,0,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,6,0,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,7,0,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,9,1,task,,,Player 1: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,10,1,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,11,1,task,,,Player 3: purple,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,12,1,task,,,Player 4: pink,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,13,1,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0001-1,plurality/justification,15,2,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,16,2,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,17,2,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,18,2,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,19,2,task,,,Player 5: black,Impostor,MOVE,,Admin,Cafeteria,0,0
+g0001-1,plurality/justification,21,3,task,,,Player 1: green,Crewmate,MOVE,,Admin,Electrical,0,0
+g0001-1,plurality/justification,22,3,task,,,Player 2: blue,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0001-1,plurality/justification,23,3,task,,,Player 3: purple,Crewmate,MOVE,,Admin,Storage,0,0
+g0001-1,plurality/justification,24,3,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,25,3,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0001-1,plurality/justification,27,4,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,28,4,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0001-1,plurality/justification,29,4,task,,,Player 3: purple,Crewmate,MOVE,,Storage,Communications,0,0
+g0001-1,plurality/justification,30,4,task,,,Player 4: pink,Crewmate,MOVE,,Admin,Storage,0,0
+g0001-1,plurality/justification,31,4,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0001-1,plurality/justification,33,5,task,,,Player 1: green,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0001-1,plurality/justification,34,5,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,35,5,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,36,5,task,,,Player 4: pink,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0001-1,plurality/justification,37,5,task,,,Player 5: black,Impostor,KILL,Player 2: blue,,,0,0
+g0001-1,plurality/justification,39,6,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,40,6,task,,,Player 3: purple,Crewmate,MOVE,,Communications,Shields,0,0
+g0001-1,plurality/justification,41,6,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,42,6,task,,,Player 5: black,Impostor,MOVE,,Medbay,Cafeteria,0,0
+g0001-1,plurality/justification,44,7,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,45,7,task,,,Player 3: purple,Crewmate,MOVE,,Shields,Navigation,0,0
+g0001-1,plurality/justification,46,7,task,,,Player 4: pink,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0001-1,plurality/justification,47,7,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,49,8,task,,,Player 1: green,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0001-1,plurality/justification,50,8,task,,,Player 3: purple,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0001-1,plurality/justification,51,8,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,52,8,task,,,Player 5: black,Impostor,MOVE,,Admin,Electrical,0,0
+g0001-1,plurality/justification,54,9,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,55,9,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,56,9,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,57,9,task,,,Player 5: black,Impostor,MOVE,,Electrical,Storage,0,0
+g0001-1,plurality/justification,59,10,task,,,Player 1: green,Crewmate,MOVE,,Upper Engine,Cafeteria,0,0
+g0001-1,plurality/justification,60,10,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,61,10,task,,,Player 4: pink,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0001-1,plurality/justification,62,10,task,,,Player 5: black,Impostor,MOVE,,Storage,Lower Engine,0,0
+g0001-1,plurality/justification,64,11,task,,,Player 1: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0001-1,plurality/justification,65,11,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0001-1,plurality/justification,66,11,task,,,Player 4: pink,Crewmate,VIEW MONITOR,,,,0,0
+g0001-1,plurality/justification,67,11,task,,,Player 5: black,Impostor,MOVE,,Lower Engine,Upper Engine,0,0
+g0002-1,plurality/freeform,3,0,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,4,0,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,5,0,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,6,0,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,7,0,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0002-1,plurality/freeform,9,1,task,,,Player 1: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0002-1,plurality/freeform,10,1,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0002-1,plurality/freeform,11,1,task,,,Player 3: purple,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0002-1,plurality/freeform,12,1,task,,,Player 4: pink,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0002-1,plurality/freeform,13,1,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0002-1,plurality/freeform,15,2,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,16,2,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,17,2,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,18,2,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,19,2,task,,,Player 5: black,Impostor,MOVE,,Admin,Cafeteria,0,0
+g0002-1,plurality/freeform,21,3,task,,,Player 1: green,Crewmate,MOVE,,Admin,Storage,0,0
+g0002-1,plurality/freeform,22,3,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,23,3,task,,,Player 3: purple,Crewmate,MOVE,,Admin,Storage,0,0
+g0002-1,plurality/freeform,24,3,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,25,3,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0002-1,plurality/freeform,27,4,task,,,Player 1: green,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0002-1,plurality/freeform,28,4,task,,,Player 2: blue,Crewmate,MOVE,,Medbay,Cafeteria,0,0
+g0002-1,plurality/freeform,29,4,task,,,Player 3: purple,Crewmate,MOVE,,Storage,Communications,0,0
+g0002-1,plurality/freeform,30,4,task,,,Player 4: pink,Crewmate,MOVE,,Admin,Storage,0,0
+g0002-1,plurality/freeform,31,4,task,,,Player 5: black,Impostor,KILL,Player 2: blue,,,0,0
+g0002-1,plurality/freeform,33,5,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,34,5,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,35,5,task,,,Player 4: pink,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0002-1,plurality/freeform,36,5,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0002-1,plurality/freeform,38,6,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,39,6,task,,,Player 3: purple,Crewmate,MOVE,,Communications,Shields,0,0
+g0002-1,plurality/freeform,40,6,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,41,6,task,,,Player 5: black,Impostor,VENT,,Medbay,Electrical,0,0
+g0002-1,plurality/freeform,43,7,task,,,Player 1: green,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0002-1,plurality/freeform,44,7,task,,,Player 3: purple,Crewmate,MOVE,,Shields,Navigation,0,0
+g0002-1,plurality/freeform,45,7,task,,,Player 4: pink,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0002-1,plurality/freeform,46,7,task,,,Player 5: black,Impostor,MOVE,,Electrical,Storage,0,0
+g0002-1,plurality/freeform,48,8,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,49,8,task,,,Player 3: purple,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0002-1,plurality/freeform,50,8,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,51,8,task,,,Player 5: black,Impostor,MOVE,,Storage,Communications,0,0
+g0002-1,plurality/freeform,53,9,task,,,Player 1: green,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0002-1,plurality/freeform,54,9,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,55,9,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,56,9,task,,,Player 5: black,Impostor,MOVE,,Communications,Shields,0,0
+g0002-1,plurality/freeform,58,10,task,,,Player 1: green,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0002-1,plurality/freeform,59,10,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,60,10,task,,,Player 4: pink,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0002-1,plurality/freeform,61,10,task,,,Player 5: black,Impostor,MOVE,,Shields,Communications,0,0
+g0002-1,plurality/freeform,63,11,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,64,11,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0002-1,plurality/freeform,65,11,task,,,Player 4: pink,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0002-1,plurality/freeform,66,11,task,,,Player 5: black,Impostor,MOVE,,Communications,Shields,0,0
+g0003-1,majority/freeform,3,0,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,4,0,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,5,0,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,6,0,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,7,0,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0003-1,majority/freeform,9,1,task,,,Player 1: green,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0003-1,majority/freeform,10,1,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0003-1,majority/freeform,11,1,task,,,Player 3: purple,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0003-1,majority/freeform,12,1,task,,,Player 4: pink,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0003-1,majority/freeform,13,1,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0003-1,majority/freeform,15,2,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,16,2,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,17,2,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,18,2,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,19,2,task,,,Player 5: black,Impostor,MOVE,,Admin,Cafeteria,0,0
+g0003-1,majority/freeform,21,3,task,,,Player 1: green,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0003-1,majority/freeform,22,3,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,23,3,task,,,Player 3: purple,Crewmate,MOVE,,Admin,Storage,0,0
+g0003-1,majority/freeform,24,3,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,25,3,task,,,Player 5: black,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0003-1,majority/freeform,27,4,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,28,4,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,29,4,task,,,Player 3: purple,Crewmate,MOVE,,Storage,Communications,0,0
+g0003-1,majority/freeform,30,4,task,,,Player 4: pink,Crewmate,MOVE,,Admin,Storage,0,0
+g0003-1,majority/freeform,31,4,task,,,Player 5: black,Impostor,MOVE,,Cafeteria,Upper Engine,0,0
+g0003-1,majority/freeform,33,5,task,,,Player 1: green,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0003-1,majority/freeform,34,5,task,,,Player 2: blue,Crewmate,MOVE,,Medbay,Cafeteria,0,0
+g0003-1,majority/freeform,35,5,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,36,5,task,,,Player 4: pink,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0003-1,majority/freeform,37,5,task,,,Player 5: black,Impostor,MOVE,,Upper Engine,Medbay,0,0
+g0003-1,majority/freeform,39,6,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,40,6,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0003-1,majority/freeform,41,6,task,,,Player 3: purple,Crewmate,MOVE,,Communications,Shields,0,0
+g0003-1,majority/freeform,42,6,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,43,6,task,,,Player 5: black,Impostor,VENT,,Medbay,Electrical,0,0
+g0003-1,majority/freeform,45,7,task,,,Player 1: green,Crewmate,MOVE,,Electrical,Admin,0,0
+g0003-1,majority/freeform,46,7,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,47,7,task,,,Player 3: purple,Crewmate,MOVE,,Shields,Navigation,0,0
+g0003-1,majority/freeform,48,7,task,,,Player 4: pink,Crewmate,MOVE,,Lower Engine,Upper Engine,0,0
+g0003-1,majority/freeform,49,7,task,,,Player 5: black,Impostor,MOVE,,Electrical,Storage,0,0
+g0003-1,majority/freeform,51,8,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,52,8,task,,,Player 2: blue,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0003-1,majority/freeform,53,8,task,,,Player 3: purple,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0003-1,majority/freeform,54,8,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,55,8,task,,,Player 5: black,Impostor,MOVE,,Storage,Communications,0,0
+g0003-1,majority/freeform,57,9,task,,,Player 1: green,Crewmate,MOVE,,Admin,Storage,0,0
+g0003-1,majority/freeform,58,9,task,,,Player 2: blue,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0003-1,majority/freeform,59,9,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,60,9,task,,,Player 4: pink,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,61,9,task,,,Player 5: black,Impostor,MOVE,,Communications,Shields,0,0
+g0003-1,majority/freeform,63,10,task,,,Player 1: green,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0003-1,majority/freeform,64,10,task,,,Player 2: blue,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0003-1,majority/freeform,65,10,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,66,10,task,,,Player 4: pink,Crewmate,MOVE,,Upper Engine,Cafeteria,0,0
+g0003-1,majority/freeform,67,10,task,,,Player 5: black,Impostor,MOVE,,Shields,Navigation,0,0
+g0003-1,majority/freeform,69,11,task,,,Player 1: green,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,70,11,task,,,Player 2: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,71,11,task,,,Player 3: purple,Crewmate,COMPLETE TASK,,,,0,0
+g0003-1,majority/freeform,72,11,task,,,Player 4: pink,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0003-1,majority/freeform,73,11,task,,,Player 5: black,Impostor,MOVE,,Navigation,Shields,0,0
+g0004-1,majority/freeform,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,4,0,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0004-1,majority/freeform,5,0,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0004-1,majority/freeform,6,0,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0004-1,majority/freeform,7,0,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0004-1,majority/freeform,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0004-1,majority/freeform,10,1,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0004-1,majority/freeform,11,1,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,12,1,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,13,1,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,15,2,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,16,2,task,,,Player 2: lime,Impostor,MOVE,,Admin,O2,0,0
+g0004-1,majority/freeform,17,2,task,,,Player 3: blue,Crewmate,MOVE,,Admin,O2,0,0
+g0004-1,majority/freeform,18,2,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,19,2,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,21,3,task,,,Player 1: red,Crewmate,MOVE,,Admin,O2,0,0
+g0004-1,majority/freeform,22,3,task,,,Player 2: lime,Impostor,MOVE,,O2,Shields,0,0
+g0004-1,majority/freeform,23,3,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,24,3,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,25,3,task,,,Player 5: green,Crewmate,MOVE,,Admin,O2,0,0
+g0004-1,majority/freeform,27,4,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,28,4,task,,,Player 2: lime,Impostor,MOVE,,Shields,Navigation,0,0
+g0004-1,majority/freeform,29,4,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,30,4,task,,,Player 4: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0004-1,majority/freeform,31,4,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,33,5,task,,,Player 1: red,Crewmate,MOVE,,O2,Shields,0,0
+g0004-1,majority/freeform,34,5,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0004-1,majority/freeform,35,5,task,,,Player 3: blue,Crewmate,MOVE,,O2,Shields,0,0
+g0004-1,majority/freeform,36,5,task,,,Player 4: yellow,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0004-1,majority/freeform,37,5,task,,,Player 5: green,Crewmate,MOVE,,O2,Shields,0,0
+g0004-1,majority/freeform,39,6,task,,,Player 1: red,Crewmate,MOVE,,Shields,Navigation,0,0
+g0004-1,majority/freeform,40,6,task,,,Player 2: lime,Impostor,KILL,Player 1: red,,,0,0
+g0004-1,majority/freeform,41,6,task,,,Player 3: blue,Crewmate,MOVE,,Shields,Storage,0,0
+g0004-1,majority/freeform,42,6,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0004-1,majority/freeform,43,6,task,,,Player 5: green,Crewmate,MOVE,,Shields,Navigation,0,0
+g0004-1,majority/freeform,45,7,task,,,Player 2: lime,Impostor,MOVE,,Navigation,Weapons,0,0
+g0004-1,majority/freeform,46,7,task,,,Player 3: blue,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0004-1,majority/freeform,47,7,task,,,Player 4: yellow,Crewmate,MOVE,,Electrical,Admin,0,0
+g0004-1,majority/freeform,49,7,task,,,Player 5: green,Crewmate,CALL MEETING,,,,0,0
+g0004-1,majority/freeform,51,8,meeting,1.0,0.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0004-1,majority/freeform,52,8,meeting,1.0,0.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,53,8,meeting,1.0,0.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,54,8,meeting,1.0,0.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,55,8,meeting,1.0,1.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0004-1,majority/freeform,56,8,meeting,1.0,1.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,57,8,meeting,1.0,1.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,58,8,meeting,1.0,1.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,59,8,meeting,1.0,2.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0004-1,majority/freeform,60,8,meeting,1.0,2.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,61,8,meeting,1.0,2.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,62,8,meeting,1.0,2.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0004-1,majority/freeform,63,8,meeting,1.0,3.0,Player 2: lime,Impostor,VOTE,SKIP,,,0,0
+g0004-1,majority/freeform,64,8,meeting,1.0,3.0,Player 3: blue,Crewmate,VOTE,Player 2: lime,,,0,0
+g0004-1,majority/freeform,65,8,meeting,1.0,3.0,Player 4: yellow,Crewmate,VOTE,Player 2: lime,,,0,0
+g0004-1,majority/freeform,66,8,meeting,1.0,3.0,Player 5: green,Crewmate,VOTE,Player 2: lime,,,0,0
+g0005-1,plurality/justification,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,4,0,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0005-1,plurality/justification,5,0,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0005-1,plurality/justification,6,0,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0005-1,plurality/justification,7,0,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0005-1,plurality/justification,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0005-1,plurality/justification,10,1,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0005-1,plurality/justification,11,1,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,12,1,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,13,1,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,15,2,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,16,2,task,,,Player 2: lime,Impostor,MOVE,,Admin,O2,0,0
+g0005-1,plurality/justification,17,2,task,,,Player 3: blue,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0005-1,plurality/justification,18,2,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,19,2,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,21,3,task,,,Player 1: red,Crewmate,MOVE,,Admin,O2,0,0
+g0005-1,plurality/justification,22,3,task,,,Player 2: lime,Impostor,KILL,Player 1: red,,,0,0
+g0005-1,plurality/justification,23,3,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0005-1,plurality/justification,24,3,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,25,3,task,,,Player 5: green,Crewmate,MOVE,,Admin,O2,0,0
+g0005-1,plurality/justification,27,4,task,,,Player 2: lime,Impostor,MOVE,,O2,Shields,0,0
+g0005-1,plurality/justification,28,4,task,,,Player 3: blue,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0005-1,plurality/justification,29,4,task,,,Player 4: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0005-1,plurality/justification,30,4,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,32,5,task,,,Player 2: lime,Impostor,MOVE,,Shields,Navigation,0,0
+g0005-1,plurality/justification,33,5,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,34,5,task,,,Player 4: yellow,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0005-1,plurality/justification,36,5,task,,,Player 5: green,Crewmate,CALL MEETING,,,,0,0
+g0005-1,plurality/justification,38,6,meeting,1.0,0.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0005-1,plurality/justification,39,6,meeting,1.0,0.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,40,6,meeting,1.0,0.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,41,6,meeting,1.0,0.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,42,6,meeting,1.0,1.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0005-1,plurality/justification,43,6,meeting,1.0,1.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,44,6,meeting,1.0,1.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,45,6,meeting,1.0,1.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,46,6,meeting,1.0,2.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0005-1,plurality/justification,47,6,meeting,1.0,2.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,48,6,meeting,1.0,2.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,49,6,meeting,1.0,2.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0005-1,plurality/justification,50,6,meeting,1.0,3.0,Player 2: lime,Impostor,VOTE,Player 5: green,,,0,0
+g0005-1,plurality/justification,51,6,meeting,1.0,3.0,Player 3: blue,Crewmate,VOTE,Player 5: green,,,0,0
+g0005-1,plurality/justification,52,6,meeting,1.0,3.0,Player 4: yellow,Crewmate,VOTE,Player 5: green,,,0,0
+g0005-1,plurality/justification,53,6,meeting,1.0,3.0,Player 5: green,Crewmate,VOTE,Player 2: lime,,,0,0
+g0005-1,plurality/justification,56,7,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0005-1,plurality/justification,57,7,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0005-1,plurality/justification,58,7,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0005-1,plurality/justification,60,8,task,,,Player 2: lime,Impostor,MOVE,,Weapons,Navigation,0,0
+g0005-1,plurality/justification,61,8,task,,,Player 3: blue,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0005-1,plurality/justification,62,8,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,64,9,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0005-1,plurality/justification,65,9,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,66,9,task,,,Player 4: yellow,Crewmate,MOVE,,Admin,Electrical,0,0
+g0005-1,plurality/justification,68,10,task,,,Player 2: lime,Impostor,MOVE,,Navigation,Shields,0,0
+g0005-1,plurality/justification,69,10,task,,,Player 3: blue,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0005-1,plurality/justification,70,10,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,72,11,task,,,Player 2: lime,Impostor,MOVE,,Shields,Storage,0,0
+g0005-1,plurality/justification,73,11,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,74,11,task,,,Player 4: yellow,Crewmate,MOVE,,Electrical,Storage,0,0
+g0005-1,plurality/justification,76,12,task,,,Player 2: lime,Impostor,MOVE,,Storage,Communications,0,0
+g0005-1,plurality/justification,77,12,task,,,Player 3: blue,Crewmate,MOVE,,Security,Lower Engine,0,0
+g0005-1,plurality/justification,78,12,task,,,Player 4: yellow,Crewmate,MOVE,,Storage,Shields,0,0
+g0005-1,plurality/justification,80,13,task,,,Player 2: lime,Impostor,MOVE,,Communications,Shields,0,0
+g0005-1,plurality/justification,81,13,task,,,Player 3: blue,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0005-1,plurality/justification,82,13,task,,,Player 4: yellow,Crewmate,MOVE,,Shields,Navigation,0,0
+g0005-1,plurality/justification,84,14,task,,,Player 2: lime,Impostor,MOVE,,Shields,O2,0,0
+g0005-1,plurality/justification,85,14,task,,,Player 3: blue,Crewmate,MOVE,,Storage,Shields,0,0
+g0005-1,plurality/justification,86,14,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,88,15,task,,,Player 2: lime,Impostor,MOVE,,O2,Admin,0,0
+g0005-1,plurality/justification,89,15,task,,,Player 3: blue,Crewmate,MOVE,,Shields,O2,0,0
+g0005-1,plurality/justification,90,15,task,,,Player 4: yellow,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0005-1,plurality/justification,92,16,task,,,Player 2: lime,Impostor,MOVE,,Admin,Electrical,0,0
+g0005-1,plurality/justification,93,16,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,94,16,task,,,Player 4: yellow,Crewmate,MOVE,,Weapons,Cafeteria,0,0
+g0005-1,plurality/justification,96,17,task,,,Player 2: lime,Impostor,MOVE,,Electrical,Storage,0,0
+g0005-1,plurality/justification,97,17,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0005-1,plurality/justification,98,17,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,4,0,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,5,0,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,6,0,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0006-1,plurality/freeform,7,0,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0006-1,plurality/freeform,10,1,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0006-1,plurality/freeform,11,1,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,12,1,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,13,1,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,15,2,task,,,Player 1: red,Crewmate,MOVE,,Weapons,O2,0,0
+g0006-1,plurality/freeform,16,2,task,,,Player 2: lime,Impostor,MOVE,,Admin,O2,0,0
+g0006-1,plurality/freeform,17,2,task,,,Player 3: blue,Crewmate,MOVE,,Admin,Storage,0,0
+g0006-1,plurality/freeform,18,2,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,19,2,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,21,3,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,22,3,task,,,Player 2: lime,Impostor,KILL,Player 1: red,,,0,0
+g0006-1,plurality/freeform,23,3,task,,,Player 3: blue,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0006-1,plurality/freeform,24,3,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,25,3,task,,,Player 5: green,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0006-1,plurality/freeform,27,4,task,,,Player 2: lime,Impostor,MOVE,,O2,Shields,0,0
+g0006-1,plurality/freeform,28,4,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,29,4,task,,,Player 4: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0006-1,plurality/freeform,30,4,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0006-1,plurality/freeform,32,5,task,,,Player 2: lime,Impostor,MOVE,,Shields,Navigation,0,0
+g0006-1,plurality/freeform,33,5,task,,,Player 3: blue,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0006-1,plurality/freeform,34,5,task,,,Player 4: yellow,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0006-1,plurality/freeform,35,5,task,,,Player 5: green,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0006-1,plurality/freeform,37,6,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0006-1,plurality/freeform,38,6,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,39,6,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,40,6,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0006-1,plurality/freeform,42,7,task,,,Player 2: lime,Impostor,MOVE,,Navigation,Shields,0,0
+g0006-1,plurality/freeform,43,7,task,,,Player 3: blue,Crewmate,MOVE,,Security,Lower Engine,0,0
+g0006-1,plurality/freeform,44,7,task,,,Player 4: yellow,Crewmate,MOVE,,Electrical,Storage,0,0
+g0006-1,plurality/freeform,45,7,task,,,Player 5: green,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0006-1,plurality/freeform,47,8,task,,,Player 2: lime,Impostor,MOVE,,Shields,Storage,0,0
+g0006-1,plurality/freeform,48,8,task,,,Player 3: blue,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0006-1,plurality/freeform,49,8,task,,,Player 4: yellow,Crewmate,MOVE,,Storage,Shields,0,0
+g0006-1,plurality/freeform,50,8,task,,,Player 5: green,Crewmate,MOVE,,Weapons,O2,0,0
+g0006-1,plurality/freeform,52,9,task,,,Player 2: lime,Impostor,KILL,Player 3: blue,,,0,0
+g0006-1,plurality/freeform,53,9,task,,,Player 4: yellow,Crewmate,MOVE,,Shields,Navigation,0,0
+g0006-1,plurality/freeform,55,9,task,,,Player 5: green,Crewmate,CALL MEETING,,,,0,0
+g0006-1,plurality/freeform,57,10,meeting,1.0,0.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0006-1,plurality/freeform,58,10,meeting,1.0,0.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,59,10,meeting,1.0,0.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,60,10,meeting,1.0,1.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0006-1,plurality/freeform,61,10,meeting,1.0,1.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,62,10,meeting,1.0,1.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,63,10,meeting,1.0,2.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0006-1,plurality/freeform,64,10,meeting,1.0,2.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,65,10,meeting,1.0,2.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0006-1,plurality/freeform,66,10,meeting,1.0,3.0,Player 2: lime,Impostor,VOTE,Player 4: yellow,,,0,0
+g0006-1,plurality/freeform,67,10,meeting,1.0,3.0,Player 4: yellow,Crewmate,VOTE,SKIP,,,0,0
+g0006-1,plurality/freeform,68,10,meeting,1.0,3.0,Player 5: green,Crewmate,VOTE,SKIP,,,0,0
+g0006-1,plurality/freeform,71,11,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,72,11,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0006-1,plurality/freeform,73,11,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0006-1,plurality/freeform,75,12,task,,,Player 2: lime,Impostor,KILL,Player 4: yellow,,,0,0
+g0006-1,plurality/freeform,76,12,task,,,Player 5: green,Crewmate,MOVE,,Weapons,O2,0,0
+g0007-1,majority/justification,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,4,0,task,,,Player 2: lime,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0007-1,majority/justification,5,0,task,,,Player 3: blue,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0007-1,majority/justification,6,0,task,,,Player 4: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0007-1,majority/justification,7,0,task,,,Player 5: green,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0007-1,majority/justification,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0007-1,majority/justification,10,1,task,,,Player 2: lime,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0007-1,majority/justification,11,1,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,12,1,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,13,1,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,15,2,task,,,Player 1: red,Crewmate,MOVE,,Weapons,O2,0,0
+g0007-1,majority/justification,16,2,task,,,Player 2: lime,Impostor,MOVE,,Admin,O2,0,0
+g0007-1,majority/justification,17,2,task,,,Player 3: blue,Crewmate,MOVE,,Admin,Storage,0,0
+g0007-1,majority/justification,18,2,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,19,2,task,,,Player 5: green,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,21,3,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,22,3,task,,,Player 2: lime,Impostor,KILL,Player 1: red,,,0,0
+g0007-1,majority/justification,23,3,task,,,Player 3: blue,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0007-1,majority/justification,24,3,task,,,Player 4: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,25,3,task,,,Player 5: green,Crewmate,MOVE,,Admin,O2,0,0
+g0007-1,majority/justification,27,4,task,,,Player 2: lime,Impostor,MOVE,,O2,Shields,0,0
+g0007-1,majority/justification,28,4,task,,,Player 3: blue,Crewmate,COMPLETE TASK,,,,0,0
+g0007-1,majority/justification,29,4,task,,,Player 4: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0007-1,majority/justification,31,4,task,,,Player 5: green,Crewmate,CALL MEETING,,,,0,0
+g0007-1,majority/justification,33,5,meeting,1.0,0.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0007-1,majority/justification,34,5,meeting,1.0,0.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,35,5,meeting,1.0,0.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,36,5,meeting,1.0,0.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,37,5,meeting,1.0,1.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0007-1,majority/justification,38,5,meeting,1.0,1.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,39,5,meeting,1.0,1.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,40,5,meeting,1.0,1.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,41,5,meeting,1.0,2.0,Player 2: lime,Impostor,SPEAK,,,,0,0
+g0007-1,majority/justification,42,5,meeting,1.0,2.0,Player 3: blue,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,43,5,meeting,1.0,2.0,Player 4: yellow,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,44,5,meeting,1.0,2.0,Player 5: green,Crewmate,SPEAK,,,,0,0
+g0007-1,majority/justification,45,5,meeting,1.0,3.0,Player 2: lime,Impostor,VOTE,Player 5: green,,,0,0
+g0007-1,majority/justification,46,5,meeting,1.0,3.0,Player 3: blue,Crewmate,VOTE,Player 2: lime,,,0,0
+g0007-1,majority/justification,47,5,meeting,1.0,3.0,Player 4: yellow,Crewmate,VOTE,Player 2: lime,,,0,0
+g0007-1,majority/justification,48,5,meeting,1.0,3.0,Player 5: green,Crewmate,VOTE,Player 2: lime,,,0,0
+g0008-1,majority/justification,3,0,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0008-1,majority/justification,4,0,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0008-1,majority/justification,5,0,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0008-1,majority/justification,6,0,task,,,Player 4: lime,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0008-1,majority/justification,7,0,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0008-1,majority/justification,9,1,task,,,Player 1: orange,Crewmate,MOVE,,Admin,Electrical,0,0
+g0008-1,majority/justification,10,1,task,,,Player 2: red,Impostor,MOVE,,Weapons,Navigation,0,0
+g0008-1,majority/justification,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,12,1,task,,,Player 4: lime,Crewmate,MOVE,,Admin,Electrical,0,0
+g0008-1,majority/justification,13,1,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,15,2,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,16,2,task,,,Player 2: red,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0008-1,majority/justification,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0008-1,majority/justification,18,2,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,19,2,task,,,Player 5: white,Crewmate,MOVE,,Medbay,Upper Engine,0,0
+g0008-1,majority/justification,21,3,task,,,Player 1: orange,Crewmate,MOVE,,Electrical,Storage,0,0
+g0008-1,majority/justification,22,3,task,,,Player 2: red,Impostor,MOVE,,Navigation,Shields,0,0
+g0008-1,majority/justification,23,3,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,24,3,task,,,Player 4: lime,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0008-1,majority/justification,25,3,task,,,Player 5: white,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0008-1,majority/justification,27,4,task,,,Player 1: orange,Crewmate,MOVE,,Storage,Communications,0,0
+g0008-1,majority/justification,28,4,task,,,Player 2: red,Impostor,MOVE,,Shields,Storage,0,0
+g0008-1,majority/justification,29,4,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,30,4,task,,,Player 4: lime,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0008-1,majority/justification,31,4,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,33,5,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,34,5,task,,,Player 2: red,Impostor,MOVE,,Storage,Electrical,0,0
+g0008-1,majority/justification,35,5,task,,,Player 3: cyan,Crewmate,MOVE,,Navigation,Shields,0,0
+g0008-1,majority/justification,36,5,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,37,5,task,,,Player 5: white,Crewmate,MOVE,,Reactor,Lower Engine,0,0
+g0008-1,majority/justification,39,6,task,,,Player 1: orange,Crewmate,MOVE,,Communications,Shields,0,0
+g0008-1,majority/justification,40,6,task,,,Player 2: red,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0008-1,majority/justification,41,6,task,,,Player 3: cyan,Crewmate,MOVE,,Shields,Storage,0,0
+g0008-1,majority/justification,42,6,task,,,Player 4: lime,Crewmate,MOVE,,Security,Lower Engine,0,0
+g0008-1,majority/justification,43,6,task,,,Player 5: white,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0008-1,majority/justification,45,7,task,,,Player 1: orange,Crewmate,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,46,7,task,,,Player 2: red,Impostor,MOVE,,Electrical,Admin,0,0
+g0008-1,majority/justification,47,7,task,,,Player 3: cyan,Crewmate,MOVE,,Storage,Electrical,0,0
+g0008-1,majority/justification,48,7,task,,,Player 4: lime,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0008-1,majority/justification,49,7,task,,,Player 5: white,Crewmate,MOVE,,Storage,Shields,0,0
+g0008-1,majority/justification,51,8,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,52,8,task,,,Player 2: red,Impostor,MOVE,,Admin,Cafeteria,0,0
+g0008-1,majority/justification,53,8,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,54,8,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,55,8,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,57,9,task,,,Player 1: orange,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0008-1,majority/justification,58,9,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0008-1,majority/justification,59,9,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,60,9,task,,,Player 4: lime,Crewmate,MOVE,,Storage,Shields,0,0
+g0008-1,majority/justification,61,9,task,,,Player 5: white,Crewmate,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,63,10,task,,,Player 1: orange,Crewmate,MOVE,,Weapons,O2,0,0
+g0008-1,majority/justification,64,10,task,,,Player 2: red,Impostor,MOVE,,Admin,O2,0,0
+g0008-1,majority/justification,65,10,task,,,Player 3: cyan,Crewmate,MOVE,,Electrical,Admin,0,0
+g0008-1,majority/justification,66,10,task,,,Player 4: lime,Crewmate,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,67,10,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,69,11,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,70,11,task,,,Player 2: red,Impostor,KILL,Player 1: orange,,,0,0
+g0008-1,majority/justification,71,11,task,,,Player 3: cyan,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0008-1,majority/justification,72,11,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,73,11,task,,,Player 5: white,Crewmate,MOVE,,Navigation,Shields,0,0
+g0008-1,majority/justification,75,12,task,,,Player 2: red,Impostor,MOVE,,O2,Shields,0,0
+g0008-1,majority/justification,76,12,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0008-1,majority/justification,77,12,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,78,12,task,,,Player 5: white,Crewmate,MOVE,,Shields,Storage,0,0
+g0008-1,majority/justification,80,13,task,,,Player 2: red,Impostor,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,81,13,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,82,13,task,,,Player 4: lime,Crewmate,MOVE,,Navigation,Shields,0,0
+g0008-1,majority/justification,83,13,task,,,Player 5: white,Crewmate,MOVE,,Storage,Electrical,0,0
+g0008-1,majority/justification,85,14,task,,,Player 2: red,Impostor,MOVE,,Navigation,Weapons,0,0
+g0008-1,majority/justification,86,14,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0008-1,majority/justification,87,14,task,,,Player 4: lime,Crewmate,MOVE,,Shields,Storage,0,0
+g0008-1,majority/justification,88,14,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,90,15,task,,,Player 2: red,Impostor,MOVE,,Weapons,Cafeteria,0,0
+g0008-1,majority/justification,91,15,task,,,Player 3: cyan,Crewmate,MOVE,,Navigation,Shields,0,0
+g0008-1,majority/justification,92,15,task,,,Player 4: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0008-1,majority/justification,93,15,task,,,Player 5: white,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0008-1,majority/justification,95,16,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0008-1,majority/justification,96,16,task,,,Player 3: cyan,Crewmate,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,97,16,task,,,Player 4: lime,Crewmate,MOVE,,Storage,Shields,0,0
+g0008-1,majority/justification,98,16,task,,,Player 5: white,Crewmate,MOVE,,Lower Engine,Reactor,0,0
+g0008-1,majority/justification,100,17,task,,,Player 2: red,Impostor,MOVE,,Admin,Electrical,0,0
+g0008-1,majority/justification,101,17,task,,,Player 3: cyan,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0008-1,majority/justification,102,17,task,,,Player 4: lime,Crewmate,MOVE,,Shields,Navigation,0,0
+g0008-1,majority/justification,103,17,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0009-1,plurality/freeform,3,0,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0009-1,plurality/freeform,4,0,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0009-1,plurality/freeform,5,0,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0009-1,plurality/freeform,6,0,task,,,Player 4: lime,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0009-1,plurality/freeform,7,0,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0009-1,plurality/freeform,9,1,task,,,Player 1: orange,Crewmate,MOVE,,Admin,Electrical,0,0
+g0009-1,plurality/freeform,10,1,task,,,Player 2: red,Impostor,MOVE,,Weapons,Navigation,0,0
+g0009-1,plurality/freeform,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0009-1,plurality/freeform,12,1,task,,,Player 4: lime,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0009-1,plurality/freeform,13,1,task,,,Player 5: white,Crewmate,MOVE,,Admin,O2,0,0
+g0009-1,plurality/freeform,15,2,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0009-1,plurality/freeform,16,2,task,,,Player 2: red,Impostor,KILL,Player 4: lime,,,0,0
+g0009-1,plurality/freeform,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0009-1,plurality/freeform,18,2,task,,,Player 5: white,Crewmate,MOVE,,O2,Shields,0,0
+g0009-1,plurality/freeform,20,3,task,,,Player 1: orange,Crewmate,MOVE,,Electrical,Storage,0,0
+g0009-1,plurality/freeform,21,3,task,,,Player 2: red,Impostor,MOVE,,Navigation,Shields,0,0
+g0009-1,plurality/freeform,23,3,task,,,Player 3: cyan,Crewmate,CALL MEETING,,,,0,0
+g0009-1,plurality/freeform,25,4,meeting,1.0,0.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,26,4,meeting,1.0,0.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0009-1,plurality/freeform,27,4,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,28,4,meeting,1.0,0.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,29,4,meeting,1.0,1.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,30,4,meeting,1.0,1.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0009-1,plurality/freeform,31,4,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,32,4,meeting,1.0,1.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,33,4,meeting,1.0,2.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,34,4,meeting,1.0,2.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0009-1,plurality/freeform,35,4,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,36,4,meeting,1.0,2.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0009-1,plurality/freeform,37,4,meeting,1.0,3.0,Player 1: orange,Crewmate,VOTE,Player 2: red,,,0,0
+g0009-1,plurality/freeform,38,4,meeting,1.0,3.0,Player 2: red,Impostor,VOTE,Player 5: white,,,0,0
+g0009-1,plurality/freeform,39,4,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,Player 2: red,,,0,0
+g0009-1,plurality/freeform,40,4,meeting,1.0,3.0,Player 5: white,Crewmate,VOTE,Player 2: red,,,0,0
+g0010-1,majority/freeform,3,0,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0010-1,majority/freeform,4,0,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,5,0,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,6,0,task,,,Player 4: lime,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,7,0,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0010-1,majority/freeform,9,1,task,,,Player 1: orange,Crewmate,MOVE,,Admin,Electrical,0,0
+g0010-1,majority/freeform,10,1,task,,,Player 2: red,Impostor,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,12,1,task,,,Player 4: lime,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,13,1,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,15,2,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,16,2,task,,,Player 2: red,Impostor,KILL,Player 4: lime,,,0,0
+g0010-1,majority/freeform,17,2,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,18,2,task,,,Player 5: white,Crewmate,MOVE,,Medbay,Upper Engine,0,0
+g0010-1,majority/freeform,20,3,task,,,Player 1: orange,Crewmate,MOVE,,Electrical,Storage,0,0
+g0010-1,majority/freeform,21,3,task,,,Player 2: red,Impostor,MOVE,,Navigation,Shields,0,0
+g0010-1,majority/freeform,22,3,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,23,3,task,,,Player 5: white,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0010-1,majority/freeform,25,4,task,,,Player 1: orange,Crewmate,MOVE,,Storage,Shields,0,0
+g0010-1,majority/freeform,26,4,task,,,Player 2: red,Impostor,MOVE,,Shields,Storage,0,0
+g0010-1,majority/freeform,28,4,task,,,Player 3: cyan,Crewmate,CALL MEETING,,,,0,0
+g0010-1,majority/freeform,30,5,meeting,1.0,0.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,31,5,meeting,1.0,0.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,32,5,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,33,5,meeting,1.0,0.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,34,5,meeting,1.0,1.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,35,5,meeting,1.0,1.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,36,5,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,37,5,meeting,1.0,1.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,38,5,meeting,1.0,2.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,39,5,meeting,1.0,2.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,40,5,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,41,5,meeting,1.0,2.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,42,5,meeting,1.0,3.0,Player 1: orange,Crewmate,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,43,5,meeting,1.0,3.0,Player 2: red,Impostor,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,44,5,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,45,5,meeting,1.0,3.0,Player 5: white,Crewmate,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,48,6,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,49,6,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0010-1,majority/freeform,50,6,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0010-1,majority/freeform,51,6,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0010-1,majority/freeform,53,7,task,,,Player 1: orange,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,54,7,task,,,Player 2: red,Impostor,VENT,,Medbay,Electrical,0,0
+g0010-1,majority/freeform,55,7,task,,,Player 3: cyan,Crewmate,MOVE,,Admin,Electrical,0,0
+g0010-1,majority/freeform,56,7,task,,,Player 5: white,Crewmate,MOVE,,Admin,Electrical,0,0
+g0010-1,majority/freeform,58,8,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,59,8,task,,,Player 2: red,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0010-1,majority/freeform,60,8,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,61,8,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,1
+g0010-1,majority/freeform,63,9,task,,,Player 1: orange,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0010-1,majority/freeform,64,9,task,,,Player 2: red,Impostor,MOVE,,Electrical,Storage,0,0
+g0010-1,majority/freeform,65,9,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,66,9,task,,,Player 5: white,Crewmate,MOVE,,Electrical,Storage,0,0
+g0010-1,majority/freeform,68,10,task,,,Player 1: orange,Crewmate,MOVE,,Weapons,O2,0,0
+g0010-1,majority/freeform,69,10,task,,,Player 2: red,Impostor,KILL,Player 5: white,,,0,0
+g0010-1,majority/freeform,70,10,task,,,Player 3: cyan,Crewmate,MOVE,,Electrical,Storage,0,0
+g0010-1,majority/freeform,72,11,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,73,11,task,,,Player 2: red,Impostor,MOVE,,Storage,Shields,0,0
+g0010-1,majority/freeform,75,11,task,,,Player 3: cyan,Crewmate,CALL MEETING,,,,0,0
+g0010-1,majority/freeform,77,12,meeting,2.0,0.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,78,12,meeting,2.0,0.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,79,12,meeting,2.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,80,12,meeting,2.0,1.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,81,12,meeting,2.0,1.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,82,12,meeting,2.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,83,12,meeting,2.0,2.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,84,12,meeting,2.0,2.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0010-1,majority/freeform,85,12,meeting,2.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0010-1,majority/freeform,86,12,meeting,2.0,3.0,Player 1: orange,Crewmate,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,87,12,meeting,2.0,3.0,Player 2: red,Impostor,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,88,12,meeting,2.0,3.0,Player 3: cyan,Crewmate,VOTE,SKIP,,,0,0
+g0010-1,majority/freeform,91,13,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0010-1,majority/freeform,92,13,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,93,13,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0010-1,majority/freeform,95,14,task,,,Player 1: orange,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0010-1,majority/freeform,96,14,task,,,Player 2: red,Impostor,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,97,14,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0010-1,majority/freeform,99,15,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,100,15,task,,,Player 2: red,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0010-1,majority/freeform,101,15,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0010-1,majority/freeform,103,16,task,,,Player 1: orange,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0010-1,majority/freeform,104,16,task,,,Player 2: red,Impostor,KILL,Player 3: cyan,,,0,0
+g0011-1,plurality/justification,3,0,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0011-1,plurality/justification,4,0,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0011-1,plurality/justification,5,0,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0011-1,plurality/justification,6,0,task,,,Player 4: lime,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0011-1,plurality/justification,7,0,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0011-1,plurality/justification,9,1,task,,,Player 1: orange,Crewmate,MOVE,,Admin,Electrical,0,0
+g0011-1,plurality/justification,10,1,task,,,Player 2: red,Impostor,MOVE,,Weapons,Navigation,0,0
+g0011-1,plurality/justification,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,12,1,task,,,Player 4: lime,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0011-1,plurality/justification,13,1,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,15,2,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,1
+g0011-1,plurality/justification,16,2,task,,,Player 2: red,Impostor,KILL,Player 4: lime,,,0,0
+g0011-1,plurality/justification,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0011-1,plurality/justification,18,2,task,,,Player 5: white,Crewmate,MOVE,,Medbay,Upper Engine,0,0
+g0011-1,plurality/justification,20,3,task,,,Player 1: orange,Crewmate,MOVE,,Electrical,Storage,0,0
+g0011-1,plurality/justification,21,3,task,,,Player 2: red,Impostor,MOVE,,Navigation,Shields,0,0
+g0011-1,plurality/justification,23,3,task,,,Player 3: cyan,Crewmate,CALL MEETING,,,,0,0
+g0011-1,plurality/justification,25,4,meeting,1.0,0.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,26,4,meeting,1.0,0.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0011-1,plurality/justification,27,4,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,28,4,meeting,1.0,0.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,29,4,meeting,1.0,1.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,30,4,meeting,1.0,1.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0011-1,plurality/justification,31,4,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,32,4,meeting,1.0,1.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,33,4,meeting,1.0,2.0,Player 1: orange,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,34,4,meeting,1.0,2.0,Player 2: red,Impostor,SPEAK,,,,0,0
+g0011-1,plurality/justification,35,4,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,36,4,meeting,1.0,2.0,Player 5: white,Crewmate,SPEAK,,,,0,0
+g0011-1,plurality/justification,37,4,meeting,1.0,3.0,Player 1: orange,Crewmate,VOTE,SKIP,,,0,0
+g0011-1,plurality/justification,38,4,meeting,1.0,3.0,Player 2: red,Impostor,VOTE,Player 3: cyan,,,0,0
+g0011-1,plurality/justification,39,4,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,SKIP,,,0,0
+g0011-1,plurality/justification,40,4,meeting,1.0,3.0,Player 5: white,Crewmate,VOTE,SKIP,,,0,0
+g0011-1,plurality/justification,43,5,task,,,Player 1: orange,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0011-1,plurality/justification,44,5,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0011-1,plurality/justification,45,5,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0011-1,plurality/justification,46,5,task,,,Player 5: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0011-1,plurality/justification,48,6,task,,,Player 1: orange,Crewmate,MOVE,,Weapons,O2,0,0
+g0011-1,plurality/justification,49,6,task,,,Player 2: red,Impostor,MOVE,,Medbay,Cafeteria,0,0
+g0011-1,plurality/justification,50,6,task,,,Player 3: cyan,Crewmate,MOVE,,Admin,Electrical,0,0
+g0011-1,plurality/justification,51,6,task,,,Player 5: white,Crewmate,MOVE,,Admin,Electrical,0,0
+g0011-1,plurality/justification,53,7,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,54,7,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0011-1,plurality/justification,55,7,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,56,7,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,58,8,task,,,Player 1: orange,Crewmate,MOVE,,O2,Shields,0,0
+g0011-1,plurality/justification,59,8,task,,,Player 2: red,Impostor,MOVE,,Admin,O2,0,0
+g0011-1,plurality/justification,60,8,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,61,8,task,,,Player 5: white,Crewmate,MOVE,,Electrical,Storage,0,0
+g0011-1,plurality/justification,63,9,task,,,Player 1: orange,Crewmate,MOVE,,Shields,Navigation,0,0
+g0011-1,plurality/justification,64,9,task,,,Player 2: red,Impostor,MOVE,,O2,Shields,0,0
+g0011-1,plurality/justification,65,9,task,,,Player 3: cyan,Crewmate,MOVE,,Electrical,Storage,0,0
+g0011-1,plurality/justification,66,9,task,,,Player 5: white,Crewmate,MOVE,,Storage,Shields,0,0
+g0011-1,plurality/justification,68,10,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,69,10,task,,,Player 2: red,Impostor,MOVE,,Shields,Navigation,0,0
+g0011-1,plurality/justification,70,10,task,,,Player 3: cyan,Crewmate,MOVE,,Storage,Shields,0,0
+g0011-1,plurality/justification,71,10,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,73,11,task,,,Player 1: orange,Crewmate,MOVE,,Navigation,Shields,0,0
+g0011-1,plurality/justification,74,11,task,,,Player 2: red,Impostor,MOVE,,Navigation,Weapons,0,0
+g0011-1,plurality/justification,75,11,task,,,Player 3: cyan,Crewmate,MOVE,,Shields,Navigation,0,0
+g0011-1,plurality/justification,76,11,task,,,Player 5: white,Crewmate,MOVE,,Shields,Navigation,0,0
+g0011-1,plurality/justification,78,12,task,,,Player 1: orange,Crewmate,MOVE,,Shields,Communications,0,0
+g0011-1,plurality/justification,79,12,task,,,Player 2: red,Impostor,MOVE,,Weapons,Cafeteria,0,0
+g0011-1,plurality/justification,80,12,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,81,12,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,83,13,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,84,13,task,,,Player 2: red,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0011-1,plurality/justification,85,13,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,86,13,task,,,Player 5: white,Crewmate,MOVE,,Navigation,Shields,0,0
+g0011-1,plurality/justification,88,14,task,,,Player 1: orange,Crewmate,MOVE,,Communications,Storage,0,0
+g0011-1,plurality/justification,89,14,task,,,Player 2: red,Impostor,VENT,,Medbay,Electrical,0,0
+g0011-1,plurality/justification,90,14,task,,,Player 3: cyan,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0011-1,plurality/justification,91,14,task,,,Player 5: white,Crewmate,MOVE,,Shields,Storage,0,0
+g0011-1,plurality/justification,93,15,task,,,Player 1: orange,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0011-1,plurality/justification,94,15,task,,,Player 2: red,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0011-1,plurality/justification,95,15,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,96,15,task,,,Player 5: white,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0011-1,plurality/justification,98,16,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,99,16,task,,,Player 2: red,Impostor,MOVE,,Electrical,Storage,0,0
+g0011-1,plurality/justification,100,16,task,,,Player 3: cyan,Crewmate,MOVE,,Weapons,Cafeteria,0,0
+g0011-1,plurality/justification,101,16,task,,,Player 5: white,Crewmate,MOVE,,Lower Engine,Reactor,0,0
+g0011-1,plurality/justification,103,17,task,,,Player 1: orange,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,104,17,task,,,Player 2: red,Impostor,MOVE,,Storage,Shields,0,0
+g0011-1,plurality/justification,105,17,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0011-1,plurality/justification,106,17,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0011-1,plurality/justification,108,18,task,,,Player 1: orange,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0011-1,plurality/justification,109,18,task,,,Player 2: red,Impostor,MOVE,,Shields,Navigation,0,0
+g0011-1,plurality/justification,110,18,task,,,Player 3: cyan,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0011-1,plurality/justification,111,18,task,,,Player 5: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,3,0,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,4,0,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,5,0,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,6,0,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0012-1,majority/freeform,7,0,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,9,1,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0012-1,majority/freeform,10,1,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,12,1,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0012-1,majority/freeform,13,1,task,,,Player 5: brown,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0012-1,majority/freeform,15,2,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,16,2,task,,,Player 2: lime,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0012-1,majority/freeform,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0012-1,majority/freeform,18,2,task,,,Player 4: orange,Impostor,VENT,,Medbay,Security,0,0
+g0012-1,majority/freeform,19,2,task,,,Player 5: brown,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0012-1,majority/freeform,21,3,task,,,Player 1: white,Crewmate,MOVE,,Admin,Storage,0,0
+g0012-1,majority/freeform,22,3,task,,,Player 2: lime,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0012-1,majority/freeform,23,3,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,24,3,task,,,Player 4: orange,Impostor,KILL,Player 2: lime,,,0,0
+g0012-1,majority/freeform,25,3,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,27,4,task,,,Player 1: white,Crewmate,MOVE,,Storage,Communications,0,0
+g0012-1,majority/freeform,28,4,task,,,Player 3: cyan,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0012-1,majority/freeform,29,4,task,,,Player 4: orange,Impostor,VENT,,Security,Electrical,0,0
+g0012-1,majority/freeform,30,4,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,32,5,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,33,5,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,34,5,task,,,Player 4: orange,Impostor,MOVE,,Electrical,Storage,0,0
+g0012-1,majority/freeform,35,5,task,,,Player 5: brown,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0012-1,majority/freeform,37,6,task,,,Player 1: white,Crewmate,MOVE,,Communications,Storage,0,0
+g0012-1,majority/freeform,38,6,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,39,6,task,,,Player 4: orange,Impostor,MOVE,,Storage,Admin,0,0
+g0012-1,majority/freeform,41,6,task,,,Player 5: brown,Crewmate,CALL MEETING,,,,0,0
+g0012-1,majority/freeform,43,7,meeting,1.0,0.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,44,7,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,45,7,meeting,1.0,0.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0012-1,majority/freeform,46,7,meeting,1.0,0.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,47,7,meeting,1.0,1.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,48,7,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,49,7,meeting,1.0,1.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0012-1,majority/freeform,50,7,meeting,1.0,1.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,51,7,meeting,1.0,2.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,52,7,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,53,7,meeting,1.0,2.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0012-1,majority/freeform,54,7,meeting,1.0,2.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0012-1,majority/freeform,55,7,meeting,1.0,3.0,Player 1: white,Crewmate,VOTE,SKIP,,,0,0
+g0012-1,majority/freeform,56,7,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,SKIP,,,0,0
+g0012-1,majority/freeform,57,7,meeting,1.0,3.0,Player 4: orange,Impostor,VOTE,Player 5: brown,,,0,0
+g0012-1,majority/freeform,58,7,meeting,1.0,3.0,Player 5: brown,Crewmate,VOTE,SKIP,,,0,0
+g0012-1,majority/freeform,61,8,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0012-1,majority/freeform,62,8,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0012-1,majority/freeform,63,8,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0012-1,majority/freeform,64,8,task,,,Player 5: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0012-1,majority/freeform,66,9,task,,,Player 1: white,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0012-1,majority/freeform,67,9,task,,,Player 3: cyan,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0012-1,majority/freeform,68,9,task,,,Player 4: orange,Impostor,MOVE,,Medbay,Cafeteria,0,0
+g0012-1,majority/freeform,69,9,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,71,10,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,72,10,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,73,10,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0012-1,majority/freeform,74,10,task,,,Player 5: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0012-1,majority/freeform,76,11,task,,,Player 1: white,Crewmate,MOVE,,Security,Upper Engine,0,0
+g0012-1,majority/freeform,77,11,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0012-1,majority/freeform,78,11,task,,,Player 4: orange,Impostor,VENT,,Medbay,Security,0,0
+g0012-1,majority/freeform,79,11,task,,,Player 5: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0012-1,majority/freeform,81,12,task,,,Player 1: white,Crewmate,MOVE,,Upper Engine,Medbay,0,0
+g0012-1,majority/freeform,82,12,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0012-1,majority/freeform,83,12,task,,,Player 4: orange,Impostor,KILL,Player 3: cyan,,,0,0
+g0012-1,majority/freeform,84,12,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,86,13,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,87,13,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0012-1,majority/freeform,88,13,task,,,Player 5: brown,Crewmate,MOVE,,Shields,Storage,0,0
+g0012-1,majority/freeform,90,14,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0012-1,majority/freeform,91,14,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0012-1,majority/freeform,92,14,task,,,Player 5: brown,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0012-1,majority/freeform,94,15,task,,,Player 1: white,Crewmate,MOVE,,Medbay,Cafeteria,0,0
+g0012-1,majority/freeform,95,15,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0012-1,majority/freeform,96,15,task,,,Player 5: brown,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0012-1,majority/freeform,98,16,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0012-1,majority/freeform,99,16,task,,,Player 4: orange,Impostor,MOVE,,Security,Upper Engine,0,0
+g0012-1,majority/freeform,100,16,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,3,0,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,4,0,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,5,0,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,6,0,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0013-1,majority/justification,7,0,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,9,1,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0013-1,majority/justification,10,1,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,12,1,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0013-1,majority/justification,13,1,task,,,Player 5: brown,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0013-1,majority/justification,15,2,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,16,2,task,,,Player 2: lime,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0013-1,majority/justification,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0013-1,majority/justification,18,2,task,,,Player 4: orange,Impostor,VENT,,Medbay,Security,0,0
+g0013-1,majority/justification,19,2,task,,,Player 5: brown,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0013-1,majority/justification,21,3,task,,,Player 1: white,Crewmate,MOVE,,Admin,Storage,0,0
+g0013-1,majority/justification,22,3,task,,,Player 2: lime,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0013-1,majority/justification,23,3,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,24,3,task,,,Player 4: orange,Impostor,KILL,Player 2: lime,,,0,0
+g0013-1,majority/justification,25,3,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,27,4,task,,,Player 1: white,Crewmate,MOVE,,Storage,Communications,0,0
+g0013-1,majority/justification,28,4,task,,,Player 3: cyan,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0013-1,majority/justification,29,4,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0013-1,majority/justification,30,4,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,32,5,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,33,5,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,34,5,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0013-1,majority/justification,35,5,task,,,Player 5: brown,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0013-1,majority/justification,37,6,task,,,Player 1: white,Crewmate,MOVE,,Communications,Storage,0,0
+g0013-1,majority/justification,38,6,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0013-1,majority/justification,39,6,task,,,Player 4: orange,Impostor,MOVE,,Security,Upper Engine,0,0
+g0013-1,majority/justification,41,6,task,,,Player 5: brown,Crewmate,CALL MEETING,,,,0,0
+g0013-1,majority/justification,43,7,meeting,1.0,0.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,44,7,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,45,7,meeting,1.0,0.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0013-1,majority/justification,46,7,meeting,1.0,0.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,47,7,meeting,1.0,1.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,48,7,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,49,7,meeting,1.0,1.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0013-1,majority/justification,50,7,meeting,1.0,1.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,51,7,meeting,1.0,2.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,52,7,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,53,7,meeting,1.0,2.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0013-1,majority/justification,54,7,meeting,1.0,2.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0013-1,majority/justification,55,7,meeting,1.0,3.0,Player 1: white,Crewmate,VOTE,Player 4: orange,,,0,0
+g0013-1,majority/justification,56,7,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,Player 4: orange,,,0,0
+g0013-1,majority/justification,57,7,meeting,1.0,3.0,Player 4: orange,Impostor,VOTE,Player 5: brown,,,0,0
+g0013-1,majority/justification,58,7,meeting,1.0,3.0,Player 5: brown,Crewmate,VOTE,Player 4: orange,,,0,0
+g0014-1,plurality/justification,3,0,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,4,0,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,5,0,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,6,0,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0014-1,plurality/justification,7,0,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,9,1,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0014-1,plurality/justification,10,1,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,12,1,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0014-1,plurality/justification,13,1,task,,,Player 5: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0014-1,plurality/justification,15,2,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,16,2,task,,,Player 2: lime,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0014-1,plurality/justification,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0014-1,plurality/justification,18,2,task,,,Player 4: orange,Impostor,VENT,,Medbay,Security,0,0
+g0014-1,plurality/justification,19,2,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,21,3,task,,,Player 1: white,Crewmate,MOVE,,Admin,Storage,0,0
+g0014-1,plurality/justification,22,3,task,,,Player 2: lime,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0014-1,plurality/justification,23,3,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,24,3,task,,,Player 4: orange,Impostor,KILL,Player 2: lime,,,0,0
+g0014-1,plurality/justification,25,3,task,,,Player 5: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0014-1,plurality/justification,27,4,task,,,Player 1: white,Crewmate,MOVE,,Storage,Communications,0,0
+g0014-1,plurality/justification,28,4,task,,,Player 3: cyan,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0014-1,plurality/justification,29,4,task,,,Player 4: orange,Impostor,MOVE,,Security,Upper Engine,0,0
+g0014-1,plurality/justification,30,4,task,,,Player 5: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0014-1,plurality/justification,32,5,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,33,5,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,34,5,task,,,Player 4: orange,Impostor,MOVE,,Upper Engine,Cafeteria,0,0
+g0014-1,plurality/justification,35,5,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,37,6,task,,,Player 1: white,Crewmate,MOVE,,Communications,Storage,0,0
+g0014-1,plurality/justification,38,6,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0014-1,plurality/justification,39,6,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0014-1,plurality/justification,40,6,task,,,Player 5: brown,Crewmate,MOVE,,Shields,Storage,0,0
+g0014-1,plurality/justification,42,7,task,,,Player 1: white,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0014-1,plurality/justification,43,7,task,,,Player 3: cyan,Crewmate,MOVE,,Reactor,Security,0,0
+g0014-1,plurality/justification,44,7,task,,,Player 4: orange,Impostor,MOVE,,Admin,Electrical,0,0
+g0014-1,plurality/justification,45,7,task,,,Player 5: brown,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0014-1,plurality/justification,47,8,task,,,Player 1: white,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0014-1,plurality/justification,49,8,task,,,Player 3: cyan,Crewmate,CALL MEETING,,,,0,0
+g0014-1,plurality/justification,51,9,meeting,1.0,0.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,52,9,meeting,1.0,0.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,53,9,meeting,1.0,0.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0014-1,plurality/justification,54,9,meeting,1.0,0.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,55,9,meeting,1.0,1.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,56,9,meeting,1.0,1.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,57,9,meeting,1.0,1.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0014-1,plurality/justification,58,9,meeting,1.0,1.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,59,9,meeting,1.0,2.0,Player 1: white,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,60,9,meeting,1.0,2.0,Player 3: cyan,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,61,9,meeting,1.0,2.0,Player 4: orange,Impostor,SPEAK,,,,0,0
+g0014-1,plurality/justification,62,9,meeting,1.0,2.0,Player 5: brown,Crewmate,SPEAK,,,,0,0
+g0014-1,plurality/justification,63,9,meeting,1.0,3.0,Player 1: white,Crewmate,VOTE,Player 4: orange,,,0,0
+g0014-1,plurality/justification,64,9,meeting,1.0,3.0,Player 3: cyan,Crewmate,VOTE,Player 1: white,,,0,0
+g0014-1,plurality/justification,65,9,meeting,1.0,3.0,Player 4: orange,Impostor,VOTE,Player 1: white,,,0,0
+g0014-1,plurality/justification,66,9,meeting,1.0,3.0,Player 5: brown,Crewmate,VOTE,Player 1: white,,,0,0
+g0014-1,plurality/justification,69,10,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0014-1,plurality/justification,70,10,task,,,Player 4: orange,Impostor,KILL,Player 5: brown,,,0,0
+g0015-1,plurality/freeform,3,0,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,4,0,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,5,0,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,6,0,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0015-1,plurality/freeform,7,0,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,9,1,task,,,Player 1: white,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0015-1,plurality/freeform,10,1,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,11,1,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,12,1,task,,,Player 4: orange,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0015-1,plurality/freeform,13,1,task,,,Player 5: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0015-1,plurality/freeform,15,2,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,16,2,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,17,2,task,,,Player 3: cyan,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0015-1,plurality/freeform,18,2,task,,,Player 4: orange,Impostor,VENT,,Medbay,Security,0,0
+g0015-1,plurality/freeform,19,2,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,21,3,task,,,Player 1: white,Crewmate,MOVE,,Admin,Storage,0,0
+g0015-1,plurality/freeform,22,3,task,,,Player 2: lime,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0015-1,plurality/freeform,23,3,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,24,3,task,,,Player 4: orange,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0015-1,plurality/freeform,25,3,task,,,Player 5: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0015-1,plurality/freeform,27,4,task,,,Player 1: white,Crewmate,MOVE,,Storage,Communications,0,0
+g0015-1,plurality/freeform,28,4,task,,,Player 2: lime,Crewmate,MOVE,,Upper Engine,Security,0,0
+g0015-1,plurality/freeform,29,4,task,,,Player 3: cyan,Crewmate,MOVE,,Upper Engine,Reactor,0,0
+g0015-1,plurality/freeform,30,4,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,31,4,task,,,Player 5: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0015-1,plurality/freeform,33,5,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,34,5,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,35,5,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,36,5,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,37,5,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,39,6,task,,,Player 1: white,Crewmate,MOVE,,Communications,Storage,0,0
+g0015-1,plurality/freeform,40,6,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,41,6,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,42,6,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,43,6,task,,,Player 5: brown,Crewmate,MOVE,,Shields,Storage,0,0
+g0015-1,plurality/freeform,45,7,task,,,Player 1: white,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0015-1,plurality/freeform,46,7,task,,,Player 2: lime,Crewmate,MOVE,,Security,Lower Engine,0,0
+g0015-1,plurality/freeform,47,7,task,,,Player 3: cyan,Crewmate,MOVE,,Reactor,Security,0,0
+g0015-1,plurality/freeform,48,7,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,49,7,task,,,Player 5: brown,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0015-1,plurality/freeform,51,8,task,,,Player 1: white,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0015-1,plurality/freeform,52,8,task,,,Player 2: lime,Crewmate,MOVE,,Lower Engine,Electrical,0,0
+g0015-1,plurality/freeform,53,8,task,,,Player 3: cyan,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,54,8,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,55,8,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,57,9,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,58,9,task,,,Player 2: lime,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,59,9,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,60,9,task,,,Player 4: orange,Impostor,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,61,9,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,63,10,task,,,Player 1: white,Crewmate,MOVE,,Security,Upper Engine,0,0
+g0015-1,plurality/freeform,64,10,task,,,Player 2: lime,Crewmate,MOVE,,Electrical,Admin,0,0
+g0015-1,plurality/freeform,65,10,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,66,10,task,,,Player 4: orange,Impostor,MOVE,,Security,Reactor,0,0
+g0015-1,plurality/freeform,67,10,task,,,Player 5: brown,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0015-1,plurality/freeform,69,11,task,,,Player 1: white,Crewmate,MOVE,,Upper Engine,Medbay,0,0
+g0015-1,plurality/freeform,70,11,task,,,Player 2: lime,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0015-1,plurality/freeform,71,11,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,72,11,task,,,Player 4: orange,Impostor,MOVE,,Reactor,Lower Engine,0,0
+g0015-1,plurality/freeform,73,11,task,,,Player 5: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,75,12,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,76,12,task,,,Player 2: lime,Crewmate,MOVE,,Cafeteria,Medbay,0,0
+g0015-1,plurality/freeform,77,12,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,78,12,task,,,Player 4: orange,Impostor,MOVE,,Lower Engine,Electrical,0,0
+g0015-1,plurality/freeform,79,12,task,,,Player 5: brown,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,81,13,task,,,Player 1: white,Crewmate,COMPLETE TASK,,,,0,0
+g0015-1,plurality/freeform,82,13,task,,,Player 2: lime,Crewmate,MOVE,,Medbay,Cafeteria,0,0
+g0015-1,plurality/freeform,83,13,task,,,Player 3: cyan,Crewmate,VIEW MONITOR,,,,0,0
+g0015-1,plurality/freeform,84,13,task,,,Player 4: orange,Impostor,MOVE,,Electrical,Storage,0,0
+g0015-1,plurality/freeform,85,13,task,,,Player 5: brown,Crewmate,VIEW MONITOR,,,,0,0
+g0016-1,majority/justification,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,4,0,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0016-1,majority/justification,5,0,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0016-1,majority/justification,6,0,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0016-1,majority/justification,7,0,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0016-1,majority/justification,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0016-1,majority/justification,10,1,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,11,1,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,12,1,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,13,1,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0016-1,majority/justification,15,2,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,16,2,task,,,Player 2: black,Crewmate,MOVE,,Admin,Electrical,0,0
+g0016-1,majority/justification,17,2,task,,,Player 3: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0016-1,majority/justification,18,2,task,,,Player 4: brown,Crewmate,MOVE,,Admin,O2,0,0
+g0016-1,majority/justification,19,2,task,,,Player 5: cyan,Impostor,MOVE,,Admin,O2,0,0
+g0016-1,majority/justification,21,3,task,,,Player 1: red,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0016-1,majority/justification,22,3,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,23,3,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,24,3,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,25,3,task,,,Player 5: cyan,Impostor,MOVE,,O2,Shields,0,0
+g0016-1,majority/justification,27,4,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0016-1,majority/justification,28,4,task,,,Player 2: black,Crewmate,MOVE,,Electrical,Admin,0,0
+g0016-1,majority/justification,29,4,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,30,4,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,31,4,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Navigation,0,0
+g0016-1,majority/justification,33,5,task,,,Player 1: red,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0016-1,majority/justification,34,5,task,,,Player 2: black,Crewmate,MOVE,,Admin,O2,0,0
+g0016-1,majority/justification,35,5,task,,,Player 3: yellow,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0016-1,majority/justification,36,5,task,,,Player 4: brown,Crewmate,MOVE,,O2,Shields,0,0
+g0016-1,majority/justification,37,5,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0016-1,majority/justification,39,6,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,40,6,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,41,6,task,,,Player 3: yellow,Crewmate,MOVE,,Storage,Shields,0,0
+g0016-1,majority/justification,42,6,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,43,6,task,,,Player 5: cyan,Impostor,MOVE,,Navigation,Shields,0,0
+g0016-1,majority/justification,45,7,task,,,Player 1: red,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0016-1,majority/justification,46,7,task,,,Player 2: black,Crewmate,MOVE,,O2,Shields,0,0
+g0016-1,majority/justification,47,7,task,,,Player 3: yellow,Crewmate,MOVE,,Shields,Navigation,0,0
+g0016-1,majority/justification,48,7,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Communications,0,0
+g0016-1,majority/justification,49,7,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Storage,0,0
+g0016-1,majority/justification,51,8,task,,,Player 1: red,Crewmate,MOVE,,Weapons,Cafeteria,0,0
+g0016-1,majority/justification,52,8,task,,,Player 2: black,Crewmate,MOVE,,Shields,Navigation,0,0
+g0016-1,majority/justification,53,8,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,54,8,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,55,8,task,,,Player 5: cyan,Impostor,MOVE,,Storage,Electrical,0,0
+g0016-1,majority/justification,57,9,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,58,9,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,59,9,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,60,9,task,,,Player 4: brown,Crewmate,MOVE,,Communications,Shields,0,0
+g0016-1,majority/justification,61,9,task,,,Player 5: cyan,Impostor,MOVE,,Electrical,Admin,0,0
+g0016-1,majority/justification,63,10,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0016-1,majority/justification,64,10,task,,,Player 2: black,Crewmate,MOVE,,Navigation,Shields,0,0
+g0016-1,majority/justification,65,10,task,,,Player 3: yellow,Crewmate,MOVE,,Navigation,Shields,0,0
+g0016-1,majority/justification,66,10,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Navigation,0,0
+g0016-1,majority/justification,67,10,task,,,Player 5: cyan,Impostor,MOVE,,Admin,O2,0,0
+g0016-1,majority/justification,69,11,task,,,Player 1: red,Crewmate,MOVE,,Admin,Electrical,0,0
+g0016-1,majority/justification,70,11,task,,,Player 2: black,Crewmate,MOVE,,Shields,Storage,0,0
+g0016-1,majority/justification,71,11,task,,,Player 3: yellow,Crewmate,MOVE,,Shields,O2,0,0
+g0016-1,majority/justification,72,11,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,73,11,task,,,Player 5: cyan,Impostor,MOVE,,O2,Shields,0,0
+g0016-1,majority/justification,75,12,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,76,12,task,,,Player 2: black,Crewmate,MOVE,,Storage,Lower Engine,0,0
+g0016-1,majority/justification,77,12,task,,,Player 3: yellow,Crewmate,MOVE,,O2,Admin,0,0
+g0016-1,majority/justification,78,12,task,,,Player 4: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0016-1,majority/justification,79,12,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Communications,0,0
+g0016-1,majority/justification,81,13,task,,,Player 1: red,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0016-1,majority/justification,82,13,task,,,Player 2: black,Crewmate,MOVE,,Lower Engine,Reactor,0,0
+g0016-1,majority/justification,83,13,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,84,13,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Communications,0,0
+g0016-1,majority/justification,85,13,task,,,Player 5: cyan,Impostor,MOVE,,Communications,Storage,0,0
+g0016-1,majority/justification,87,14,task,,,Player 1: red,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0016-1,majority/justification,88,14,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,89,14,task,,,Player 3: yellow,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0016-1,majority/justification,90,14,task,,,Player 4: brown,Crewmate,MOVE,,Communications,Shields,0,0
+g0016-1,majority/justification,91,14,task,,,Player 5: cyan,Impostor,MOVE,,Storage,Communications,0,0
+g0016-1,majority/justification,93,15,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,94,15,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0016-1,majority/justification,95,15,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0016-1,majority/justification,96,15,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Navigation,0,0
+g0016-1,majority/justification,97,15,task,,,Player 5: cyan,Impostor,MOVE,,Communications,Storage,0,0
+g0017-1,plurality/justification,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,4,0,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0017-1,plurality/justification,5,0,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0017-1,plurality/justification,6,0,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0017-1,plurality/justification,7,0,task,,,Player 5: cyan,Impostor,KILL,Player 1: red,,,0,0
+g0017-1,plurality/justification,9,1,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,10,1,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,11,1,task,,,Player 4: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0017-1,plurality/justification,12,1,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0017-1,plurality/justification,14,2,task,,,Player 2: black,Crewmate,MOVE,,Admin,O2,0,0
+g0017-1,plurality/justification,15,2,task,,,Player 3: yellow,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0017-1,plurality/justification,16,2,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,17,2,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0017-1,plurality/justification,19,3,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,21,3,task,,,Player 3: yellow,Crewmate,CALL MEETING,,,,0,0
+g0017-1,plurality/justification,23,4,meeting,1.0,0.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,24,4,meeting,1.0,0.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,25,4,meeting,1.0,0.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,26,4,meeting,1.0,0.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0017-1,plurality/justification,27,4,meeting,1.0,1.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,28,4,meeting,1.0,1.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,29,4,meeting,1.0,1.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,30,4,meeting,1.0,1.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0017-1,plurality/justification,31,4,meeting,1.0,2.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,32,4,meeting,1.0,2.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,33,4,meeting,1.0,2.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0017-1,plurality/justification,34,4,meeting,1.0,2.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0017-1,plurality/justification,35,4,meeting,1.0,3.0,Player 2: black,Crewmate,VOTE,SKIP,,,0,0
+g0017-1,plurality/justification,36,4,meeting,1.0,3.0,Player 3: yellow,Crewmate,VOTE,SKIP,,,0,0
+g0017-1,plurality/justification,37,4,meeting,1.0,3.0,Player 4: brown,Crewmate,VOTE,Player 5: cyan,,,0,0
+g0017-1,plurality/justification,38,4,meeting,1.0,3.0,Player 5: cyan,Impostor,VOTE,SKIP,,,0,0
+g0017-1,plurality/justification,41,5,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0017-1,plurality/justification,42,5,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0017-1,plurality/justification,43,5,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0017-1,plurality/justification,44,5,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0017-1,plurality/justification,46,6,task,,,Player 2: black,Crewmate,MOVE,,Admin,Electrical,0,0
+g0017-1,plurality/justification,47,6,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,48,6,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,49,6,task,,,Player 5: cyan,Impostor,MOVE,,Weapons,Navigation,0,0
+g0017-1,plurality/justification,51,7,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,52,7,task,,,Player 3: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0017-1,plurality/justification,53,7,task,,,Player 4: brown,Crewmate,MOVE,,Admin,O2,0,0
+g0017-1,plurality/justification,54,7,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0017-1,plurality/justification,56,8,task,,,Player 2: black,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0017-1,plurality/justification,57,8,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,58,8,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,59,8,task,,,Player 5: cyan,Impostor,MOVE,,Navigation,Shields,0,0
+g0017-1,plurality/justification,61,9,task,,,Player 2: black,Crewmate,MOVE,,Lower Engine,Reactor,0,0
+g0017-1,plurality/justification,62,9,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,63,9,task,,,Player 4: brown,Crewmate,MOVE,,O2,Shields,0,0
+g0017-1,plurality/justification,64,9,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Communications,0,0
+g0017-1,plurality/justification,66,10,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,67,10,task,,,Player 3: yellow,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0017-1,plurality/justification,68,10,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,69,10,task,,,Player 5: cyan,Impostor,MOVE,,Communications,Storage,0,0
+g0017-1,plurality/justification,71,11,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,72,11,task,,,Player 3: yellow,Crewmate,MOVE,,Storage,Shields,0,0
+g0017-1,plurality/justification,73,11,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Communications,0,0
+g0017-1,plurality/justification,74,11,task,,,Player 5: cyan,Impostor,MOVE,,Storage,Electrical,0,0
+g0017-1,plurality/justification,76,12,task,,,Player 2: black,Crewmate,MOVE,,Reactor,Lower Engine,0,0
+g0017-1,plurality/justification,77,12,task,,,Player 3: yellow,Crewmate,MOVE,,Shields,Navigation,0,0
+g0017-1,plurality/justification,78,12,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,79,12,task,,,Player 5: cyan,Impostor,MOVE,,Electrical,Lower Engine,0,0
+g0017-1,plurality/justification,81,13,task,,,Player 2: black,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0017-1,plurality/justification,82,13,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,83,13,task,,,Player 4: brown,Crewmate,MOVE,,Communications,Shields,0,0
+g0017-1,plurality/justification,84,13,task,,,Player 5: cyan,Impostor,MOVE,,Lower Engine,Reactor,0,0
+g0017-1,plurality/justification,86,14,task,,,Player 2: black,Crewmate,MOVE,,Storage,Shields,0,0
+g0017-1,plurality/justification,87,14,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,88,14,task,,,Player 4: brown,Crewmate,MOVE,,Shields,O2,0,0
+g0017-1,plurality/justification,89,14,task,,,Player 5: cyan,Impostor,MOVE,,Reactor,Upper Engine,0,0
+g0017-1,plurality/justification,91,15,task,,,Player 2: black,Crewmate,MOVE,,Shields,Navigation,0,0
+g0017-1,plurality/justification,92,15,task,,,Player 3: yellow,Crewmate,MOVE,,Navigation,Shields,0,0
+g0017-1,plurality/justification,93,15,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,94,15,task,,,Player 5: cyan,Impostor,MOVE,,Upper Engine,Reactor,0,0
+g0017-1,plurality/justification,96,16,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0017-1,plurality/justification,97,16,task,,,Player 3: yellow,Crewmate,MOVE,,Shields,Storage,0,0
+g0017-1,plurality/justification,98,16,task,,,Player 4: brown,Crewmate,MOVE,,O2,Shields,0,0
+g0017-1,plurality/justification,99,16,task,,,Player 5: cyan,Impostor,MOVE,,Reactor,Lower Engine,0,0
+g0018-1,majority/freeform,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,4,0,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0018-1,majority/freeform,5,0,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0018-1,majority/freeform,6,0,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0018-1,majority/freeform,7,0,task,,,Player 5: cyan,Impostor,KILL,Player 1: red,,,0,0
+g0018-1,majority/freeform,9,1,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,10,1,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,11,1,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,12,1,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Weapons,0,0
+g0018-1,majority/freeform,14,2,task,,,Player 2: black,Crewmate,MOVE,,Admin,O2,0,0
+g0018-1,majority/freeform,15,2,task,,,Player 3: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0018-1,majority/freeform,16,2,task,,,Player 4: brown,Crewmate,MOVE,,Admin,O2,0,0
+g0018-1,majority/freeform,17,2,task,,,Player 5: cyan,Impostor,MOVE,,Weapons,Navigation,0,0
+g0018-1,majority/freeform,19,3,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,20,3,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,21,3,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,22,3,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0018-1,majority/freeform,24,4,task,,,Player 2: black,Crewmate,MOVE,,O2,Shields,0,0
+g0018-1,majority/freeform,25,4,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,26,4,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,27,4,task,,,Player 5: cyan,Impostor,MOVE,,Navigation,Shields,0,0
+g0018-1,majority/freeform,29,5,task,,,Player 2: black,Crewmate,MOVE,,Shields,Navigation,0,0
+g0018-1,majority/freeform,30,5,task,,,Player 3: yellow,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0018-1,majority/freeform,31,5,task,,,Player 4: brown,Crewmate,MOVE,,O2,Shields,0,0
+g0018-1,majority/freeform,32,5,task,,,Player 5: cyan,Impostor,MOVE,,Shields,O2,0,0
+g0018-1,majority/freeform,34,6,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,35,6,task,,,Player 3: yellow,Crewmate,MOVE,,Storage,Admin,0,0
+g0018-1,majority/freeform,36,6,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,37,6,task,,,Player 5: cyan,Impostor,MOVE,,O2,Admin,0,0
+g0018-1,majority/freeform,39,7,task,,,Player 2: black,Crewmate,MOVE,,Navigation,Shields,0,0
+g0018-1,majority/freeform,40,7,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,41,7,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Communications,0,0
+g0018-1,majority/freeform,42,7,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0018-1,majority/freeform,44,8,task,,,Player 2: black,Crewmate,MOVE,,Shields,Storage,0,0
+g0018-1,majority/freeform,45,8,task,,,Player 3: yellow,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0018-1,majority/freeform,46,8,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,47,8,task,,,Player 5: cyan,Impostor,MOVE,,Admin,Storage,0,0
+g0018-1,majority/freeform,49,9,task,,,Player 2: black,Crewmate,MOVE,,Storage,Electrical,0,0
+g0018-1,majority/freeform,51,9,task,,,Player 3: yellow,Crewmate,CALL MEETING,,,,0,0
+g0018-1,majority/freeform,53,10,meeting,1.0,0.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,54,10,meeting,1.0,0.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,55,10,meeting,1.0,0.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,56,10,meeting,1.0,0.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0018-1,majority/freeform,57,10,meeting,1.0,1.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,58,10,meeting,1.0,1.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,59,10,meeting,1.0,1.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,60,10,meeting,1.0,1.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0018-1,majority/freeform,61,10,meeting,1.0,2.0,Player 2: black,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,62,10,meeting,1.0,2.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,63,10,meeting,1.0,2.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0018-1,majority/freeform,64,10,meeting,1.0,2.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0018-1,majority/freeform,65,10,meeting,1.0,3.0,Player 2: black,Crewmate,VOTE,SKIP,,,0,0
+g0018-1,majority/freeform,66,10,meeting,1.0,3.0,Player 3: yellow,Crewmate,VOTE,Player 5: cyan,,,0,0
+g0018-1,majority/freeform,67,10,meeting,1.0,3.0,Player 4: brown,Crewmate,VOTE,Player 2: black,,,0,0
+g0018-1,majority/freeform,68,10,meeting,1.0,3.0,Player 5: cyan,Impostor,VOTE,Player 3: yellow,,,0,0
+g0018-1,majority/freeform,71,11,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0018-1,majority/freeform,72,11,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0018-1,majority/freeform,73,11,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0018-1,majority/freeform,74,11,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Medbay,0,0
+g0018-1,majority/freeform,76,12,task,,,Player 2: black,Crewmate,MOVE,,Admin,Electrical,0,0
+g0018-1,majority/freeform,77,12,task,,,Player 3: yellow,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0018-1,majority/freeform,78,12,task,,,Player 4: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0018-1,majority/freeform,79,12,task,,,Player 5: cyan,Impostor,MOVE,,Medbay,Upper Engine,0,0
+g0018-1,majority/freeform,81,13,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,82,13,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,83,13,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,84,13,task,,,Player 5: cyan,Impostor,MOVE,,Upper Engine,Reactor,0,0
+g0018-1,majority/freeform,86,14,task,,,Player 2: black,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0018-1,majority/freeform,87,14,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,88,14,task,,,Player 4: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0018-1,majority/freeform,89,14,task,,,Player 5: cyan,Impostor,MOVE,,Reactor,Lower Engine,0,0
+g0018-1,majority/freeform,91,15,task,,,Player 2: black,Crewmate,MOVE,,Lower Engine,Reactor,0,0
+g0018-1,majority/freeform,92,15,task,,,Player 3: yellow,Crewmate,MOVE,,Navigation,Weapons,0,0
+g0018-1,majority/freeform,93,15,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Navigation,0,0
+g0018-1,majority/freeform,94,15,task,,,Player 5: cyan,Impostor,MOVE,,Lower Engine,Reactor,0,0
+g0018-1,majority/freeform,96,16,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0018-1,majority/freeform,97,16,task,,,Player 3: yellow,Crewmate,MOVE,,Weapons,O2,0,0
+g0018-1,majority/freeform,98,16,task,,,Player 4: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0018-1,majority/freeform,99,16,task,,,Player 5: cyan,Impostor,KILL,Player 2: black,,,0,0
+g0019-1,plurality/freeform,3,0,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,4,0,task,,,Player 2: black,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0019-1,plurality/freeform,5,0,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Upper Engine,0,0
+g0019-1,plurality/freeform,6,0,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0019-1,plurality/freeform,7,0,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0019-1,plurality/freeform,9,1,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0019-1,plurality/freeform,10,1,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,11,1,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,12,1,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,13,1,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0019-1,plurality/freeform,15,2,task,,,Player 1: red,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0019-1,plurality/freeform,16,2,task,,,Player 2: black,Crewmate,MOVE,,Admin,O2,0,0
+g0019-1,plurality/freeform,17,2,task,,,Player 3: yellow,Crewmate,MOVE,,Upper Engine,Lower Engine,0,0
+g0019-1,plurality/freeform,18,2,task,,,Player 4: brown,Crewmate,MOVE,,Admin,O2,0,0
+g0019-1,plurality/freeform,19,2,task,,,Player 5: cyan,Impostor,MOVE,,Admin,O2,0,0
+g0019-1,plurality/freeform,21,3,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,22,3,task,,,Player 2: black,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,23,3,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,24,3,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,25,3,task,,,Player 5: cyan,Impostor,MOVE,,O2,Shields,0,0
+g0019-1,plurality/freeform,27,4,task,,,Player 1: red,Crewmate,MOVE,,Navigation,Shields,0,0
+g0019-1,plurality/freeform,28,4,task,,,Player 2: black,Crewmate,MOVE,,O2,Shields,0,0
+g0019-1,plurality/freeform,29,4,task,,,Player 3: yellow,Crewmate,MOVE,,Lower Engine,Storage,0,0
+g0019-1,plurality/freeform,30,4,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,31,4,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Navigation,0,0
+g0019-1,plurality/freeform,33,5,task,,,Player 1: red,Crewmate,MOVE,,Shields,Storage,0,0
+g0019-1,plurality/freeform,34,5,task,,,Player 2: black,Crewmate,MOVE,,Shields,Navigation,0,0
+g0019-1,plurality/freeform,35,5,task,,,Player 3: yellow,Crewmate,MOVE,,Storage,Admin,0,0
+g0019-1,plurality/freeform,36,5,task,,,Player 4: brown,Crewmate,MOVE,,O2,Shields,0,0
+g0019-1,plurality/freeform,37,5,task,,,Player 5: cyan,Impostor,KILL,Player 2: black,,,0,0
+g0019-1,plurality/freeform,39,6,task,,,Player 1: red,Crewmate,MOVE,,Storage,Electrical,0,0
+g0019-1,plurality/freeform,40,6,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,41,6,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,42,6,task,,,Player 5: cyan,Impostor,COMPLETE FAKE TASK,,,,0,0
+g0019-1,plurality/freeform,44,7,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,45,7,task,,,Player 3: yellow,Crewmate,MOVE,,Admin,Cafeteria,0,0
+g0019-1,plurality/freeform,46,7,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Communications,0,0
+g0019-1,plurality/freeform,47,7,task,,,Player 5: cyan,Impostor,MOVE,,Navigation,Shields,0,0
+g0019-1,plurality/freeform,49,8,task,,,Player 1: red,Crewmate,MOVE,,Electrical,Lower Engine,0,0
+g0019-1,plurality/freeform,50,8,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0019-1,plurality/freeform,51,8,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,52,8,task,,,Player 5: cyan,Impostor,MOVE,,Shields,Storage,0,0
+g0019-1,plurality/freeform,54,9,task,,,Player 1: red,Crewmate,MOVE,,Lower Engine,Security,0,0
+g0019-1,plurality/freeform,55,9,task,,,Player 3: yellow,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0019-1,plurality/freeform,56,9,task,,,Player 4: brown,Crewmate,MOVE,,Communications,Shields,0,0
+g0019-1,plurality/freeform,57,9,task,,,Player 5: cyan,Impostor,MOVE,,Storage,Communications,0,0
+g0019-1,plurality/freeform,59,10,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,61,10,task,,,Player 3: yellow,Crewmate,CALL MEETING,,,,0,0
+g0019-1,plurality/freeform,63,11,meeting,1.0,0.0,Player 1: red,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,64,11,meeting,1.0,0.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,65,11,meeting,1.0,0.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,66,11,meeting,1.0,0.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0019-1,plurality/freeform,67,11,meeting,1.0,1.0,Player 1: red,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,68,11,meeting,1.0,1.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,69,11,meeting,1.0,1.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,70,11,meeting,1.0,1.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0019-1,plurality/freeform,71,11,meeting,1.0,2.0,Player 1: red,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,72,11,meeting,1.0,2.0,Player 3: yellow,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,73,11,meeting,1.0,2.0,Player 4: brown,Crewmate,SPEAK,,,,0,0
+g0019-1,plurality/freeform,74,11,meeting,1.0,2.0,Player 5: cyan,Impostor,SPEAK,,,,0,0
+g0019-1,plurality/freeform,75,11,meeting,1.0,3.0,Player 1: red,Crewmate,VOTE,SKIP,,,0,0
+g0019-1,plurality/freeform,76,11,meeting,1.0,3.0,Player 3: yellow,Crewmate,VOTE,SKIP,,,0,0
+g0019-1,plurality/freeform,77,11,meeting,1.0,3.0,Player 4: brown,Crewmate,VOTE,SKIP,,,0,0
+g0019-1,plurality/freeform,78,11,meeting,1.0,3.0,Player 5: cyan,Impostor,VOTE,SKIP,,,0,0
+g0019-1,plurality/freeform,81,12,task,,,Player 1: red,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,82,12,task,,,Player 3: yellow,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0019-1,plurality/freeform,83,12,task,,,Player 4: brown,Crewmate,MOVE,,Cafeteria,Weapons,0,0
+g0019-1,plurality/freeform,84,12,task,,,Player 5: cyan,Impostor,MOVE,,Cafeteria,Admin,0,0
+g0019-1,plurality/freeform,86,13,task,,,Player 1: red,Crewmate,MOVE,,Cafeteria,Admin,0,0
+g0019-1,plurality/freeform,87,13,task,,,Player 3: yellow,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0019-1,plurality/freeform,88,13,task,,,Player 4: brown,Crewmate,MOVE,,Weapons,Navigation,0,0
+g0019-1,plurality/freeform,89,13,task,,,Player 5: cyan,Impostor,KILL,Player 1: red,,,0,0
+g0019-1,plurality/freeform,91,14,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,92,14,task,,,Player 4: brown,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,93,14,task,,,Player 5: cyan,Impostor,MOVE,,Admin,O2,0,0
+g0019-1,plurality/freeform,95,15,task,,,Player 3: yellow,Crewmate,COMPLETE TASK,,,,0,0
+g0019-1,plurality/freeform,96,15,task,,,Player 4: brown,Crewmate,MOVE,,Navigation,Shields,0,0
+g0019-1,plurality/freeform,97,15,task,,,Player 5: cyan,Impostor,MOVE,,O2,Shields,0,0
+g0019-1,plurality/freeform,99,16,task,,,Player 3: yellow,Crewmate,MOVE,,Navigation,Shields,0,0
+g0019-1,plurality/freeform,100,16,task,,,Player 4: brown,Crewmate,MOVE,,Shields,Storage,0,0
+g0019-1,plurality/freeform,101,16,task,,,Player 5: cyan,Impostor,KILL,Player 3: yellow,,,0,0
